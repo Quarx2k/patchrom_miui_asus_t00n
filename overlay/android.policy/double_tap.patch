@@ -1,0 +1,30 @@
+From 562bdf255ef87583fdd1676d1f204d44b0049e4e Mon Sep 17 00:00:00 2001
+From: X-s <xsmumu@gmail.com>
+Date: Tue, 12 May 2015 17:36:54 +0800
+Subject: [PATCH] add double tap action, thanks YeGui
+
+---
+ .../policy/impl/BaseMiuiPhoneWindowManager.smali   | 9 +++++++++
+ 1 file changed, 9 insertions(+), 0 deletion(-)
+
+--- a/android.policy/smali/com/android/internal/policy/impl/BaseMiuiPhoneWindowManager.smali
++++ b/android.policy/smali/com/android/internal/policy/impl/BaseMiuiPhoneWindowManager.smali
+@@ -1866,6 +1866,15 @@
+ 
+     .end local v7    # "sbm":Landroid/app/StatusBarManager;
+     :cond_d
++    invoke-super {p0}, Lcom/android/internal/policy/impl/PhoneWindowManager;->MyhomeKeyAction()Z
++
++    move-result v11
++
++    if-eqz v11, :cond_miui_11
++
++    goto :goto_3
++
++    :cond_miui_11
+     invoke-virtual {p0}, Lcom/android/internal/policy/impl/BaseMiuiPhoneWindowManager;->launchHomeFromHotKey()V
+     :try_end_0
+     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+-- 
+1.9.1
+

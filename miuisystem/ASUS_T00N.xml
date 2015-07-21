@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+    <!--whether the device supports button light-->
+    <bool name="support_button_light">true</bool>
+    <!--whether the device supports emulated storage-->
+    <bool name="support_emulated_storage">true</bool>
+    <!--whether the device supports internal sdcard-->
+    <bool name="support_internal_sdcard">true</bool>
+    <!--the vendor feature, it's value may be qcom,mediatek,leadcore or nvidia-->
+    <string name="vendor">qcom</string>
+</features>
