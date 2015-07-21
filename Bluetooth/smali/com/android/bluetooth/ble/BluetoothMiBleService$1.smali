@@ -100,7 +100,7 @@
 
     invoke-virtual {v1}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->start()V
 
-    .line 64
+    .line 65
     :cond_0
     :goto_0
     return-void
@@ -115,6 +115,11 @@
     move-result-object v1
 
     invoke-virtual {v1}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->stop()V
+
+    .line 62
+    iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$1;->this$0:Lcom/android/bluetooth/ble/BluetoothMiBleService;
+
+    invoke-virtual {v1}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->stopSelf()V
 
     goto :goto_0
 .end method

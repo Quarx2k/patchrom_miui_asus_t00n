@@ -120,7 +120,7 @@
     if-eqz v1, :cond_0
 
     .line 68
-    const v1, 0x7f020008
+    const v1, 0x7f020009
 
     .line 76
     .end local v0    # "deviceAddress":Ljava/lang/String;
@@ -130,7 +130,7 @@
     .line 70
     .restart local v0    # "deviceAddress":Ljava/lang/String;
     :cond_0
-    const v1, 0x7f020009
+    const v1, 0x7f02000a
 
     goto :goto_0
 
@@ -223,7 +223,7 @@
     if-ne v1, v2, :cond_0
 
     .line 96
-    const v1, 0x80b0041
+    sget v1, Lmiui/R$id;->arrow_right:I
 
     invoke-virtual {p1, v1}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -256,7 +256,7 @@
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setAlpha(I)V
 
     .line 102
-    const v1, 0x8020232
+    sget v1, Lmiui/R$drawable;->btn_inline_detail_light:I
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->setImageResource(I)V
 

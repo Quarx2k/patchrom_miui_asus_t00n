@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 205
+    .line 233
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$AppServiceBinder;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -43,7 +43,7 @@
     .param p3, "callback"    # Lmiui/bluetooth/ble/IBleEventCallback;
 
     .prologue
-    .line 210
+    .line 238
     # getter for: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$000()Ljava/lang/String;
 
@@ -69,7 +69,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 212
+    .line 240
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$AppServiceBinder;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
     # getter for: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->mDevices:Ljava/util/HashMap;
@@ -83,16 +83,16 @@
 
     check-cast v0, Lcom/android/bluetooth/ble/app/BaseBleDevice;
 
-    .line 213
+    .line 241
     .local v0, "bleDevice":Lcom/android/bluetooth/ble/app/BaseBleDevice;
     if-eqz v0, :cond_0
 
-    .line 214
+    .line 242
     invoke-virtual {v0, p2, p3}, Lcom/android/bluetooth/ble/app/BaseBleDevice;->registerBleEventCallback(ILmiui/bluetooth/ble/IBleEventCallback;)Z
 
     move-result v1
 
-    .line 216
+    .line 244
     :goto_0
     return v1
 
@@ -109,7 +109,7 @@
     .param p3, "callback"    # Lmiui/bluetooth/ble/IBleEventCallback;
 
     .prologue
-    .line 222
+    .line 250
     # getter for: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$000()Ljava/lang/String;
 
@@ -135,7 +135,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 224
+    .line 252
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$AppServiceBinder;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
     # getter for: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->mDevices:Ljava/util/HashMap;
@@ -149,16 +149,16 @@
 
     check-cast v0, Lcom/android/bluetooth/ble/app/BaseBleDevice;
 
-    .line 225
+    .line 253
     .local v0, "bleDevice":Lcom/android/bluetooth/ble/app/BaseBleDevice;
     if-eqz v0, :cond_0
 
-    .line 226
+    .line 254
     invoke-virtual {v0, p2, p3}, Lcom/android/bluetooth/ble/app/BaseBleDevice;->unregisterBleEventCallback(ILmiui/bluetooth/ble/IBleEventCallback;)Z
 
     move-result v1
 
-    .line 228
+    .line 256
     :goto_0
     return v1
 

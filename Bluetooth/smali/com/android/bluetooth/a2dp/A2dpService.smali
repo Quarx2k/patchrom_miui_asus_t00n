@@ -16,7 +16,7 @@
 
 .field static final A2DP_SOURCE_UUID:[Landroid/os/ParcelUuid;
 
-.field private static final DBG:Z = true
+.field private static final DBG:Z = false
 
 .field private static final TAG:Ljava/lang/String; = "A2dpService"
 

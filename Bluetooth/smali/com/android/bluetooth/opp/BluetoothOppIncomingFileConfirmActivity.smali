@@ -1,5 +1,5 @@
 .class public Lcom/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity;
-.super Lcom/android/internal/app/AlertActivity;
+.super Lmiui/app/AlertActivity;
 .source "BluetoothOppIncomingFileConfirmActivity.java"
 
 # interfaces
@@ -42,7 +42,7 @@
 
     .prologue
     .line 60
-    invoke-direct {p0}, Lcom/android/internal/app/AlertActivity;-><init>()V
+    invoke-direct {p0}, Lmiui/app/AlertActivity;-><init>()V
 
     .line 80
     const/4 v0, 0x0
@@ -352,7 +352,7 @@
 
     .prologue
     .line 95
-    invoke-super {p0, p1}, Lcom/android/internal/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 97
     invoke-virtual {p0}, Lcom/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity;->getIntent()Landroid/content/Intent;
@@ -471,7 +471,7 @@
 
     .prologue
     .line 181
-    invoke-super {p0}, Lcom/android/internal/app/AlertActivity;->onDestroy()V
+    invoke-super {p0}, Lmiui/app/AlertActivity;->onDestroy()V
 
     .line 182
     iget-object v0, p0, Lcom/android/bluetooth/opp/BluetoothOppIncomingFileConfirmActivity;->mReceiver:Landroid/content/BroadcastReceiver;
@@ -567,7 +567,7 @@
 
     .prologue
     .line 187
-    invoke-super {p0, p1}, Lcom/android/internal/app/AlertActivity;->onRestoreInstanceState(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onRestoreInstanceState(Landroid/os/Bundle;)V
 
     .line 188
     const-string v0, "user_timeout"
@@ -597,7 +597,7 @@
 
     .prologue
     .line 197
-    invoke-super {p0, p1}, Lcom/android/internal/app/AlertActivity;->onSaveInstanceState(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onSaveInstanceState(Landroid/os/Bundle;)V
 
     .line 199
     const-string v0, "user_timeout"

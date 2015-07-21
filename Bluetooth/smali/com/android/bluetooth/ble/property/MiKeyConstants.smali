@@ -21,7 +21,7 @@
 
     .prologue
     .line 25
-    const-string v0, "55ff"
+    const-string v0, "fe91"
 
     invoke-static {v0}, Lcom/android/bluetooth/ble/BleConstants;->UUID16(Ljava/lang/String;)Ljava/util/UUID;
 

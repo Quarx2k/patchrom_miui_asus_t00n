@@ -37,21 +37,21 @@
     .param p4, "device"    # Ljava/lang/String;
 
     .prologue
-    .line 462
+    .line 463
     iput-object p1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->this$0:Lcom/android/bluetooth/ble/BluetoothMiBleService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 463
+    .line 464
     iput-object p2, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->token:Landroid/os/IBinder;
 
-    .line 464
+    .line 465
     iput-object p3, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->clientId:Landroid/os/ParcelUuid;
 
-    .line 465
+    .line 466
     iput-object p4, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->device:Ljava/lang/String;
 
-    .line 466
+    .line 467
     return-void
 .end method
 
@@ -61,7 +61,7 @@
     .locals 4
 
     .prologue
-    .line 478
+    .line 479
     const-string v1, "BluetoothMiBleService"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -86,7 +86,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 479
+    .line 480
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->this$0:Lcom/android/bluetooth/ble/BluetoothMiBleService;
 
     # getter for: Lcom/android/bluetooth/ble/BluetoothMiBleService;->mClients:Ljava/util/List;
@@ -98,16 +98,16 @@
 
     move-result v0
 
-    .line 480
+    .line 481
     .local v0, "idx":I
     if-gez v0, :cond_1
 
-    .line 487
+    .line 488
     :cond_0
     :goto_0
     return-void
 
-    .line 483
+    .line 484
     :cond_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->this$0:Lcom/android/bluetooth/ble/BluetoothMiBleService;
 
@@ -118,12 +118,12 @@
 
     invoke-interface {v1, v0}, Ljava/util/List;->remove(I)Ljava/lang/Object;
 
-    .line 484
+    .line 485
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     if-eqz v1, :cond_0
 
-    .line 485
+    .line 486
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     iget-object v2, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->clientId:Landroid/os/ParcelUuid;
@@ -137,7 +137,7 @@
     .locals 1
 
     .prologue
-    .line 473
+    .line 474
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     return-object v0
@@ -148,9 +148,9 @@
     .param p1, "peripheral"    # Lcom/android/bluetooth/ble/GattPeripheral;
 
     .prologue
-    .line 469
+    .line 470
     iput-object p1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
-    .line 470
+    .line 471
     return-void
 .end method

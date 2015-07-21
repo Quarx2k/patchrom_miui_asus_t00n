@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 112
+    .line 103
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$2;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,7 +40,7 @@
     .locals 3
 
     .prologue
-    .line 115
+    .line 106
     iget-object v0, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$2;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
     iget-object v0, v0, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mProfile:Lmiui/bluetooth/ble/MiBleProfile;
@@ -51,6 +51,6 @@
 
     invoke-virtual {v0, v1, v2}, Lmiui/bluetooth/ble/MiBleProfile;->registerPropertyNotifyCallback(ILmiui/bluetooth/ble/MiBleProfile$IPropertyNotifyCallback;)Z
 
-    .line 116
+    .line 108
     return-void
 .end method

@@ -1,5 +1,5 @@
 .class public Lcom/android/bluetooth/pbap/BluetoothPbapActivity;
-.super Lcom/miui/internal/app/AlertActivity;
+.super Lmiui/app/AlertActivity;
 .source "BluetoothPbapActivity.java"
 
 # interfaces
@@ -54,7 +54,7 @@
 
     .prologue
     .line 66
-    invoke-direct {p0}, Lcom/miui/internal/app/AlertActivity;-><init>()V
+    invoke-direct {p0}, Lmiui/app/AlertActivity;-><init>()V
 
     .line 84
     const-string v0, ""
@@ -676,7 +676,7 @@
     const/4 v3, 0x1
 
     .line 112
-    invoke-super {p0, p1}, Lcom/miui/internal/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 113
     invoke-virtual {p0}, Lcom/android/bluetooth/pbap/BluetoothPbapActivity;->getIntent()Landroid/content/Intent;
@@ -739,7 +739,7 @@
 
     .prologue
     .line 267
-    invoke-super {p0}, Lcom/miui/internal/app/AlertActivity;->onDestroy()V
+    invoke-super {p0}, Lmiui/app/AlertActivity;->onDestroy()V
 
     .line 268
     iget-object v0, p0, Lcom/android/bluetooth/pbap/BluetoothPbapActivity;->mReceiver:Landroid/content/BroadcastReceiver;
@@ -768,7 +768,7 @@
 
     .prologue
     .line 251
-    invoke-super {p0, p1}, Lcom/miui/internal/app/AlertActivity;->onRestoreInstanceState(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onRestoreInstanceState(Landroid/os/Bundle;)V
 
     .line 252
     const-string v0, "user_timeout"
@@ -798,7 +798,7 @@
 
     .prologue
     .line 261
-    invoke-super {p0, p1}, Lcom/miui/internal/app/AlertActivity;->onSaveInstanceState(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onSaveInstanceState(Landroid/os/Bundle;)V
 
     .line 262
     const-string v0, "user_timeout"

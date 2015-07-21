@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 157
+    .line 164
     iput-object p1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$3;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -41,7 +41,7 @@
     .param p1, "state"    # I
 
     .prologue
-    .line 160
+    .line 167
     const-string v0, "DeviceProfileFragment"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -85,13 +85,13 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 162
+    .line 169
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$3;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # setter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mState:I
     invoke-static {v0, p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$202(Lcom/android/bluetooth/ble/DeviceProfileFragment;I)I
 
-    .line 163
+    .line 170
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$3;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # getter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
@@ -101,7 +101,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 164
+    .line 171
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$3;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # getter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
@@ -117,7 +117,7 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/Preference;->setSummary(I)V
 
-    .line 165
+    .line 172
     :cond_0
     return-void
 .end method

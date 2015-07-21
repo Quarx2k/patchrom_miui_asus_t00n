@@ -16,7 +16,7 @@
 
 .field public static final PERM_WRITE:I = 0x2
 
-.field private static final TAG:Ljava/lang/String; = "SimpleRreadWriteProperty"
+.field private static final TAG:Ljava/lang/String; = "SimpleProperty"
 
 
 # instance fields
@@ -81,7 +81,7 @@
     if-nez v0, :cond_0
 
     .line 78
-    const-string v0, "SimpleRreadWriteProperty"
+    const-string v0, "SimpleProperty"
 
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -134,7 +134,7 @@
     if-nez v0, :cond_0
 
     .line 57
-    const-string v0, "SimpleRreadWriteProperty"
+    const-string v0, "SimpleProperty"
 
     new-instance v1, Ljava/lang/StringBuilder;
 
@@ -245,7 +245,7 @@
     if-nez v0, :cond_0
 
     .line 67
-    const-string v0, "SimpleRreadWriteProperty"
+    const-string v0, "SimpleProperty"
 
     new-instance v1, Ljava/lang/StringBuilder;
 

@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/bluetooth/ble/SynchronizedGattCallback;-><init>()V
+    value = Lcom/android/bluetooth/ble/SynchronizedGattCallback;->prepare()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 37
+    .line 46
     iput-object p1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$1;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -42,9 +42,9 @@
     .param p2, "ex"    # Ljava/lang/Throwable;
 
     .prologue
-    .line 41
+    .line 50
     invoke-virtual {p2}, Ljava/lang/Throwable;->printStackTrace()V
 
-    .line 42
+    .line 51
     return-void
 .end method

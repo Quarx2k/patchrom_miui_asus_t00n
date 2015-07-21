@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 128
+    .line 135
     iput-object p1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,26 +40,26 @@
     .locals 2
 
     .prologue
-    .line 146
+    .line 153
     const-string v0, "DeviceProfileFragment"
 
     const-string v1, "error connect MiBleDeviceManagerService"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 147
+    .line 154
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # invokes: Lcom/android/bluetooth/ble/DeviceProfileFragment;->initAddressPreferences()V
-    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$800(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
+    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$900(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
 
-    .line 148
+    .line 155
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # invokes: Lcom/android/bluetooth/ble/DeviceProfileFragment;->updateContent()V
-    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$900(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
+    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$1000(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
 
-    .line 149
+    .line 156
     return-void
 .end method
 
@@ -68,22 +68,22 @@
     .param p1, "manager"    # Lmiui/bluetooth/ble/MiBleDeviceManager;
 
     .prologue
-    .line 132
+    .line 139
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     const/4 v1, 0x1
 
     # setter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mInited:Z
-    invoke-static {v0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$602(Lcom/android/bluetooth/ble/DeviceProfileFragment;Z)Z
+    invoke-static {v0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$702(Lcom/android/bluetooth/ble/DeviceProfileFragment;Z)Z
 
-    .line 133
+    .line 140
     const-string v0, "DeviceProfileFragment"
 
     const-string v1, "init ok"
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 134
+    .line 141
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
@@ -109,15 +109,15 @@
     move-result v1
 
     # setter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
-    invoke-static {v0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$702(Lcom/android/bluetooth/ble/DeviceProfileFragment;I)I
+    invoke-static {v0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$802(Lcom/android/bluetooth/ble/DeviceProfileFragment;I)I
 
-    .line 135
+    .line 142
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # invokes: Lcom/android/bluetooth/ble/DeviceProfileFragment;->initAddressPreferences()V
-    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$800(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
+    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$900(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
 
-    .line 136
+    .line 143
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # getter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
@@ -129,7 +129,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 137
+    .line 144
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # getter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
@@ -145,7 +145,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 138
+    .line 145
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # getter for: Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleProfile:Lmiui/bluetooth/ble/MiBleProfile;
@@ -155,13 +155,13 @@
 
     invoke-virtual {v0}, Lmiui/bluetooth/ble/MiBleProfile;->connect()V
 
-    .line 141
+    .line 148
     :cond_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$2;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     # invokes: Lcom/android/bluetooth/ble/DeviceProfileFragment;->updateContent()V
-    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$900(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
+    invoke-static {v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->access$1000(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
 
-    .line 142
+    .line 149
     return-void
 .end method

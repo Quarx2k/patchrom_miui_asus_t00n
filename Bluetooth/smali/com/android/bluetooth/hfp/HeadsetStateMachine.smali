@@ -5648,7 +5648,7 @@
 
     goto :goto_0
 
-    .line 2067
+    .line 1844
     :cond_3
     const-string v2, "+XAPL"
 
@@ -5658,7 +5658,7 @@
 
     if-eqz v2, :cond_4
 
-    .line 1843
+    .line 1845
     invoke-virtual {v0, v4}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
     move-result-object v2
@@ -5667,7 +5667,7 @@
 
     goto :goto_0
 
-    .line 1844
+    .line 1846
     :cond_4
     const-string v2, "+IPHONEACCEV"
 
@@ -5677,7 +5677,7 @@
 
     if-eqz v2, :cond_5
 
-    .line 1845
+    .line 1847
     const/16 v2, 0xc
 
     invoke-virtual {v0, v2}, Ljava/lang/String;->substring(I)Ljava/lang/String;
@@ -5688,7 +5688,7 @@
 
     goto :goto_0
 
-    .line 1847
+    .line 1849
     :cond_5
     invoke-direct {p0, v0}, Lcom/android/bluetooth/hfp/HeadsetStateMachine;->processVendorSpecificAt(Ljava/lang/String;)Z
 
@@ -7337,7 +7337,7 @@
 
     const/4 v5, 0x1
 
-    .line 124
+    .line 126
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -7358,7 +7358,7 @@
 
     invoke-virtual {p0, v3}, Lcom/android/bluetooth/hfp/HeadsetStateMachine;->log(Ljava/lang/String;)V
 
-    .line 125
+    .line 127
     const-string v3, "="
 
     invoke-virtual {p1, v3}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
@@ -7375,7 +7375,7 @@
 
     if-nez v3, :cond_1
 
-    .line 126
+    .line 128
     invoke-virtual {p1, v5}, Ljava/lang/String;->substring(I)Ljava/lang/String;
 
     move-result-object v3
@@ -7384,7 +7384,7 @@
 
     move-result-object v0
 
-    .line 127
+    .line 129
     .local v0, "args":[Ljava/lang/Object;
     aget-object v3, v0, v6
 
@@ -7394,7 +7394,7 @@
 
     move-result v1
 
-    .line 128
+    .line 130
     .local v1, "count":I
     const/4 v2, 0x0
 
@@ -7402,7 +7402,7 @@
     :goto_0
     if-ge v2, v1, :cond_0
 
-    .line 129
+    .line 131
     mul-int/lit8 v3, v2, 0x2
 
     add-int/lit8 v3, v3, 0x1
@@ -7417,7 +7417,7 @@
 
     if-ne v3, v5, :cond_2
 
-    .line 130
+    .line 132
     iget-object v4, p0, Lcom/android/bluetooth/hfp/HeadsetStateMachine;->mService:Lcom/android/bluetooth/hfp/HeadsetService;
 
     mul-int/lit8 v3, v2, 0x2
@@ -7434,18 +7434,18 @@
 
     invoke-static {v4, v3}, Lcom/android/bluetooth/hfp/HeadsetStateMachine$Injector;->notifyBluetoothBattery(Landroid/content/Context;I)V
 
-    .line 134
+    .line 136
     :cond_0
     invoke-virtual {p0, v5, v6}, Lcom/android/bluetooth/hfp/HeadsetStateMachine;->atResponseCodeNative(II)Z
 
-    .line 136
+    .line 138
     .end local v0    # "args":[Ljava/lang/Object;
     .end local v1    # "count":I
     .end local v2    # "i":I
     :cond_1
     return-void
 
-    .line 128
+    .line 130
     .restart local v0    # "args":[Ljava/lang/Object;
     .restart local v1    # "count":I
     .restart local v2    # "i":I
@@ -7511,6 +7511,11 @@
 
     .line 115
     .local v0, "args":[Ljava/lang/Object;
+    array-length v1, v0
+
+    if-le v1, v3, :cond_0
+
+    .line 116
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -7533,7 +7538,7 @@
 
     invoke-virtual {p0, v1}, Lcom/android/bluetooth/hfp/HeadsetStateMachine;->atResponseStringNative(Ljava/lang/String;)Z
 
-    .line 117
+    .line 119
     .end local v0    # "args":[Ljava/lang/Object;
     :cond_0
     return-void

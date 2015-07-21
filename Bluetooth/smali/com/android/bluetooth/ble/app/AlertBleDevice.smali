@@ -89,8 +89,6 @@
     .param p2, "args"    # Landroid/os/Bundle;
 
     .prologue
-    const/4 v6, 0x1
-
     const/4 v5, 0x5
 
     const/4 v4, 0x0
@@ -105,7 +103,7 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 107
+    .line 102
     :cond_0
     :goto_0
     return-void
@@ -151,26 +149,17 @@
     if-eqz v3, :cond_5
 
     .line 46
-    const-string v3, "alert_incall_enabled"
-
-    invoke-virtual {p0, v3, v4}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_0
-
-    .line 48
     const-string v3, "contact"
 
     invoke-virtual {p2, v3}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 49
+    .line 47
     .local v0, "contact":Ljava/lang/String;
     const/4 v2, 0x0
 
-    .line 50
+    .line 48
     .local v2, "shouldAlert":Z
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -178,7 +167,7 @@
 
     if-eqz v3, :cond_4
 
-    .line 51
+    .line 49
     const-string v3, "alert_incall_enabled_no_contacts"
 
     invoke-virtual {p0, v3, v4}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
@@ -187,22 +176,22 @@
 
     if-eqz v3, :cond_3
 
-    .line 54
+    .line 52
     const/4 v2, 0x1
 
-    .line 64
+    .line 62
     :cond_3
     :goto_1
     if-eqz v2, :cond_0
 
-    .line 65
+    .line 63
     const-string v3, "alert_incall_delayed"
 
     invoke-virtual {p0, v3}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingsInteter(Ljava/lang/String;)I
 
     move-result v1
 
-    .line 66
+    .line 64
     .local v1, "delayed":I
     new-instance v3, Lcom/android/bluetooth/ble/app/AlertBleDevice$1;
 
@@ -210,7 +199,7 @@
 
     iput-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mPendingAlertTask:Ljava/lang/Runnable;
 
-    .line 73
+    .line 71
     iget-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mHandler:Landroid/os/Handler;
 
     iget-object v4, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mPendingAlertTask:Ljava/lang/Runnable;
@@ -221,23 +210,23 @@
 
     goto :goto_0
 
-    .line 57
+    .line 55
     .end local v1    # "delayed":I
     :cond_4
     const-string v3, "alert_incall_enabled_in_contacts"
 
-    invoke-virtual {p0, v3, v6}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {p0, v3, v4}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
 
     move-result v3
 
     if-eqz v3, :cond_3
 
-    .line 60
+    .line 58
     const/4 v2, 0x1
 
     goto :goto_1
 
-    .line 77
+    .line 74
     .end local v0    # "contact":Ljava/lang/String;
     .end local v2    # "shouldAlert":Z
     :cond_5
@@ -249,27 +238,18 @@
 
     if-eqz v3, :cond_8
 
-    .line 78
+    .line 75
     const-string v3, "contact"
 
     invoke-virtual {p2, v3}, Landroid/os/Bundle;->getString(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
-    .line 79
+    .line 76
     .restart local v0    # "contact":Ljava/lang/String;
-    const-string v3, "alert_sms_enabled"
-
-    invoke-virtual {p0, v3, v4}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
-
-    move-result v3
-
-    if-eqz v3, :cond_0
-
-    .line 80
     const/4 v2, 0x0
 
-    .line 81
+    .line 77
     .restart local v2    # "shouldAlert":Z
     invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -277,7 +257,7 @@
 
     if-eqz v3, :cond_7
 
-    .line 82
+    .line 78
     const-string v3, "alert_sms_enabled_no_contacts"
 
     invoke-virtual {p0, v3, v4}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
@@ -286,15 +266,15 @@
 
     if-eqz v3, :cond_6
 
-    .line 85
+    .line 81
     const/4 v2, 0x1
 
-    .line 95
+    .line 91
     :cond_6
     :goto_2
     if-eqz v2, :cond_0
 
-    .line 96
+    .line 92
     iget-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mProfile:Lmiui/bluetooth/ble/MiBleProfile;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getAlertDataForSMS()[B
@@ -305,22 +285,22 @@
 
     goto/16 :goto_0
 
-    .line 88
+    .line 84
     :cond_7
     const-string v3, "alert_sms_enabled_in_contacts"
 
-    invoke-virtual {p0, v3, v6}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {p0, v3, v4}, Lcom/android/bluetooth/ble/app/AlertBleDevice;->getSettingBoolean(Ljava/lang/String;Z)Z
 
     move-result v3
 
     if-eqz v3, :cond_6
 
-    .line 91
+    .line 87
     const/4 v2, 0x1
 
     goto :goto_2
 
-    .line 99
+    .line 94
     .end local v0    # "contact":Ljava/lang/String;
     .end local v2    # "shouldAlert":Z
     :cond_8
@@ -332,26 +312,26 @@
 
     if-eqz v3, :cond_0
 
-    .line 100
+    .line 95
     iget-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mPendingAlertTask:Ljava/lang/Runnable;
 
     if-eqz v3, :cond_9
 
-    .line 101
+    .line 96
     iget-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mHandler:Landroid/os/Handler;
 
     iget-object v4, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mPendingAlertTask:Ljava/lang/Runnable;
 
     invoke-virtual {v3, v4}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 102
+    .line 97
     const/4 v3, 0x0
 
     iput-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mPendingAlertTask:Ljava/lang/Runnable;
 
     goto/16 :goto_0
 
-    .line 104
+    .line 99
     :cond_9
     iget-object v3, p0, Lcom/android/bluetooth/ble/app/AlertBleDevice;->mProfile:Lmiui/bluetooth/ble/MiBleProfile;
 

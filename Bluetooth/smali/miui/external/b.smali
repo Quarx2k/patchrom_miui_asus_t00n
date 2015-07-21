@@ -4,9 +4,9 @@
 
 
 # static fields
-.field private static final c:Ljava/lang/String; = "dalvik.system.DexPathList"
+.field private static final b:Ljava/lang/String; = "dalvik.system.DexPathList"
 
-.field private static final d:Ljava/lang/String; = "dalvik.system.DexPathList$Element"
+.field private static final c:Ljava/lang/String; = "dalvik.system.DexPathList$Element"
 
 
 # direct methods

@@ -28,7 +28,7 @@
     .locals 0
 
     .prologue
-    .line 250
+    .line 256
     iput-object p1, p0, Lcom/android/bluetooth/ble/PeripheralConnectionManager$8;->this$0:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     iput-object p2, p0, Lcom/android/bluetooth/ble/PeripheralConnectionManager$8;->val$peripheral:Lcom/android/bluetooth/ble/GattPeripheral;
@@ -44,7 +44,7 @@
     .locals 3
 
     .prologue
-    .line 253
+    .line 259
     # getter for: Lcom/android/bluetooth/ble/PeripheralConnectionManager;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->access$300()Ljava/lang/String;
 
@@ -76,7 +76,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 254
+    .line 260
     iget-object v0, p0, Lcom/android/bluetooth/ble/PeripheralConnectionManager$8;->this$0:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     # getter for: Lcom/android/bluetooth/ble/PeripheralConnectionManager;->mHandler:Landroid/os/Handler;
@@ -93,11 +93,11 @@
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 255
+    .line 261
     iget-object v0, p0, Lcom/android/bluetooth/ble/PeripheralConnectionManager$8;->val$peripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral;->cancelConnect()V
 
-    .line 256
+    .line 262
     return-void
 .end method

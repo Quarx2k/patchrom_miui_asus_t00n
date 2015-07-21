@@ -16,17 +16,17 @@
     .locals 1
 
     .prologue
-    .line 30
+    .line 32
     const/4 v0, 0x0
 
     sput v0, Lcom/android/bluetooth/btservice/AdapterApp;->sRefCount:I
 
-    .line 34
+    .line 36
     const-string v0, "bluetooth_jni"
 
     invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 
-    .line 35
+    .line 37
     return-void
 .end method
 
@@ -34,10 +34,10 @@
     .locals 0
 
     .prologue
-    .line 38
+    .line 40
     invoke-direct {p0}, Lmiui/external/Application;-><init>()V
 
-    .line 45
+    .line 47
     return-void
 .end method
 
@@ -47,7 +47,7 @@
     .locals 0
 
     .prologue
-    .line 62
+    .line 57
     return-void
 .end method
 
@@ -55,12 +55,10 @@
     .locals 1
 
     .prologue
-    .line 49
+    .line 61
     new-instance v0, Lcom/android/bluetooth/btservice/AdapterApp$1;
 
-    .line 51
     invoke-direct {v0, p0}, Lcom/android/bluetooth/btservice/AdapterApp$1;-><init>(Lcom/android/bluetooth/btservice/AdapterApp;)V
 
-    .line 52
     return-object v0
 .end method

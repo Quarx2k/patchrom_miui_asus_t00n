@@ -23,7 +23,7 @@
     .locals 0
 
     .prologue
-    .line 45
+    .line 44
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$1;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
     invoke-direct {p0}, Landroid/telephony/PhoneStateListener;-><init>()V
@@ -39,7 +39,7 @@
     .param p2, "incomingNumber"    # Ljava/lang/String;
 
     .prologue
-    .line 50
+    .line 49
     # getter for: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$000()Ljava/lang/String;
 
@@ -65,17 +65,17 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 53
+    .line 52
     const/4 v3, 0x1
 
     if-eq p1, v3, :cond_0
 
-    .line 54
+    .line 53
     new-instance v0, Landroid/os/Bundle;
 
     invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
 
-    .line 55
+    .line 54
     .local v0, "args":Landroid/os/Bundle;
     iget-object v3, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$1;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
@@ -106,7 +106,7 @@
 
     check-cast v1, Lcom/android/bluetooth/ble/app/BaseBleDevice;
 
-    .line 56
+    .line 55
     .local v1, "device":Lcom/android/bluetooth/ble/app/BaseBleDevice;
     const-string v3, "miui.bluetooth.alert.CANCEL"
 
@@ -114,7 +114,7 @@
 
     goto :goto_0
 
-    .line 59
+    .line 58
     .end local v0    # "args":Landroid/os/Bundle;
     .end local v1    # "device":Lcom/android/bluetooth/ble/app/BaseBleDevice;
     .end local v2    # "i$":Ljava/util/Iterator;

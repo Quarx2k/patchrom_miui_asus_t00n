@@ -23,7 +23,7 @@
     .locals 0
 
     .prologue
-    .line 21
+    .line 22
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
     invoke-direct {p0}, Lmiui/bluetooth/ble/IBleEventCallback$Stub;-><init>()V
@@ -34,7 +34,7 @@
 
 # virtual methods
 .method public onEvent(Ljava/lang/String;I[B)Z
-    .locals 4
+    .locals 7
     .param p1, "device"    # Ljava/lang/String;
     .param p2, "event"    # I
     .param p3, "data"    # [B
@@ -45,63 +45,144 @@
     .end annotation
 
     .prologue
-    const/4 v1, 0x1
+    const/4 v3, 0x0
 
-    .line 25
-    packed-switch p2, :pswitch_data_0
-
-    .line 38
-    const/4 v1, 0x0
-
-    :goto_0
-    return v1
+    const/4 v4, 0x1
 
     .line 27
-    :pswitch_0
-    const/16 v2, 0x1b
+    iget-object v5, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
-    invoke-static {v2}, Lcom/android/bluetooth/ble/Utils;->simulateKey(I)V
+    invoke-static {p2}, Lcom/android/bluetooth/ble/app/BleSettings;->getBleEventSettingKey(I)Ljava/lang/String;
 
-    goto :goto_0
+    move-result-object v6
+
+    invoke-virtual {v5, v6}, Lcom/android/bluetooth/ble/app/MiKeyDevice;->getSetting(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
+    .line 28
+    .local v2, "pkg":Ljava/lang/String;
+    invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_0
+
+    .line 53
+    :goto_0
+    return v3
 
     .line 30
-    :pswitch_1
-    iget-object v2, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
+    :cond_0
+    iget-object v5, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
-    iget-object v2, v2, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
+    # getter for: Lcom/android/bluetooth/ble/app/MiKeyDevice;->mHostApp:Ljava/lang/String;
+    invoke-static {v5}, Lcom/android/bluetooth/ble/app/MiKeyDevice;->access$000(Lcom/android/bluetooth/ble/app/MiKeyDevice;)Ljava/lang/String;
 
-    invoke-static {v2, v1}, Lcom/android/bluetooth/ble/Utils;->openCameraApp(Landroid/content/Context;I)V
+    move-result-object v5
+
+    invoke-virtual {v5, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_1
+
+    .line 31
+    packed-switch p2, :pswitch_data_0
 
     goto :goto_0
 
     .line 33
+    :pswitch_0
+    const/16 v3, 0x1b
+
+    invoke-static {v3}, Lcom/android/bluetooth/ble/Utils;->simulateKey(I)V
+
+    move v3, v4
+
+    .line 34
+    goto :goto_0
+
+    .line 36
+    :pswitch_1
+    iget-object v3, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
+
+    iget-object v3, v3, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
+
+    invoke-static {v3, v4}, Lcom/android/bluetooth/ble/Utils;->openCameraApp(Landroid/content/Context;I)V
+
+    move v3, v4
+
+    .line 37
+    goto :goto_0
+
+    .line 39
     :pswitch_2
     new-instance v0, Landroid/content/Intent;
 
-    iget-object v2, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
+    iget-object v3, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
-    iget-object v2, v2, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
+    iget-object v3, v3, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
 
-    const-class v3, Lcom/android/bluetooth/ble/app/MiKeyAlertFullScreenActivity;
+    const-class v5, Lcom/android/bluetooth/ble/app/MiKeyAlertFullScreenActivity;
 
-    invoke-direct {v0, v2, v3}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
+    invoke-direct {v0, v3, v5}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 34
+    .line 40
     .local v0, "alertIntent":Landroid/content/Intent;
-    const/high16 v2, 0x10000000
+    const/high16 v3, 0x10000000
 
-    invoke-virtual {v0, v2}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+    invoke-virtual {v0, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
 
-    .line 35
-    iget-object v2, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
+    .line 41
+    iget-object v3, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
-    iget-object v2, v2, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
+    iget-object v3, v3, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
 
-    invoke-virtual {v2, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    invoke-virtual {v3, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+
+    move v3, v4
+
+    .line 42
+    goto :goto_0
+
+    .line 46
+    .end local v0    # "alertIntent":Landroid/content/Intent;
+    :cond_1
+    new-instance v1, Landroid/content/Intent;
+
+    const-string v4, "miui.bluetooth.BLE_EVENT"
+
+    invoke-direct {v1, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    .line 47
+    .local v1, "intent":Landroid/content/Intent;
+    invoke-virtual {v1, v2}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 48
+    const-string v4, "miui.bluetooth.extras.DEVICE"
+
+    iget-object v5, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
+
+    iget-object v5, v5, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mAddress:Ljava/lang/String;
+
+    invoke-virtual {v1, v4, v5}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+
+    .line 49
+    const-string v4, "miui.bluetooth.extras.EVENT"
+
+    invoke-virtual {v1, v4, p2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+
+    .line 50
+    iget-object v4, p0, Lcom/android/bluetooth/ble/app/MiKeyDevice$1;->this$0:Lcom/android/bluetooth/ble/app/MiKeyDevice;
+
+    iget-object v4, v4, Lcom/android/bluetooth/ble/app/MiKeyDevice;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v4, v1}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;)V
 
     goto :goto_0
 
-    .line 25
+    .line 31
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_0

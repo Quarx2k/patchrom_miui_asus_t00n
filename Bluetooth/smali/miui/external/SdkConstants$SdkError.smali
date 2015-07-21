@@ -46,7 +46,7 @@
 
     const/4 v2, 0x0
 
-    .line 25
+    .line 22
     new-instance v0, Lmiui/external/SdkConstants$SdkError;
 
     const-string v1, "GENERIC"
@@ -71,7 +71,7 @@
 
     sput-object v0, Lmiui/external/SdkConstants$SdkError;->LOW_SDK_VERSION:Lmiui/external/SdkConstants$SdkError;
 
-    .line 24
+    .line 21
     const/4 v0, 0x3
 
     new-array v0, v0, [Lmiui/external/SdkConstants$SdkError;
@@ -102,7 +102,7 @@
     .end annotation
 
     .prologue
-    .line 24
+    .line 21
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -112,7 +112,7 @@
     .locals 1
 
     .prologue
-    .line 24
+    .line 21
     const-class v0, Lmiui/external/SdkConstants$SdkError;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -128,7 +128,7 @@
     .locals 1
 
     .prologue
-    .line 24
+    .line 21
     sget-object v0, Lmiui/external/SdkConstants$SdkError;->n:[Lmiui/external/SdkConstants$SdkError;
 
     invoke-virtual {v0}, [Lmiui/external/SdkConstants$SdkError;->clone()Ljava/lang/Object;

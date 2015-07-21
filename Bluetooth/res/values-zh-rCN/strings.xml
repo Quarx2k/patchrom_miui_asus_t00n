@@ -173,5 +173,4 @@
     <string name="miui_transfer_history_title">蓝牙传输历史</string>
     <string name="miui_transfer_inbound_title">传入</string>
     <string name="miui_transfer_outbound_title">传出</string>
-    <string name="security_center_permission_deny">蓝牙数据共享权限被关闭，如果需要用加速通道请去安全中心打开权限</string>
 </resources>

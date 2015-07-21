@@ -28,7 +28,7 @@
     .locals 0
 
     .prologue
-    .line 220
+    .line 227
     iput-object p1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$5;->this$0:Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     iput-object p2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$5;->val$preference:Landroid/preference/Preference;
@@ -46,7 +46,7 @@
     .param p2, "which"    # I
 
     .prologue
-    .line 223
+    .line 230
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment$5;->val$preference:Landroid/preference/Preference;
 
     check-cast v0, Landroid/preference/CheckBoxPreference;
@@ -55,6 +55,6 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
 
-    .line 224
+    .line 231
     return-void
 .end method

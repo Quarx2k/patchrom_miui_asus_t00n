@@ -21,7 +21,7 @@
     .param p1, "device"    # Landroid/bluetooth/BluetoothDevice;
 
     .prologue
-    .line 51
+    .line 53
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DevicePickerActivity;->getFragmentManager()Landroid/app/FragmentManager;
 
     move-result-object v1
@@ -30,25 +30,25 @@
 
     move-result-object v0
 
-    .line 52
+    .line 54
     .local v0, "ft":Landroid/app/FragmentTransaction;
     const v1, 0x7f070022
 
-    new-instance v2, Lcom/android/bluetooth/ble/DeviceProfileFragment;
+    invoke-static {p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->newInstance(Landroid/bluetooth/BluetoothDevice;)Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
-    invoke-direct {v2, p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;-><init>(Landroid/bluetooth/BluetoothDevice;)V
+    move-result-object v2
 
     invoke-virtual {v0, v1, v2}, Landroid/app/FragmentTransaction;->replace(ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;
 
-    .line 53
+    .line 55
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/app/FragmentTransaction;->addToBackStack(Ljava/lang/String;)Landroid/app/FragmentTransaction;
 
-    .line 54
+    .line 56
     invoke-virtual {v0}, Landroid/app/FragmentTransaction;->commit()I
 
-    .line 55
+    .line 57
     return-void
 .end method
 
@@ -65,7 +65,7 @@
     if-eqz v3, :cond_0
 
     .line 28
-    const v3, 0x80d0032
+    sget v3, Lmiui/R$style;->Theme_Light_Dialog:I
 
     invoke-virtual {p0, v3}, Lcom/android/bluetooth/ble/DevicePickerActivity;->setTheme(I)V
 
@@ -76,7 +76,7 @@
     .line 31
     sget-boolean v3, Lmiui/os/Build;->IS_TABLET:Z
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_3
 
     .line 32
     const v3, 0x7f030008
@@ -104,11 +104,14 @@
 
     .line 40
     :cond_1
+    if-nez p1, :cond_2
+
+    .line 41
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DevicePickerActivity;->getIntent()Landroid/content/Intent;
 
     move-result-object v2
 
-    .line 41
+    .line 42
     .local v2, "intent":Landroid/content/Intent;
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DevicePickerActivity;->getFragmentManager()Landroid/app/FragmentManager;
 
@@ -118,9 +121,9 @@
 
     move-result-object v1
 
-    .line 42
+    .line 43
     .local v1, "ft":Landroid/app/FragmentTransaction;
-    if-eqz v2, :cond_3
+    if-eqz v2, :cond_4
 
     const-string v3, "com.android.bluetooth.ble.DeviceProfileFragment"
 
@@ -130,11 +133,9 @@
 
     move-result v3
 
-    if-eqz v3, :cond_3
+    if-eqz v3, :cond_4
 
-    .line 43
-    new-instance v4, Lcom/android/bluetooth/ble/DeviceProfileFragment;
-
+    .line 44
     const-string v3, "com.android.bluetooth.ble.device"
 
     invoke-virtual {v2, v3}, Landroid/content/Intent;->getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
@@ -143,33 +144,36 @@
 
     check-cast v3, Landroid/bluetooth/BluetoothDevice;
 
-    invoke-direct {v4, v3}, Lcom/android/bluetooth/ble/DeviceProfileFragment;-><init>(Landroid/bluetooth/BluetoothDevice;)V
+    invoke-static {v3}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->newInstance(Landroid/bluetooth/BluetoothDevice;)Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
-    invoke-virtual {v1, v5, v4}, Landroid/app/FragmentTransaction;->add(ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;
+    move-result-object v3
 
-    .line 47
+    invoke-virtual {v1, v5, v3}, Landroid/app/FragmentTransaction;->add(ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;
+
+    .line 48
     :goto_1
     invoke-virtual {v1}, Landroid/app/FragmentTransaction;->commit()I
 
-    .line 48
+    .line 50
+    .end local v1    # "ft":Landroid/app/FragmentTransaction;
+    .end local v2    # "intent":Landroid/content/Intent;
+    :cond_2
     return-void
 
     .line 34
     .end local v0    # "actionBar":Landroid/app/ActionBar;
-    .end local v1    # "ft":Landroid/app/FragmentTransaction;
-    .end local v2    # "intent":Landroid/content/Intent;
-    :cond_2
+    :cond_3
     const v3, 0x7f030009
 
     invoke-virtual {p0, v3}, Lcom/android/bluetooth/ble/DevicePickerActivity;->setContentView(I)V
 
     goto :goto_0
 
-    .line 45
+    .line 46
     .restart local v0    # "actionBar":Landroid/app/ActionBar;
     .restart local v1    # "ft":Landroid/app/FragmentTransaction;
     .restart local v2    # "intent":Landroid/content/Intent;
-    :cond_3
+    :cond_4
     new-instance v3, Lcom/android/bluetooth/ble/DevicePickerFragment;
 
     invoke-direct {v3}, Lcom/android/bluetooth/ble/DevicePickerFragment;-><init>()V

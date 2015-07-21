@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 219
+    .line 220
     iput-object p1, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$1;->this$0:Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -42,12 +42,12 @@
     .param p2, "whichButton"    # I
 
     .prologue
-    .line 221
+    .line 222
     iget-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$1;->this$0:Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory;
 
     # invokes: Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory;->clearAllDownloads()V
     invoke-static {v0}, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory;->access$000(Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory;)V
 
-    .line 222
+    .line 223
     return-void
 .end method

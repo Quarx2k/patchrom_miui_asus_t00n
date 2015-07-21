@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <public type="drawable" name="action_button_search" id="0x7f020003" />
-    <public type="drawable" name="action_button_search_normal_anim" id="0x7f020006" />
+    <public type="drawable" name="action_button_search_normal_anim" id="0x7f020004" />
     <public type="drawable" name="bt_incomming_file_notification" id="0x7f020000" />
     <public type="drawable" name="bt_share" id="0x7f020001" />
     <public type="drawable" name="ic_launcher_folder_bluetooth" id="0x7f020002" />
-    <public type="drawable" name="stat_error" id="0x7f02000a" />
-    <public type="drawable" name="action_button_search_disable" id="0x7f020004" />
-    <public type="drawable" name="action_button_search_normal" id="0x7f020005" />
-    <public type="drawable" name="action_button_search_pressed" id="0x7f020007" />
-    <public type="drawable" name="ic_ble_bracelet" id="0x7f020008" />
-    <public type="drawable" name="ic_ble_unknown" id="0x7f020009" />
+    <public type="drawable" name="stat_error" id="0x7f020005" />
+    <public type="drawable" name="action_button_search_disable" id="0x7f020006" />
+    <public type="drawable" name="action_button_search_normal" id="0x7f020007" />
+    <public type="drawable" name="action_button_search_pressed" id="0x7f020008" />
+    <public type="drawable" name="ic_ble_bracelet" id="0x7f020009" />
+    <public type="drawable" name="ic_ble_unknown" id="0x7f02000a" />
+    <public type="layout" name="activity_device_picker_pad" id="0x7f030008" />
+    <public type="layout" name="activity_device_picker_phone" id="0x7f030009" />
+    <public type="layout" name="activity_mi_key_alert" id="0x7f03000a" />
     <public type="layout" name="auth" id="0x7f030000" />
     <public type="layout" name="bluetooth_transfer_item" id="0x7f030001" />
     <public type="layout" name="bluetooth_transfers_page" id="0x7f030002" />
     <public type="layout" name="bt_enabling_progress" id="0x7f030003" />
     <public type="layout" name="confirm_dialog" id="0x7f030004" />
     <public type="layout" name="file_transfer" id="0x7f030005" />
-    <public type="layout" name="no_transfers" id="0x7f030006" />
-    <public type="layout" name="testactivity_main" id="0x7f030007" />
-    <public type="layout" name="activity_device_picker_pad" id="0x7f030008" />
-    <public type="layout" name="activity_device_picker_phone" id="0x7f030009" />
-    <public type="layout" name="activity_mi_key_alert" id="0x7f03000a" />
     <public type="layout" name="miui_bluetooth_transfer_group" id="0x7f03000b" />
     <public type="layout" name="miui_bluetooth_transfers_page" id="0x7f03000c" />
+    <public type="layout" name="no_transfers" id="0x7f030006" />
     <public type="layout" name="opp_launcher_progress" id="0x7f03000d" />
+    <public type="layout" name="testactivity_main" id="0x7f030007" />
+    <public type="xml" name="device_picker" id="0x7f080000" />
+    <public type="xml" name="device_profile" id="0x7f080001" />
+    <public type="array" name="ble_profile_mi_band" id="0x7f090000" />
+    <public type="array" name="ble_profile_mi_key" id="0x7f090001" />
+    <public type="array" name="ble_packages" id="0x7f090002" />
+    <public type="array" name="ble_package_names" id="0x7f090003" />
     <public type="string" name="map_acceptance_timeout_message" id="0x7f040000" />
     <public type="string" name="map_auth_notif_message" id="0x7f040001" />
     <public type="string" name="map_auth_notif_ticker" id="0x7f040002" />
@@ -199,7 +205,9 @@
     <public type="string" name="miui_transfer_history_title" id="0x7f0400ab" />
     <public type="string" name="miui_transfer_inbound_title" id="0x7f0400ac" />
     <public type="string" name="miui_transfer_outbound_title" id="0x7f0400ad" />
-    <public type="string" name="security_center_permission_deny" id="0x7f0400ae" />
+    <public type="integer" name="ble_profile_mi_key_type_2" id="0x7f0a0000" />
+    <public type="style" name="MiKeyAlertFullScreenTheme" id="0x7f0b0000" />
+    <public type="style" name="Theme.Light.Translucent" id="0x7f0b0001" />
     <public type="bool" name="profile_supported_a2dp" id="0x7f050000" />
     <public type="bool" name="profile_supported_hdp" id="0x7f050001" />
     <public type="bool" name="profile_supported_hs_hfp" id="0x7f050002" />
@@ -256,13 +264,4 @@
     <public type="id" name="ok_button" id="0x7f070025" />
     <public type="id" name="group_title" id="0x7f070026" />
     <public type="id" name="progress" id="0x7f070027" />
-    <public type="xml" name="device_picker" id="0x7f080000" />
-    <public type="xml" name="device_profile" id="0x7f080001" />
-    <public type="array" name="ble_profile_mi_band" id="0x7f090000" />
-    <public type="array" name="ble_profile_mi_key" id="0x7f090001" />
-    <public type="array" name="ble_packages" id="0x7f090002" />
-    <public type="array" name="ble_package_names" id="0x7f090003" />
-    <public type="integer" name="ble_profile_mi_key_type_2" id="0x7f0a0000" />
-    <public type="style" name="MiKeyAlertFullScreenTheme" id="0x7f0b0000" />
-    <public type="style" name="Theme.Light.Translucent" id="0x7f0b0001" />
 </resources>

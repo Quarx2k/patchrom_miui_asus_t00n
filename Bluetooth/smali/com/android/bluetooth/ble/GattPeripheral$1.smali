@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 279
+    .line 244
     iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral$1;->this$0:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,12 +40,12 @@
     .locals 1
 
     .prologue
-    .line 282
+    .line 247
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral$1;->this$0:Lcom/android/bluetooth/ble/GattPeripheral;
 
     # invokes: Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnectionFailed()V
     invoke-static {v0}, Lcom/android/bluetooth/ble/GattPeripheral;->access$000(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    .line 283
+    .line 248
     return-void
 .end method

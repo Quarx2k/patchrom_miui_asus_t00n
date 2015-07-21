@@ -15,7 +15,7 @@
 
 
 # static fields
-.field static final synthetic j:[I
+.field static final synthetic i:[I
 
 
 # direct methods
@@ -32,10 +32,10 @@
 
     new-array v0, v0, [I
 
-    sput-object v0, Lmiui/external/SdkErrorActivity$1;->j:[I
+    sput-object v0, Lmiui/external/SdkErrorActivity$1;->i:[I
 
     :try_start_0
-    sget-object v0, Lmiui/external/SdkErrorActivity$1;->j:[I
+    sget-object v0, Lmiui/external/SdkErrorActivity$1;->i:[I
 
     sget-object v1, Lmiui/external/SdkConstants$SdkError;->NO_SDK:Lmiui/external/SdkConstants$SdkError;
 
@@ -51,7 +51,7 @@
 
     :goto_0
     :try_start_1
-    sget-object v0, Lmiui/external/SdkErrorActivity$1;->j:[I
+    sget-object v0, Lmiui/external/SdkErrorActivity$1;->i:[I
 
     sget-object v1, Lmiui/external/SdkConstants$SdkError;->LOW_SDK_VERSION:Lmiui/external/SdkConstants$SdkError;
 

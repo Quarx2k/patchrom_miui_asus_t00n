@@ -102,7 +102,7 @@
     if-eqz v23, :cond_2
 
     .line 79
-    const v23, 0x7f02000a
+    const v23, 0x7f020005
 
     move/from16 v0, v23
 
@@ -477,7 +477,7 @@
 
     .line 93
     :cond_3
-    const v23, 0x8020040
+    sget v23, Lmiui/R$drawable;->file_icon_default:I
 
     move/from16 v0, v23
 

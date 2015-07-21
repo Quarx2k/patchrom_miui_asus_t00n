@@ -26,9 +26,9 @@
 
 
 # instance fields
-.field final synthetic e:Landroid/app/Dialog;
+.field final synthetic d:Landroid/app/Dialog;
 
-.field final synthetic f:Lmiui/external/c;
+.field final synthetic e:Lmiui/external/c;
 
 
 # direct methods
@@ -37,9 +37,9 @@
 
     .prologue
     .line 78
-    iput-object p1, p0, Lmiui/external/c$1;->f:Lmiui/external/c;
+    iput-object p1, p0, Lmiui/external/c$1;->e:Lmiui/external/c;
 
-    iput-object p2, p0, Lmiui/external/c$1;->e:Landroid/app/Dialog;
+    iput-object p2, p0, Lmiui/external/c$1;->d:Landroid/app/Dialog;
 
     invoke-direct {p0}, Landroid/os/AsyncTask;-><init>()V
 
@@ -62,9 +62,9 @@
 
     .line 87
     :goto_0
-    iget-object v0, p0, Lmiui/external/c$1;->f:Lmiui/external/c;
+    iget-object v0, p0, Lmiui/external/c$1;->e:Lmiui/external/c;
 
-    iget-object v0, v0, Lmiui/external/c;->b:Lmiui/external/SdkErrorActivity;
+    iget-object v0, v0, Lmiui/external/c;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-static {v0}, Lmiui/external/SdkErrorActivity;->b(Lmiui/external/SdkErrorActivity;)Z
 
@@ -91,7 +91,7 @@
 
     .prologue
     .line 92
-    iget-object v0, p0, Lmiui/external/c$1;->e:Landroid/app/Dialog;
+    iget-object v0, p0, Lmiui/external/c$1;->d:Landroid/app/Dialog;
 
     invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
 
@@ -102,9 +102,9 @@
 
     if-eqz v0, :cond_0
 
-    iget-object v0, p0, Lmiui/external/c$1;->f:Lmiui/external/c;
+    iget-object v0, p0, Lmiui/external/c$1;->e:Lmiui/external/c;
 
-    iget-object v0, v0, Lmiui/external/c;->b:Lmiui/external/SdkErrorActivity;
+    iget-object v0, v0, Lmiui/external/c;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-static {v0}, Lmiui/external/SdkErrorActivity;->c(Lmiui/external/SdkErrorActivity;)Landroid/app/Dialog;
 
@@ -114,15 +114,15 @@
     :goto_0
     new-instance v1, Lmiui/external/SdkErrorActivity$a;
 
-    iget-object v2, p0, Lmiui/external/c$1;->f:Lmiui/external/c;
+    iget-object v2, p0, Lmiui/external/c$1;->e:Lmiui/external/c;
 
-    iget-object v2, v2, Lmiui/external/c;->b:Lmiui/external/SdkErrorActivity;
+    iget-object v2, v2, Lmiui/external/c;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-direct {v1, v2, v0}, Lmiui/external/SdkErrorActivity$a;-><init>(Lmiui/external/SdkErrorActivity;Landroid/app/Dialog;)V
 
-    iget-object v0, p0, Lmiui/external/c$1;->f:Lmiui/external/c;
+    iget-object v0, p0, Lmiui/external/c$1;->e:Lmiui/external/c;
 
-    iget-object v0, v0, Lmiui/external/c;->b:Lmiui/external/SdkErrorActivity;
+    iget-object v0, v0, Lmiui/external/c;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-virtual {v0}, Lmiui/external/SdkErrorActivity;->getFragmentManager()Landroid/app/FragmentManager;
 
@@ -137,9 +137,9 @@
 
     .line 93
     :cond_0
-    iget-object v0, p0, Lmiui/external/c$1;->f:Lmiui/external/c;
+    iget-object v0, p0, Lmiui/external/c$1;->e:Lmiui/external/c;
 
-    iget-object v0, v0, Lmiui/external/c;->b:Lmiui/external/SdkErrorActivity;
+    iget-object v0, v0, Lmiui/external/c;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-static {v0}, Lmiui/external/SdkErrorActivity;->d(Lmiui/external/SdkErrorActivity;)Landroid/app/Dialog;
 

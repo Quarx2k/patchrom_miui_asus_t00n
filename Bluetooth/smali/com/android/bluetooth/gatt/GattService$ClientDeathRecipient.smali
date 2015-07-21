@@ -29,15 +29,15 @@
     .param p2, "appIf"    # I
 
     .prologue
-    .line 227
+    .line 225
     iput-object p1, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->this$0:Lcom/android/bluetooth/gatt/GattService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 228
+    .line 226
     iput p2, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->mAppIf:I
 
-    .line 229
+    .line 227
     return-void
 .end method
 
@@ -47,38 +47,7 @@
     .locals 3
 
     .prologue
-    .line 232
-    const-string v0, "BtGatt.GattService"
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "Binder is dead - unregistering client ("
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    iget v2, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->mAppIf:I
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    const-string v2, ")!"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 233
+    .line 231
     iget-object v0, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->this$0:Lcom/android/bluetooth/gatt/GattService;
 
     # getter for: Lcom/android/bluetooth/gatt/GattService;->mAdvertisingClientIf:I
@@ -90,14 +59,14 @@
 
     if-ne v0, v1, :cond_0
 
-    .line 234
+    .line 232
     iget-object v0, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->this$0:Lcom/android/bluetooth/gatt/GattService;
 
     const/4 v1, 0x1
 
     invoke-virtual {v0, v1}, Lcom/android/bluetooth/gatt/GattService;->stopAdvertising(Z)V
 
-    .line 238
+    .line 236
     :goto_0
     iget-object v0, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->this$0:Lcom/android/bluetooth/gatt/GattService;
 
@@ -105,10 +74,10 @@
 
     invoke-virtual {v0, v1}, Lcom/android/bluetooth/gatt/GattService;->unregisterClient(I)V
 
-    .line 239
+    .line 237
     return-void
 
-    .line 236
+    .line 234
     :cond_0
     iget-object v0, p0, Lcom/android/bluetooth/gatt/GattService$ClientDeathRecipient;->this$0:Lcom/android/bluetooth/gatt/GattService;
 

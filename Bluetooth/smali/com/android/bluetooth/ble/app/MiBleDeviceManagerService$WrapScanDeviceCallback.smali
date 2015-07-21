@@ -33,19 +33,19 @@
     .param p3, "dr"    # Landroid/os/IBinder$DeathRecipient;
 
     .prologue
-    .line 270
+    .line 316
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 271
+    .line 317
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->callback:Lmiui/bluetooth/ble/IScanDeviceCallback;
 
-    .line 272
+    .line 318
     iput-object p2, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->token:Landroid/os/IBinder;
 
-    .line 273
+    .line 319
     iput-object p3, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->deathRecipient:Landroid/os/IBinder$DeathRecipient;
 
-    .line 274
+    .line 320
     return-void
 .end method
 
@@ -55,7 +55,7 @@
     .locals 4
 
     .prologue
-    .line 282
+    .line 328
     :try_start_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->token:Landroid/os/IBinder;
 
@@ -67,15 +67,15 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 286
+    .line 332
     :goto_0
     return-void
 
-    .line 283
+    .line 329
     :catch_0
     move-exception v0
 
-    .line 284
+    .line 330
     .local v0, "e":Landroid/os/RemoteException;
     invoke-virtual {v0}, Landroid/os/RemoteException;->printStackTrace()V
 
@@ -87,10 +87,10 @@
     .param p1, "cb"    # Lmiui/bluetooth/ble/IScanDeviceCallback;
 
     .prologue
-    .line 277
+    .line 323
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->callback:Lmiui/bluetooth/ble/IScanDeviceCallback;
 
-    .line 278
+    .line 324
     return-void
 .end method
 
@@ -98,7 +98,7 @@
     .locals 3
 
     .prologue
-    .line 289
+    .line 335
     iget-object v0, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->token:Landroid/os/IBinder;
 
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$WrapScanDeviceCallback;->deathRecipient:Landroid/os/IBinder$DeathRecipient;
@@ -107,6 +107,6 @@
 
     invoke-interface {v0, v1, v2}, Landroid/os/IBinder;->unlinkToDeath(Landroid/os/IBinder$DeathRecipient;I)Z
 
-    .line 290
+    .line 336
     return-void
 .end method

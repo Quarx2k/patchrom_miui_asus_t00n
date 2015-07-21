@@ -58,11 +58,8 @@
             "Ljava/util/HashMap",
             "<",
             "Ljava/lang/String;",
-            "Landroid/util/Pair",
-            "<",
             "Ljava/lang/String;",
-            "Ljava/lang/Integer;",
-            ">;>;"
+            ">;"
         }
     .end annotation
 .end field
@@ -90,12 +87,11 @@
 
 
 # direct methods
-.method public constructor <init>(Landroid/bluetooth/BluetoothDevice;)V
+.method public constructor <init>()V
     .locals 1
-    .param p1, "mDevice"    # Landroid/bluetooth/BluetoothDevice;
 
     .prologue
-    .line 113
+    .line 119
     invoke-direct {p0}, Landroid/preference/PreferenceFragment;-><init>()V
 
     .line 60
@@ -110,10 +106,7 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mHandler:Landroid/os/Handler;
 
-    .line 114
-    iput-object p1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
-
-    .line 115
+    .line 120
     return-void
 .end method
 
@@ -151,29 +144,15 @@
     return-object v0
 .end method
 
-.method static synthetic access$1000(Lcom/android/bluetooth/ble/DeviceProfileFragment;)Ljava/util/HashMap;
-    .locals 1
+.method static synthetic access$1000(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
+    .locals 0
     .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
     .prologue
     .line 42
-    iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+    invoke-direct {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->updateContent()V
 
-    return-object v0
-.end method
-
-.method static synthetic access$1100(Lcom/android/bluetooth/ble/DeviceProfileFragment;Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
-    .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
-    .param p1, "x1"    # Ljava/lang/String;
-
-    .prologue
-    .line 42
-    invoke-direct {p0, p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v0
-
-    return-object v0
+    return-void
 .end method
 
 .method static synthetic access$202(Lcom/android/bluetooth/ble/DeviceProfileFragment;I)I
@@ -221,7 +200,21 @@
     return-object v0
 .end method
 
-.method static synthetic access$602(Lcom/android/bluetooth/ble/DeviceProfileFragment;Z)Z
+.method static synthetic access$600(Lcom/android/bluetooth/ble/DeviceProfileFragment;Ljava/lang/String;)Ljava/lang/String;
+    .locals 1
+    .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
+    .param p1, "x1"    # Ljava/lang/String;
+
+    .prologue
+    .line 42
+    invoke-direct {p0, p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method static synthetic access$702(Lcom/android/bluetooth/ble/DeviceProfileFragment;Z)Z
     .locals 0
     .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
     .param p1, "x1"    # Z
@@ -233,7 +226,7 @@
     return p1
 .end method
 
-.method static synthetic access$702(Lcom/android/bluetooth/ble/DeviceProfileFragment;I)I
+.method static synthetic access$802(Lcom/android/bluetooth/ble/DeviceProfileFragment;I)I
     .locals 0
     .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
     .param p1, "x1"    # I
@@ -245,7 +238,7 @@
     return p1
 .end method
 
-.method static synthetic access$800(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
+.method static synthetic access$900(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
     .locals 0
     .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
 
@@ -256,23 +249,12 @@
     return-void
 .end method
 
-.method static synthetic access$900(Lcom/android/bluetooth/ble/DeviceProfileFragment;)V
-    .locals 0
-    .param p0, "x0"    # Lcom/android/bluetooth/ble/DeviceProfileFragment;
-
-    .prologue
-    .line 42
-    invoke-direct {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->updateContent()V
-
-    return-void
-.end method
-
 .method private getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
     .locals 2
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 299
+    .line 312
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -304,19 +286,70 @@
     return-object v0
 .end method
 
+.method private static getPackageLabel(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+    .locals 5
+    .param p0, "context"    # Landroid/content/Context;
+    .param p1, "pn"    # Ljava/lang/String;
+
+    .prologue
+    .line 538
+    invoke-virtual {p0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+
+    move-result-object v3
+
+    .line 539
+    .local v3, "pm":Landroid/content/pm/PackageManager;
+    move-object v2, p1
+
+    .line 541
+    .local v2, "label":Ljava/lang/String;
+    const/4 v4, 0x0
+
+    :try_start_0
+    invoke-virtual {v3, p1, v4}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
+
+    move-result-object v4
+
+    move-object v0, v4
+
+    check-cast v0, Ljava/lang/String;
+
+    move-object v2, v0
+    :try_end_0
+    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 545
+    :goto_0
+    return-object v2
+
+    .line 542
+    :catch_0
+    move-exception v1
+
+    .line 543
+    .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
+    invoke-virtual {v1}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
+
+    goto :goto_0
+.end method
+
 .method private getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
     .locals 2
     .param p1, "key"    # Ljava/lang/String;
 
     .prologue
-    .line 302
+    .line 315
     const-string v1, "@"
 
     invoke-virtual {p1, v1}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
 
     move-result-object v0
 
-    .line 303
+    .line 316
     .local v0, "ps":[Ljava/lang/String;
     const/4 v1, 0x0
 
@@ -331,21 +364,21 @@
     .prologue
     const/4 v2, 0x1
 
-    .line 275
+    .line 288
     const-string v0, "DeviceProfileFragment"
 
     const-string v1, "init preference..."
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 276
+    .line 289
     iget v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
     const/4 v1, 0x2
 
     if-ne v0, v1, :cond_0
 
-    .line 277
+    .line 290
     new-instance v0, Landroid/preference/CheckBoxPreference;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
@@ -356,17 +389,17 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
-    .line 278
+    .line 291
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     invoke-virtual {v0, v2}, Landroid/preference/Preference;->setPersistent(Z)V
 
-    .line 279
+    .line 292
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     invoke-virtual {v0, p0}, Landroid/preference/Preference;->setOnPreferenceChangeListener(Landroid/preference/Preference$OnPreferenceChangeListener;)V
 
-    .line 283
+    .line 296
     :goto_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
@@ -374,7 +407,7 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/Preference;->setOrder(I)V
 
-    .line 284
+    .line 297
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     const-string v1, "device_address"
@@ -385,14 +418,14 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/Preference;->setKey(Ljava/lang/String;)V
 
-    .line 285
+    .line 298
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     const v1, 0x7f040090
 
     invoke-virtual {v0, v1}, Landroid/preference/Preference;->setTitle(I)V
 
-    .line 286
+    .line 299
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPreferenceScreen()Landroid/preference/PreferenceScreen;
 
     move-result-object v0
@@ -401,7 +434,7 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/PreferenceScreen;->addPreference(Landroid/preference/Preference;)Z
 
-    .line 288
+    .line 301
     new-instance v0, Landroid/preference/EditTextPreference;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
@@ -412,14 +445,14 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
-    .line 289
+    .line 302
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     const/4 v1, 0x6
 
     invoke-virtual {v0, v1}, Landroid/preference/EditTextPreference;->setOrder(I)V
 
-    .line 290
+    .line 303
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     const-string v1, "rename"
@@ -430,24 +463,24 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/EditTextPreference;->setKey(Ljava/lang/String;)V
 
-    .line 291
+    .line 304
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     invoke-virtual {v0, v2}, Landroid/preference/EditTextPreference;->setPersistent(Z)V
 
-    .line 292
+    .line 305
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     const v1, 0x7f040092
 
     invoke-virtual {v0, v1}, Landroid/preference/EditTextPreference;->setTitle(I)V
 
-    .line 293
+    .line 306
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     invoke-virtual {v0, p0}, Landroid/preference/EditTextPreference;->setOnPreferenceChangeListener(Landroid/preference/Preference$OnPreferenceChangeListener;)V
 
-    .line 294
+    .line 307
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPreferenceScreen()Landroid/preference/PreferenceScreen;
 
     move-result-object v0
@@ -456,7 +489,7 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/PreferenceScreen;->addPreference(Landroid/preference/Preference;)Z
 
-    .line 295
+    .line 308
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
@@ -467,10 +500,10 @@
 
     invoke-virtual {v0, v1}, Landroid/preference/EditTextPreference;->setSummary(Ljava/lang/CharSequence;)V
 
-    .line 296
+    .line 309
     return-void
 
-    .line 281
+    .line 294
     :cond_0
     new-instance v0, Landroid/preference/Preference;
 
@@ -485,23 +518,52 @@
     goto :goto_0
 .end method
 
+.method public static newInstance(Landroid/bluetooth/BluetoothDevice;)Lcom/android/bluetooth/ble/DeviceProfileFragment;
+    .locals 3
+    .param p0, "mDevice"    # Landroid/bluetooth/BluetoothDevice;
+
+    .prologue
+    .line 112
+    new-instance v1, Lcom/android/bluetooth/ble/DeviceProfileFragment;
+
+    invoke-direct {v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;-><init>()V
+
+    .line 113
+    .local v1, "dpf":Lcom/android/bluetooth/ble/DeviceProfileFragment;
+    new-instance v0, Landroid/os/Bundle;
+
+    invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
+
+    .line 114
+    .local v0, "b":Landroid/os/Bundle;
+    const-string v2, "com.android.bluetooth.ble.DEVICE"
+
+    invoke-virtual {v0, v2, p0}, Landroid/os/Bundle;->putParcelable(Ljava/lang/String;Landroid/os/Parcelable;)V
+
+    .line 115
+    invoke-virtual {v1, v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->setArguments(Landroid/os/Bundle;)V
+
+    .line 116
+    return-object v1
+.end method
+
 .method private updateContent()V
     .locals 8
 
     .prologue
     const/4 v7, 0x2
 
-    .line 306
+    .line 319
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
 
     if-nez v2, :cond_1
 
-    .line 331
+    .line 344
     :cond_0
     :goto_0
     return-void
 
-    .line 310
+    .line 323
     :cond_1
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
 
@@ -511,7 +573,7 @@
 
     if-nez v2, :cond_2
 
-    .line 311
+    .line 324
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     iget-object v3, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
@@ -522,7 +584,7 @@
 
     invoke-virtual {v2, v3}, Landroid/preference/Preference;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 316
+    .line 329
     :goto_1
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
@@ -532,12 +594,12 @@
 
     invoke-virtual {v2, v3}, Landroid/preference/Preference;->setSummary(I)V
 
-    .line 317
+    .line 330
     iget-boolean v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mInited:Z
 
     if-eqz v2, :cond_0
 
-    .line 320
+    .line 333
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->cache:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -558,7 +620,7 @@
 
     check-cast v1, Landroid/preference/Preference;
 
-    .line 321
+    .line 334
     .local v1, "p":Landroid/preference/Preference;
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPreferenceScreen()Landroid/preference/PreferenceScreen;
 
@@ -568,7 +630,7 @@
 
     goto :goto_2
 
-    .line 313
+    .line 326
     .end local v0    # "i$":Ljava/util/Iterator;
     .end local v1    # "p":Landroid/preference/Preference;
     :cond_2
@@ -606,34 +668,34 @@
 
     goto :goto_1
 
-    .line 323
+    .line 336
     .restart local v0    # "i$":Ljava/util/Iterator;
     :cond_3
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->cache:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->clear()V
 
-    .line 324
+    .line 337
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfiles:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->clear()V
 
-    .line 325
+    .line 338
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
 
     invoke-virtual {v2}, Landroid/preference/PreferenceGroup;->removeAll()V
 
-    .line 326
+    .line 339
     iget v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
     if-ne v2, v7, :cond_4
 
-    .line 327
+    .line 340
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->createMiKeyPreference()V
 
     goto :goto_0
 
-    .line 329
+    .line 342
     :cond_4
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->createGotoPreference()V
 
@@ -650,7 +712,7 @@
 
     const/4 v11, 0x0
 
-    .line 334
+    .line 347
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getResources()Landroid/content/res/Resources;
 
     move-result-object v8
@@ -661,7 +723,7 @@
 
     move-result-object v6
 
-    .line 335
+    .line 348
     .local v6, "pkgs":[Ljava/lang/String;
     iget v8, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
@@ -669,21 +731,21 @@
 
     if-lt v8, v9, :cond_0
 
-    .line 353
+    .line 366
     :goto_0
     return-void
 
-    .line 336
+    .line 349
     :cond_0
     iget v8, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
     aget-object v3, v6, v8
 
-    .line 337
+    .line 350
     .local v3, "pkg":Ljava/lang/String;
     move-object v2, v3
 
-    .line 339
+    .line 352
     .local v2, "label":Ljava/lang/String;
     :try_start_0
     iget-object v8, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mPm:Landroid/content/pm/PackageManager;
@@ -706,7 +768,7 @@
 
     move-object v2, v0
 
-    .line 340
+    .line 353
     const v8, 0x7f0400a7
 
     invoke-virtual {p0, v8}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
@@ -727,7 +789,7 @@
 
     move-result-object v2
 
-    .line 347
+    .line 360
     :goto_1
     new-instance v7, Landroid/preference/Preference;
 
@@ -737,19 +799,19 @@
 
     invoke-direct {v7, v8}, Landroid/preference/Preference;-><init>(Landroid/content/Context;)V
 
-    .line 348
+    .line 361
     .local v7, "pref":Landroid/preference/Preference;
     const-string v8, "goto_package"
 
     invoke-virtual {v7, v8}, Landroid/preference/Preference;->setKey(Ljava/lang/String;)V
 
-    .line 349
+    .line 362
     invoke-virtual {v7, v2}, Landroid/preference/Preference;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 350
+    .line 363
     invoke-virtual {v7, v11}, Landroid/preference/Preference;->setPersistent(Z)V
 
-    .line 351
+    .line 364
     iget v8, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
     add-int/lit8 v8, v8, 0x1
@@ -758,19 +820,19 @@
 
     invoke-virtual {v7, v8}, Landroid/preference/Preference;->setOrder(I)V
 
-    .line 352
+    .line 365
     iget-object v8, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
 
     invoke-virtual {v8, v7}, Landroid/preference/PreferenceGroup;->addPreference(Landroid/preference/Preference;)Z
 
     goto :goto_0
 
-    .line 341
+    .line 354
     .end local v7    # "pref":Landroid/preference/Preference;
     :catch_0
     move-exception v1
 
-    .line 342
+    .line 355
     .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getResources()Landroid/content/res/Resources;
 
@@ -782,13 +844,13 @@
 
     move-result-object v5
 
-    .line 343
+    .line 356
     .local v5, "pkgns":[Ljava/lang/String;
     iget v8, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
     aget-object v4, v5, v8
 
-    .line 344
+    .line 357
     .local v4, "pkgn":Ljava/lang/String;
     const v8, 0x7f0400a8
 
@@ -804,7 +866,7 @@
 
     move-result-object v2
 
-    .line 345
+    .line 358
     invoke-virtual {v1}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
 
     goto :goto_1
@@ -816,24 +878,24 @@
     .prologue
     const/4 v12, 0x1
 
-    .line 372
+    .line 385
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getMiBandKeys()Ljava/util/ArrayList;
 
     move-result-object v8
 
-    .line 374
+    .line 387
     .local v8, "profileKeys":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/util/ArrayList<Ljava/lang/String;>;>;"
     new-instance v9, Ljava/util/ArrayList;
 
     invoke-direct {v9}, Ljava/util/ArrayList;-><init>()V
 
-    .line 375
+    .line 388
     .local v9, "profiles":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/util/ArrayList<Ljava/lang/String;>;>;"
     new-instance v4, Ljava/util/ArrayList;
 
     invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
 
-    .line 376
+    .line 389
     .local v4, "miBandInCall":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     const v10, 0x7f040095
 
@@ -843,7 +905,7 @@
 
     invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 377
+    .line 390
     const v10, 0x7f040096
 
     invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
@@ -852,7 +914,7 @@
 
     invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 378
+    .line 391
     const v10, 0x7f040097
 
     invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
@@ -861,15 +923,15 @@
 
     invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 379
+    .line 392
     invoke-virtual {v9, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 380
+    .line 393
     new-instance v5, Ljava/util/ArrayList;
 
     invoke-direct {v5}, Ljava/util/ArrayList;-><init>()V
 
-    .line 381
+    .line 394
     .local v5, "miBandSms":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     const v10, 0x7f040098
 
@@ -879,7 +941,7 @@
 
     invoke-virtual {v5, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 382
+    .line 395
     const v10, 0x7f040099
 
     invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
@@ -888,7 +950,7 @@
 
     invoke-virtual {v5, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 383
+    .line 396
     const v10, 0x7f04009a
 
     invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
@@ -897,15 +959,15 @@
 
     invoke-virtual {v5, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 384
+    .line 397
     invoke-virtual {v9, v5}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 385
+    .line 398
     new-instance v3, Ljava/util/ArrayList;
 
     invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
 
-    .line 386
+    .line 399
     .local v3, "miBandAlarm":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     const v10, 0x7f04009b
 
@@ -915,10 +977,10 @@
 
     invoke-virtual {v3, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 387
+    .line 400
     invoke-virtual {v9, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 389
+    .line 402
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -929,14 +991,14 @@
 
     if-ge v0, v10, :cond_3
 
-    .line 390
+    .line 403
     const/4 v6, 0x0
 
-    .line 391
+    .line 404
     .local v6, "pc":Landroid/preference/PreferenceGroup;
     if-eqz v0, :cond_0
 
-    .line 392
+    .line 405
     new-instance v6, Landroid/preference/PreferenceCategory;
 
     .end local v6    # "pc":Landroid/preference/PreferenceGroup;
@@ -946,7 +1008,7 @@
 
     invoke-direct {v6, v10}, Landroid/preference/PreferenceCategory;-><init>(Landroid/content/Context;)V
 
-    .line 393
+    .line 406
     .restart local v6    # "pc":Landroid/preference/PreferenceGroup;
     iget v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
@@ -956,19 +1018,19 @@
 
     invoke-virtual {v6, v10}, Landroid/preference/PreferenceGroup;->setOrder(I)V
 
-    .line 394
+    .line 407
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPreferenceScreen()Landroid/preference/PreferenceScreen;
 
     move-result-object v10
 
     invoke-virtual {v10, v6}, Landroid/preference/PreferenceScreen;->addPreference(Landroid/preference/Preference;)Z
 
-    .line 395
+    .line 408
     iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->cache:Ljava/util/List;
 
     invoke-interface {v10, v6}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 399
+    .line 412
     :goto_1
     const/4 v1, 0x0
 
@@ -986,7 +1048,7 @@
 
     if-ge v1, v10, :cond_2
 
-    .line 400
+    .line 413
     new-instance v11, Ljava/lang/StringBuilder;
 
     invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
@@ -1027,7 +1089,7 @@
 
     move-result-object v2
 
-    .line 401
+    .line 414
     .local v2, "key":Ljava/lang/String;
     new-instance v7, Landroid/preference/CheckBoxPreference;
 
@@ -1037,11 +1099,11 @@
 
     invoke-direct {v7, v10}, Landroid/preference/CheckBoxPreference;-><init>(Landroid/content/Context;)V
 
-    .line 402
+    .line 415
     .local v7, "pref":Landroid/preference/CheckBoxPreference;
     invoke-virtual {v7, v2}, Landroid/preference/CheckBoxPreference;->setKey(Ljava/lang/String;)V
 
-    .line 403
+    .line 416
     invoke-virtual {v9, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v10
@@ -1056,20 +1118,20 @@
 
     invoke-virtual {v7, v10}, Landroid/preference/CheckBoxPreference;->setTitle(Ljava/lang/CharSequence;)V
 
-    .line 404
+    .line 417
     invoke-virtual {v7, v12}, Landroid/preference/CheckBoxPreference;->setPersistent(Z)V
 
-    .line 405
+    .line 418
     invoke-virtual {v7, p0}, Landroid/preference/CheckBoxPreference;->setOnPreferenceChangeListener(Landroid/preference/Preference$OnPreferenceChangeListener;)V
 
-    .line 406
+    .line 419
     invoke-static {v12}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object v10
 
     invoke-virtual {v7, v10}, Landroid/preference/CheckBoxPreference;->setDefaultValue(Ljava/lang/Object;)V
 
-    .line 407
+    .line 420
     iget v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
     add-int/lit8 v10, v10, 0x1
@@ -1078,18 +1140,18 @@
 
     invoke-virtual {v7, v10}, Landroid/preference/CheckBoxPreference;->setOrder(I)V
 
-    .line 408
+    .line 421
     iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfiles:Ljava/util/List;
 
     invoke-interface {v10, v7}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 409
+    .line 422
     invoke-virtual {v6, v7}, Landroid/preference/PreferenceGroup;->addPreference(Landroid/preference/Preference;)Z
 
-    .line 410
+    .line 423
     if-eqz v1, :cond_1
 
-    .line 411
+    .line 424
     invoke-virtual {v8, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v10
@@ -1110,13 +1172,13 @@
 
     invoke-virtual {v7, v10}, Landroid/preference/CheckBoxPreference;->setDependency(Ljava/lang/String;)V
 
-    .line 399
+    .line 412
     :goto_3
     add-int/lit8 v1, v1, 0x1
 
     goto/16 :goto_2
 
-    .line 397
+    .line 410
     .end local v1    # "j":I
     .end local v2    # "key":Ljava/lang/String;
     .end local v7    # "pref":Landroid/preference/CheckBoxPreference;
@@ -1125,7 +1187,7 @@
 
     goto/16 :goto_1
 
-    .line 413
+    .line 426
     .restart local v1    # "j":I
     .restart local v2    # "key":Ljava/lang/String;
     .restart local v7    # "pref":Landroid/preference/CheckBoxPreference;
@@ -1140,7 +1202,7 @@
 
     goto :goto_3
 
-    .line 389
+    .line 402
     .end local v2    # "key":Ljava/lang/String;
     .end local v7    # "pref":Landroid/preference/CheckBoxPreference;
     :cond_2
@@ -1148,7 +1210,7 @@
 
     goto/16 :goto_0
 
-    .line 417
+    .line 430
     .end local v1    # "j":I
     .end local v6    # "pc":Landroid/preference/PreferenceGroup;
     :cond_3
@@ -1159,128 +1221,193 @@
     .locals 15
 
     .prologue
-    .line 420
-    new-instance v6, Ljava/util/ArrayList;
+    .line 433
+    new-instance v3, Ljava/util/ArrayList;
 
-    invoke-direct {v6}, Ljava/util/ArrayList;-><init>()V
+    invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
 
-    .line 421
-    .local v6, "profileKeys":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
-    const-string v11, "mi_key_open_camera_event"
+    .line 434
+    .local v3, "profileKeys":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    const-string v10, "%d@mikey"
 
-    invoke-virtual {v6, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    const/4 v11, 0x1
 
-    .line 422
-    const-string v11, "mi_key_camera_event"
+    new-array v11, v11, [Ljava/lang/Object;
 
-    invoke-virtual {v6, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 423
-    const-string v11, "mi_key_alarm_event"
-
-    invoke-virtual {v6, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 424
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
-
-    if-nez v11, :cond_0
-
-    .line 425
-    new-instance v11, Ljava/util/HashMap;
-
-    invoke-direct {v11}, Ljava/util/HashMap;-><init>()V
-
-    iput-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
-
-    .line 427
-    :cond_0
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
-
-    iget-object v12, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
-
-    invoke-virtual {v12}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
-
-    move-result-object v12
+    const/4 v12, 0x0
 
     const/4 v13, 0x2
 
-    invoke-virtual {v11, v12, v13}, Lmiui/bluetooth/ble/MiBleDeviceManager;->getRegisterAppForBleEvent(Ljava/lang/String;I)Ljava/lang/String;
+    invoke-static {v13}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v13
+
+    aput-object v13, v11, v12
+
+    invoke-static {v10, v11}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v10
 
-    .line 428
-    .local v10, "takenDouble":Ljava/lang/String;
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
+    invoke-virtual {v3, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    iget-object v12, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+    .line 435
+    const-string v10, "%d@mikey"
 
-    invoke-virtual {v12}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+    const/4 v11, 0x1
 
-    move-result-object v12
+    new-array v11, v11, [Ljava/lang/Object;
+
+    const/4 v12, 0x0
 
     const/4 v13, 0x1
 
-    invoke-virtual {v11, v12, v13}, Lmiui/bluetooth/ble/MiBleDeviceManager;->getRegisterAppForBleEvent(Ljava/lang/String;I)Ljava/lang/String;
+    invoke-static {v13}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v13
+
+    aput-object v13, v11, v12
+
+    invoke-static {v10, v11}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v3, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 436
+    const-string v10, "%d@mikey"
+
+    const/4 v11, 0x1
+
+    new-array v11, v11, [Ljava/lang/Object;
+
+    const/4 v12, 0x0
+
+    const/4 v13, 0x3
+
+    invoke-static {v13}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v13
+
+    aput-object v13, v11, v12
+
+    invoke-static {v10, v11}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v3, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 437
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    if-nez v10, :cond_0
+
+    .line 438
+    new-instance v10, Ljava/util/HashMap;
+
+    invoke-direct {v10}, Ljava/util/HashMap;-><init>()V
+
+    iput-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    .line 440
+    :cond_0
+    invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
+
+    move-result-object v10
+
+    invoke-virtual {v10}, Landroid/app/Activity;->getPackageName()Ljava/lang/String;
+
+    move-result-object v5
+
+    .line 441
+    .local v5, "selfPackage":Ljava/lang/String;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
+
+    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+
+    invoke-virtual {v11}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+
+    move-result-object v11
+
+    const/4 v12, 0x2
+
+    invoke-virtual {v10, v11, v12}, Lmiui/bluetooth/ble/MiBleDeviceManager;->getRegisterAppForBleEvent(Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object v8
+
+    .line 442
+    .local v8, "takenDouble":Ljava/lang/String;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
+
+    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+
+    invoke-virtual {v11}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+
+    move-result-object v11
+
+    const/4 v12, 0x1
+
+    invoke-virtual {v10, v11, v12}, Lmiui/bluetooth/ble/MiBleDeviceManager;->getRegisterAppForBleEvent(Ljava/lang/String;I)Ljava/lang/String;
+
+    move-result-object v7
+
+    .line 443
+    .local v7, "takenClick":Ljava/lang/String;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
+
+    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+
+    invoke-virtual {v11}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+
+    move-result-object v11
+
+    const/4 v12, 0x3
+
+    invoke-virtual {v10, v11, v12}, Lmiui/bluetooth/ble/MiBleDeviceManager;->getRegisterAppForBleEvent(Ljava/lang/String;I)Ljava/lang/String;
 
     move-result-object v9
 
-    .line 429
-    .local v9, "takenClick":Ljava/lang/String;
-    new-instance v7, Ljava/util/ArrayList;
+    .line 444
+    .local v9, "takenLong":Ljava/lang/String;
+    new-instance v4, Ljava/util/ArrayList;
 
-    invoke-direct {v7}, Ljava/util/ArrayList;-><init>()V
+    invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
 
-    .line 430
-    .local v7, "profiles":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
-    if-eqz v10, :cond_3
+    .line 445
+    .local v4, "profiles":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    if-eqz v8, :cond_4
 
-    invoke-virtual {v10}, Ljava/lang/String;->isEmpty()Z
+    invoke-virtual {v8}, Ljava/lang/String;->isEmpty()Z
 
-    move-result v11
+    move-result v10
 
-    if-nez v11, :cond_3
+    if-nez v10, :cond_4
 
-    .line 431
+    invoke-virtual {v8, v5}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v10
+
+    if-nez v10, :cond_4
+
+    .line 446
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
-    move-result-object v11
+    move-result-object v10
 
-    invoke-virtual {v11}, Landroid/app/Activity;->getPackageManager()Landroid/content/pm/PackageManager;
+    invoke-static {v10, v8}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPackageLabel(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v4
+    move-result-object v1
 
-    .line 432
-    .local v4, "pm":Landroid/content/pm/PackageManager;
-    move-object v3, v10
+    .line 447
+    .local v1, "label":Ljava/lang/String;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
 
-    .line 434
-    .local v3, "label":Ljava/lang/String;
-    const/4 v11, 0x0
+    const-string v11, "%d"
 
-    :try_start_0
-    invoke-virtual {v4, v10, v11}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+    const/4 v12, 0x1
 
-    move-result-object v11
+    new-array v12, v12, [Ljava/lang/Object;
 
-    invoke-virtual {v4, v11}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
-
-    move-result-object v11
-
-    move-object v0, v11
-
-    check-cast v0, Ljava/lang/String;
-
-    move-object v3, v0
-    :try_end_0
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 439
-    :goto_0
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
-
-    const-string v12, "mi_key_open_camera_event"
-
-    new-instance v13, Landroid/util/Pair;
+    const/4 v13, 0x0
 
     const/4 v14, 0x2
 
@@ -1288,84 +1415,72 @@
 
     move-result-object v14
 
-    invoke-direct {v13, v3, v14}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+    aput-object v14, v12, v13
 
-    invoke-virtual {v11, v12, v13}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 440
-    const v11, 0x7f0400a9
-
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+    invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v11
+
+    invoke-virtual {v10, v11, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 448
+    const v10, 0x7f0400a9
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    const/4 v11, 0x1
+
+    new-array v11, v11, [Ljava/lang/Object;
+
+    const/4 v12, 0x0
+
+    aput-object v1, v11, v12
+
+    invoke-static {v10, v11}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 453
+    .end local v1    # "label":Ljava/lang/String;
+    :goto_0
+    if-eqz v7, :cond_5
+
+    invoke-virtual {v7}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v10
+
+    if-nez v10, :cond_5
+
+    invoke-virtual {v7, v5}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v10
+
+    if-nez v10, :cond_5
+
+    .line 454
+    invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
+
+    move-result-object v10
+
+    invoke-static {v10, v7}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPackageLabel(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 455
+    .restart local v1    # "label":Ljava/lang/String;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    const-string v11, "%d"
 
     const/4 v12, 0x1
 
     new-array v12, v12, [Ljava/lang/Object;
 
     const/4 v13, 0x0
-
-    aput-object v3, v12, v13
-
-    invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
-
-    move-result-object v11
-
-    invoke-virtual {v7, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 445
-    .end local v3    # "label":Ljava/lang/String;
-    .end local v4    # "pm":Landroid/content/pm/PackageManager;
-    :goto_1
-    if-eqz v9, :cond_4
-
-    invoke-virtual {v9}, Ljava/lang/String;->isEmpty()Z
-
-    move-result v11
-
-    if-nez v11, :cond_4
-
-    .line 446
-    invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
-
-    move-result-object v11
-
-    invoke-virtual {v11}, Landroid/app/Activity;->getPackageManager()Landroid/content/pm/PackageManager;
-
-    move-result-object v4
-
-    .line 447
-    .restart local v4    # "pm":Landroid/content/pm/PackageManager;
-    move-object v3, v9
-
-    .line 449
-    .restart local v3    # "label":Ljava/lang/String;
-    const/4 v11, 0x0
-
-    :try_start_1
-    invoke-virtual {v4, v9, v11}, Landroid/content/pm/PackageManager;->getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
-
-    move-result-object v11
-
-    invoke-virtual {v4, v11}, Landroid/content/pm/PackageManager;->getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
-
-    move-result-object v11
-
-    move-object v0, v11
-
-    check-cast v0, Ljava/lang/String;
-
-    move-object v3, v0
-    :try_end_1
-    .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_1 .. :try_end_1} :catch_1
-
-    .line 454
-    :goto_2
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
-
-    const-string v12, "mi_key_camera_event"
-
-    new-instance v13, Landroid/util/Pair;
 
     const/4 v14, 0x1
 
@@ -1373,16 +1488,66 @@
 
     move-result-object v14
 
-    invoke-direct {v13, v3, v14}, Landroid/util/Pair;-><init>(Ljava/lang/Object;Ljava/lang/Object;)V
+    aput-object v14, v12, v13
 
-    invoke-virtual {v11, v12, v13}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 455
-    const v11, 0x7f0400a9
-
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+    invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v11
+
+    invoke-virtual {v10, v11, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 456
+    const v10, 0x7f0400a9
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    const/4 v11, 0x1
+
+    new-array v11, v11, [Ljava/lang/Object;
+
+    const/4 v12, 0x0
+
+    aput-object v1, v11, v12
+
+    invoke-static {v10, v11}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 461
+    .end local v1    # "label":Ljava/lang/String;
+    :goto_1
+    if-eqz v9, :cond_6
+
+    invoke-virtual {v9}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v10
+
+    if-nez v10, :cond_6
+
+    invoke-virtual {v9, v5}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v10
+
+    if-nez v10, :cond_6
+
+    .line 462
+    invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
+
+    move-result-object v10
+
+    invoke-static {v10, v9}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getPackageLabel(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    .line 463
+    .restart local v1    # "label":Ljava/lang/String;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    const-string v11, "%d"
 
     const/4 v12, 0x1
 
@@ -1390,320 +1555,399 @@
 
     const/4 v13, 0x0
 
-    aput-object v3, v12, v13
+    const/4 v14, 0x3
+
+    invoke-static {v14}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v14
+
+    aput-object v14, v12, v13
 
     invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v11
 
-    invoke-virtual {v7, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 460
-    .end local v3    # "label":Ljava/lang/String;
-    .end local v4    # "pm":Landroid/content/pm/PackageManager;
-    :goto_3
-    const v11, 0x7f04009e
-
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
-
-    move-result-object v11
-
-    invoke-virtual {v7, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 461
-    new-instance v8, Ljava/util/ArrayList;
-
-    invoke-direct {v8}, Ljava/util/ArrayList;-><init>()V
-
-    .line 462
-    .local v8, "summaries":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
-    const v11, 0x7f0400a0
-
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
-
-    move-result-object v11
-
-    invoke-virtual {v8, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    .line 463
-    const v11, 0x7f0400a1
-
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
-
-    move-result-object v11
-
-    invoke-virtual {v8, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v10, v11, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
     .line 464
-    const v11, 0x7f0400a2
+    const v10, 0x7f0400a9
 
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
 
-    move-result-object v11
+    move-result-object v10
 
-    invoke-virtual {v8, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    const/4 v11, 0x1
 
-    .line 465
-    const/4 v2, 0x0
+    new-array v11, v11, [Ljava/lang/Object;
 
-    .local v2, "i":I
-    :goto_4
-    invoke-virtual {v7}, Ljava/util/ArrayList;->size()I
+    const/4 v12, 0x0
 
-    move-result v11
+    aput-object v1, v11, v12
 
-    if-ge v2, v11, :cond_5
+    invoke-static {v10, v11}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
-    .line 466
-    new-instance v5, Landroid/preference/CheckBoxPreference;
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 469
+    .end local v1    # "label":Ljava/lang/String;
+    :goto_2
+    new-instance v6, Ljava/util/ArrayList;
+
+    invoke-direct {v6}, Ljava/util/ArrayList;-><init>()V
+
+    .line 470
+    .local v6, "summaries":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    const v10, 0x7f0400a0
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v6, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 471
+    const v10, 0x7f0400a1
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v6, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 472
+    const v10, 0x7f0400a2
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v6, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    .line 473
+    const/4 v0, 0x0
+
+    .local v0, "i":I
+    :goto_3
+    invoke-virtual {v4}, Ljava/util/ArrayList;->size()I
+
+    move-result v10
+
+    if-ge v0, v10, :cond_7
+
+    .line 474
+    new-instance v2, Landroid/preference/CheckBoxPreference;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
-    move-result-object v11
+    move-result-object v10
 
-    invoke-direct {v5, v11}, Landroid/preference/CheckBoxPreference;-><init>(Landroid/content/Context;)V
-
-    .line 467
-    .local v5, "pref":Landroid/preference/CheckBoxPreference;
-    invoke-virtual {v6, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    move-result-object v11
-
-    check-cast v11, Ljava/lang/String;
-
-    invoke-direct {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v11
-
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setKey(Ljava/lang/String;)V
-
-    .line 468
-    invoke-virtual {v7, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    move-result-object v11
-
-    check-cast v11, Ljava/lang/CharSequence;
-
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setTitle(Ljava/lang/CharSequence;)V
-
-    .line 469
-    invoke-virtual {v8, v2}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
-
-    move-result-object v11
-
-    check-cast v11, Ljava/lang/CharSequence;
-
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setSummary(Ljava/lang/CharSequence;)V
-
-    .line 470
-    const/4 v11, 0x1
-
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setPersistent(Z)V
-
-    .line 471
-    invoke-virtual {v5, p0}, Landroid/preference/CheckBoxPreference;->setOnPreferenceChangeListener(Landroid/preference/Preference$OnPreferenceChangeListener;)V
-
-    .line 472
-    const/4 v11, 0x1
-
-    invoke-static {v11}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
-
-    move-result-object v11
-
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setDefaultValue(Ljava/lang/Object;)V
-
-    .line 473
-    iget v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
-
-    add-int/lit8 v11, v11, 0x1
-
-    iput v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
-
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setOrder(I)V
-
-    .line 474
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
-
-    invoke-virtual {v11, v5}, Landroid/preference/PreferenceGroup;->addPreference(Landroid/preference/Preference;)Z
+    invoke-direct {v2, v10}, Landroid/preference/CheckBoxPreference;-><init>(Landroid/content/Context;)V
 
     .line 475
-    if-nez v2, :cond_1
+    .local v2, "pref":Landroid/preference/CheckBoxPreference;
+    invoke-virtual {v3, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
-    if-eqz v10, :cond_1
+    move-result-object v10
 
-    invoke-virtual {v10}, Ljava/lang/String;->isEmpty()Z
+    check-cast v10, Ljava/lang/String;
 
-    move-result v11
+    invoke-direct {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
 
-    if-nez v11, :cond_1
+    move-result-object v10
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setKey(Ljava/lang/String;)V
 
     .line 476
-    const/4 v11, 0x0
+    invoke-virtual {v4, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
+    move-result-object v10
+
+    check-cast v10, Ljava/lang/CharSequence;
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setTitle(Ljava/lang/CharSequence;)V
+
+    .line 477
+    invoke-virtual {v6, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+
+    move-result-object v10
+
+    check-cast v10, Ljava/lang/CharSequence;
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setSummary(Ljava/lang/CharSequence;)V
 
     .line 478
-    :cond_1
-    const/4 v11, 0x1
+    const/4 v10, 0x1
 
-    if-ne v2, v11, :cond_2
-
-    if-eqz v9, :cond_2
-
-    invoke-virtual {v9}, Ljava/lang/String;->isEmpty()Z
-
-    move-result v11
-
-    if-nez v11, :cond_2
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setPersistent(Z)V
 
     .line 479
-    const/4 v11, 0x0
+    invoke-virtual {v2, p0}, Landroid/preference/CheckBoxPreference;->setOnPreferenceChangeListener(Landroid/preference/Preference$OnPreferenceChangeListener;)V
 
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
+    .line 480
+    const/4 v10, 0x1
+
+    invoke-static {v10}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v10
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setDefaultValue(Ljava/lang/Object;)V
 
     .line 481
-    :cond_2
-    const-string v11, "device_address"
+    iget v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
-    invoke-direct {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
+    add-int/lit8 v10, v10, 0x1
 
-    move-result-object v11
+    iput v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
-    invoke-virtual {v5, v11}, Landroid/preference/CheckBoxPreference;->setDependency(Ljava/lang/String;)V
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setOrder(I)V
 
     .line 482
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfiles:Ljava/util/List;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
 
-    invoke-interface {v11, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+    invoke-virtual {v10, v2}, Landroid/preference/PreferenceGroup;->addPreference(Landroid/preference/Preference;)Z
 
-    .line 465
-    add-int/lit8 v2, v2, 0x1
+    .line 483
+    if-nez v0, :cond_1
 
-    goto :goto_4
+    if-eqz v8, :cond_1
 
-    .line 435
-    .end local v2    # "i":I
-    .end local v5    # "pref":Landroid/preference/CheckBoxPreference;
-    .end local v8    # "summaries":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
-    .restart local v3    # "label":Ljava/lang/String;
-    .restart local v4    # "pm":Landroid/content/pm/PackageManager;
-    :catch_0
-    move-exception v1
+    invoke-virtual {v8, v5}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
 
-    .line 437
-    .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
-    invoke-virtual {v1}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
+    move-result v10
 
-    goto/16 :goto_0
+    if-nez v10, :cond_1
 
-    .line 442
-    .end local v1    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
-    .end local v3    # "label":Ljava/lang/String;
-    .end local v4    # "pm":Landroid/content/pm/PackageManager;
+    .line 484
+    const/4 v10, 0x0
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
+
+    .line 486
+    :cond_1
+    const/4 v10, 0x1
+
+    if-ne v0, v10, :cond_2
+
+    if-eqz v7, :cond_2
+
+    invoke-virtual {v7, v5}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v10
+
+    if-nez v10, :cond_2
+
+    .line 487
+    const/4 v10, 0x0
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
+
+    .line 489
+    :cond_2
+    const/4 v10, 0x2
+
+    if-ne v0, v10, :cond_3
+
+    if-eqz v9, :cond_3
+
+    invoke-virtual {v9, v5}, Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+
+    move-result v10
+
+    if-nez v10, :cond_3
+
+    .line 490
+    const/4 v10, 0x0
+
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
+
+    .line 492
     :cond_3
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+    const-string v10, "device_address"
 
-    const-string v12, "mi_key_open_camera_event"
+    invoke-direct {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
 
-    invoke-virtual {v11, v12}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+    move-result-object v10
 
-    .line 443
-    const v11, 0x7f04009c
+    invoke-virtual {v2, v10}, Landroid/preference/CheckBoxPreference;->setDependency(Ljava/lang/String;)V
 
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+    .line 493
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfiles:Ljava/util/List;
 
-    move-result-object v11
+    invoke-interface {v10, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    invoke-virtual {v7, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
-
-    goto/16 :goto_1
-
-    .line 450
-    .restart local v3    # "label":Ljava/lang/String;
-    .restart local v4    # "pm":Landroid/content/pm/PackageManager;
-    :catch_1
-    move-exception v1
-
-    .line 452
-    .restart local v1    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
-    invoke-virtual {v1}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
-
-    goto/16 :goto_2
-
-    .line 457
-    .end local v1    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
-    .end local v3    # "label":Ljava/lang/String;
-    .end local v4    # "pm":Landroid/content/pm/PackageManager;
-    :cond_4
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
-
-    const-string v12, "mi_key_camera_event"
-
-    invoke-virtual {v11, v12}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 458
-    const v11, 0x7f04009d
-
-    invoke-virtual {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
-
-    move-result-object v11
-
-    invoke-virtual {v7, v11}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+    .line 473
+    add-int/lit8 v0, v0, 0x1
 
     goto/16 :goto_3
 
-    .line 484
-    .restart local v2    # "i":I
-    .restart local v8    # "summaries":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    .line 450
+    .end local v0    # "i":I
+    .end local v2    # "pref":Landroid/preference/CheckBoxPreference;
+    .end local v6    # "summaries":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    :cond_4
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    const-string v11, "%d"
+
+    const/4 v12, 0x1
+
+    new-array v12, v12, [Ljava/lang/Object;
+
+    const/4 v13, 0x0
+
+    const/4 v14, 0x2
+
+    invoke-static {v14}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v14
+
+    aput-object v14, v12, v13
+
+    invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v10, v11}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 451
+    const v10, 0x7f04009c
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    goto/16 :goto_0
+
+    .line 458
     :cond_5
-    new-instance v5, Landroid/preference/Preference;
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    const-string v11, "%d"
+
+    const/4 v12, 0x1
+
+    new-array v12, v12, [Ljava/lang/Object;
+
+    const/4 v13, 0x0
+
+    const/4 v14, 0x1
+
+    invoke-static {v14}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v14
+
+    aput-object v14, v12, v13
+
+    invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v10, v11}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 459
+    const v10, 0x7f04009d
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    goto/16 :goto_1
+
+    .line 466
+    :cond_6
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+
+    const-string v11, "%d"
+
+    const/4 v12, 0x1
+
+    new-array v12, v12, [Ljava/lang/Object;
+
+    const/4 v13, 0x0
+
+    const/4 v14, 0x3
+
+    invoke-static {v14}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object v14
+
+    aput-object v14, v12, v13
+
+    invoke-static {v11, v12}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v10, v11}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 467
+    const v10, 0x7f04009e
+
+    invoke-virtual {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+
+    move-result-object v10
+
+    invoke-virtual {v4, v10}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+
+    goto/16 :goto_2
+
+    .line 495
+    .restart local v0    # "i":I
+    .restart local v6    # "summaries":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
+    :cond_7
+    new-instance v2, Landroid/preference/Preference;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
-    move-result-object v11
+    move-result-object v10
 
-    invoke-direct {v5, v11}, Landroid/preference/Preference;-><init>(Landroid/content/Context;)V
+    invoke-direct {v2, v10}, Landroid/preference/Preference;-><init>(Landroid/content/Context;)V
 
-    .line 485
-    .local v5, "pref":Landroid/preference/Preference;
-    const-string v11, "mi_key_find_mi_key"
+    .line 496
+    .local v2, "pref":Landroid/preference/Preference;
+    const-string v10, "mi_key_find_mi_key"
 
-    invoke-virtual {v5, v11}, Landroid/preference/Preference;->setKey(Ljava/lang/String;)V
+    invoke-virtual {v2, v10}, Landroid/preference/Preference;->setKey(Ljava/lang/String;)V
 
-    .line 486
-    const v11, 0x7f04009f
+    .line 497
+    const v10, 0x7f04009f
 
-    invoke-virtual {v5, v11}, Landroid/preference/Preference;->setTitle(I)V
+    invoke-virtual {v2, v10}, Landroid/preference/Preference;->setTitle(I)V
 
-    .line 487
-    const/4 v11, 0x0
+    .line 498
+    const/4 v10, 0x0
 
-    invoke-virtual {v5, v11}, Landroid/preference/Preference;->setPersistent(Z)V
+    invoke-virtual {v2, v10}, Landroid/preference/Preference;->setPersistent(Z)V
 
-    .line 488
-    iget v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
+    .line 499
+    iget v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
-    add-int/lit8 v11, v11, 0x1
+    add-int/lit8 v10, v10, 0x1
 
-    iput v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
+    iput v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
-    invoke-virtual {v5, v11}, Landroid/preference/Preference;->setOrder(I)V
+    invoke-virtual {v2, v10}, Landroid/preference/Preference;->setOrder(I)V
 
-    .line 489
-    iget-object v11, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
+    .line 500
+    iget-object v10, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
 
-    invoke-virtual {v11, v5}, Landroid/preference/PreferenceGroup;->addPreference(Landroid/preference/Preference;)Z
+    invoke-virtual {v10, v2}, Landroid/preference/PreferenceGroup;->addPreference(Landroid/preference/Preference;)Z
 
-    .line 490
-    const-string v11, "device_address"
+    .line 501
+    const-string v10, "device_address"
 
-    invoke-direct {p0, v11}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
+    invoke-direct {p0, v10}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getKeyByDevice(Ljava/lang/String;)Ljava/lang/String;
 
-    move-result-object v11
+    move-result-object v10
 
-    invoke-virtual {v5, v11}, Landroid/preference/Preference;->setDependency(Ljava/lang/String;)V
+    invoke-virtual {v2, v10}, Landroid/preference/Preference;->setDependency(Ljava/lang/String;)V
 
-    .line 491
+    .line 502
     return-void
 .end method
 
@@ -1717,14 +1961,14 @@
 
     const v3, 0x7f0400a6
 
-    .line 494
+    .line 505
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     instance-of v0, v0, Landroid/preference/CheckBoxPreference;
 
     if-eqz v0, :cond_1
 
-    .line 495
+    .line 506
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     check-cast v0, Landroid/preference/CheckBoxPreference;
@@ -1735,7 +1979,7 @@
 
     if-nez v0, :cond_0
 
-    .line 496
+    .line 507
     const-string v0, "DeviceProfileFragment"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -1762,11 +2006,11 @@
 
     move v0, v1
 
-    .line 521
+    .line 532
     :goto_0
     return v0
 
-    .line 499
+    .line 510
     :cond_0
     iget v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mState:I
 
@@ -1775,16 +2019,16 @@
     :pswitch_0
     move v0, v3
 
-    .line 507
+    .line 518
     goto :goto_0
 
     :pswitch_1
     move v0, v2
 
-    .line 502
+    .line 513
     goto :goto_0
 
-    .line 510
+    .line 521
     :cond_1
     iget v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mState:I
 
@@ -1792,34 +2036,34 @@
 
     move v0, v3
 
-    .line 521
+    .line 532
     goto :goto_0
 
     :pswitch_2
     move v0, v2
 
-    .line 513
+    .line 524
     goto :goto_0
 
     :pswitch_3
     move v0, v3
 
-    .line 515
+    .line 526
     goto :goto_0
 
     :pswitch_4
     move v0, v1
 
-    .line 517
+    .line 528
     goto :goto_0
 
-    .line 519
+    .line 530
     :pswitch_5
     const v0, 0x7f0400a5
 
     goto :goto_0
 
-    .line 499
+    .line 510
     nop
 
     :pswitch_data_0
@@ -1829,7 +2073,7 @@
         :pswitch_1
     .end packed-switch
 
-    .line 510
+    .line 521
     :pswitch_data_1
     .packed-switch 0x0
         :pswitch_4
@@ -1855,75 +2099,75 @@
     .end annotation
 
     .prologue
-    .line 355
+    .line 368
     new-instance v3, Ljava/util/ArrayList;
 
     invoke-direct {v3}, Ljava/util/ArrayList;-><init>()V
 
-    .line 356
+    .line 369
     .local v3, "profileKeys":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/util/ArrayList<Ljava/lang/String;>;>;"
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
-    .line 357
+    .line 370
     .local v1, "miBandIncallSub":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     const-string v4, "alert_incall_enabled"
 
     invoke-virtual {v1, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 358
+    .line 371
     const-string v4, "alert_incall_enabled_in_contacts"
 
     invoke-virtual {v1, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 359
+    .line 372
     const-string v4, "alert_incall_enabled_no_contacts"
 
     invoke-virtual {v1, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 360
+    .line 373
     invoke-virtual {v3, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 361
+    .line 374
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
 
-    .line 362
+    .line 375
     .local v2, "miBandSmsSub":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     const-string v4, "alert_sms_enabled"
 
     invoke-virtual {v2, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 363
+    .line 376
     const-string v4, "alert_sms_enabled_in_contacts"
 
     invoke-virtual {v2, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 364
+    .line 377
     const-string v4, "alert_sms_enabled_no_contacts"
 
     invoke-virtual {v2, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 365
+    .line 378
     invoke-virtual {v3, v2}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 366
+    .line 379
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 367
+    .line 380
     .local v0, "miBandAlarmSub":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ljava/lang/String;>;"
     const-string v4, "alert_alarm_enabled"
 
     invoke-virtual {v0, v4}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 368
+    .line 381
     invoke-virtual {v3, v0}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 369
+    .line 382
     return-object v3
 .end method
 
@@ -1932,16 +2176,17 @@
     .param p1, "savedInstanceState"    # Landroid/os/Bundle;
 
     .prologue
-    .line 119
+    .line 124
     invoke-super {p0, p1}, Landroid/preference/PreferenceFragment;->onCreate(Landroid/os/Bundle;)V
 
-    .line 120
-    if-eqz p1, :cond_0
+    .line 126
+    invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getArguments()Landroid/os/Bundle;
 
-    .line 121
-    const-string v1, "com.android.bluetooth.ble.DEVICE"
+    move-result-object v1
 
-    invoke-virtual {p1, v1}, Landroid/os/Bundle;->getParcelable(Ljava/lang/String;)Landroid/os/Parcelable;
+    const-string v2, "com.android.bluetooth.ble.DEVICE"
+
+    invoke-virtual {v1, v2}, Landroid/os/Bundle;->getParcelable(Ljava/lang/String;)Landroid/os/Parcelable;
 
     move-result-object v1
 
@@ -1949,13 +2194,22 @@
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
 
-    .line 124
+    .line 127
+    iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+
+    if-nez v1, :cond_0
+
+    .line 186
+    :goto_0
+    return-void
+
+    .line 131
     :cond_0
     const v1, 0x7f080001
 
     invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->addPreferencesFromResource(I)V
 
-    .line 125
+    .line 132
     const-string v1, "profile_container"
 
     invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
@@ -1966,7 +2220,7 @@
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
 
-    .line 127
+    .line 134
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v1
@@ -1981,12 +2235,12 @@
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
 
-    .line 152
+    .line 159
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
 
     if-eqz v1, :cond_1
 
-    .line 153
+    .line 160
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v1
@@ -1999,7 +2253,7 @@
 
     check-cast v0, Landroid/bluetooth/BluetoothManager;
 
-    .line 155
+    .line 162
     .local v0, "bm":Landroid/bluetooth/BluetoothManager;
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
 
@@ -2011,7 +2265,7 @@
 
     iput v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mState:I
 
-    .line 156
+    .line 163
     new-instance v1, Lmiui/bluetooth/ble/MiBleProfile;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
@@ -2032,14 +2286,14 @@
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleProfile:Lmiui/bluetooth/ble/MiBleProfile;
 
-    .line 167
+    .line 174
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     instance-of v1, v1, Landroid/preference/CheckBoxPreference;
 
     if-eqz v1, :cond_1
 
-    .line 168
+    .line 175
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mAddressPreference:Landroid/preference/Preference;
 
     check-cast v1, Landroid/preference/CheckBoxPreference;
@@ -2050,19 +2304,19 @@
 
     if-eqz v1, :cond_1
 
-    .line 169
+    .line 176
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleProfile:Lmiui/bluetooth/ble/MiBleProfile;
 
     invoke-virtual {v1}, Lmiui/bluetooth/ble/MiBleProfile;->connect()V
 
-    .line 173
+    .line 180
     .end local v0    # "bm":Landroid/bluetooth/BluetoothManager;
     :cond_1
     const/4 v1, 0x0
 
     invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->setHasOptionsMenu(Z)V
 
-    .line 175
+    .line 182
     iget-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfileContainer:Landroid/preference/PreferenceGroup;
 
     invoke-virtual {v1}, Landroid/preference/PreferenceGroup;->getOrder()I
@@ -2071,21 +2325,21 @@
 
     iput v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mOrder:I
 
-    .line 176
+    .line 183
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->cache:Ljava/util/List;
 
-    .line 177
+    .line 184
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mProfiles:Ljava/util/List;
 
-    .line 178
+    .line 185
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v1
@@ -2096,8 +2350,7 @@
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mPm:Landroid/content/pm/PackageManager;
 
-    .line 179
-    return-void
+    goto/16 :goto_0
 .end method
 
 .method public onDestroy()V
@@ -2106,38 +2359,38 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 190
+    .line 197
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleProfile:Lmiui/bluetooth/ble/MiBleProfile;
 
     if-eqz v0, :cond_0
 
-    .line 191
+    .line 198
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleProfile:Lmiui/bluetooth/ble/MiBleProfile;
 
     invoke-virtual {v0}, Lmiui/bluetooth/ble/MiBleProfile;->disconnect()V
 
-    .line 192
+    .line 199
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleProfile:Lmiui/bluetooth/ble/MiBleProfile;
 
-    .line 194
+    .line 201
     :cond_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
 
     if-eqz v0, :cond_1
 
-    .line 195
+    .line 202
     iget-object v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
 
     invoke-virtual {v0}, Lmiui/bluetooth/ble/MiBleDeviceManager;->close()V
 
-    .line 196
+    .line 203
     iput-object v1, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
 
-    .line 198
+    .line 205
     :cond_1
     invoke-super {p0}, Landroid/preference/PreferenceFragment;->onDestroy()V
 
-    .line 199
+    .line 206
     return-void
 .end method
 
@@ -2147,24 +2400,24 @@
     .param p2, "newValue"    # Ljava/lang/Object;
 
     .prologue
-    const/4 v4, 0x0
+    const/4 v2, 0x0
 
     const/4 v3, 0x1
 
-    .line 203
+    .line 210
     invoke-virtual {p1}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v4
 
     const-string v5, "device_address"
 
-    invoke-virtual {v2, v5}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+    invoke-virtual {v4, v5}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
-    move-result v2
+    move-result v4
 
-    if-eqz v2, :cond_1
+    if-eqz v4, :cond_1
 
-    .line 204
+    .line 211
     check-cast p2, Ljava/lang/Boolean;
 
     .end local p2    # "newValue":Ljava/lang/Object;
@@ -2174,7 +2427,7 @@
 
     if-eqz v2, :cond_0
 
-    .line 205
+    .line 212
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mHandler:Landroid/os/Handler;
 
     const/16 v4, 0x64
@@ -2188,11 +2441,11 @@
     :goto_0
     move v2, v3
 
-    .line 239
+    .line 251
     :goto_1
     return v2
 
-    .line 207
+    .line 214
     :cond_0
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mHandler:Landroid/os/Handler;
 
@@ -2206,22 +2459,22 @@
 
     goto :goto_0
 
-    .line 210
+    .line 217
     .restart local p2    # "newValue":Ljava/lang/Object;
     :cond_1
     invoke-virtual {p1}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v4
 
     const-string v5, "rename"
 
-    invoke-virtual {v2, v5}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+    invoke-virtual {v4, v5}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
 
-    move-result v2
+    move-result v4
 
-    if-eqz v2, :cond_2
+    if-eqz v4, :cond_2
 
-    .line 211
+    .line 218
     iget-object v4, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
 
     move-object v2, p2
@@ -2230,7 +2483,7 @@
 
     invoke-virtual {v4, v2}, Landroid/bluetooth/BluetoothDevice;->setAlias(Ljava/lang/String;)Z
 
-    .line 212
+    .line 219
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mRenamePreference:Landroid/preference/EditTextPreference;
 
     check-cast p2, Ljava/lang/CharSequence;
@@ -2240,108 +2493,171 @@
 
     move v2, v3
 
-    .line 213
+    .line 220
     goto :goto_1
 
-    .line 215
+    .line 222
     .restart local p2    # "newValue":Ljava/lang/Object;
     :cond_2
     invoke-virtual {p1}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
 
-    move-result-object v2
+    move-result-object v4
 
-    invoke-direct {p0, v2}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
+    invoke-direct {p0, v4}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
 
     .local v1, "settings":Ljava/lang/String;
     move-object v0, p2
 
-    .line 216
+    .line 223
     check-cast v0, Ljava/lang/Boolean;
 
-    .line 217
+    .line 224
     .local v0, "nv":Ljava/lang/Boolean;
-    iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+    iget-object v4, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
 
-    invoke-virtual {v2, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
+    invoke-virtual {v4, v1}, Ljava/util/HashMap;->containsKey(Ljava/lang/Object;)Z
 
-    move-result v2
+    move-result v4
 
-    if-eqz v2, :cond_3
+    if-eqz v4, :cond_3
 
     invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
 
-    move-result v2
+    move-result v4
 
-    if-eqz v2, :cond_3
+    if-eqz v4, :cond_3
 
-    .line 218
-    new-instance v5, Landroid/app/AlertDialog$Builder;
+    .line 225
+    new-instance v4, Landroid/app/AlertDialog$Builder;
 
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
-    move-result-object v2
+    move-result-object v5
 
-    invoke-direct {v5, v2}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    invoke-direct {v4, v5}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
-    const v2, 0x7f0400aa
+    const v5, 0x7f0400aa
 
-    invoke-virtual {p0, v2}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
+    invoke-virtual {p0, v5}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getString(I)Ljava/lang/String;
 
-    move-result-object v6
+    move-result-object v5
 
     new-array v3, v3, [Ljava/lang/Object;
 
-    iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
+    iget-object v6, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiKeyTaken:Ljava/util/HashMap;
 
-    invoke-virtual {v2, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+    invoke-virtual {v6, v1}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
-    move-result-object v2
+    move-result-object v6
 
-    check-cast v2, Landroid/util/Pair;
+    aput-object v6, v3, v2
 
-    iget-object v2, v2, Landroid/util/Pair;->first:Ljava/lang/Object;
+    invoke-static {v5, v3}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
-    aput-object v2, v3, v4
+    move-result-object v3
 
-    invoke-static {v6, v3}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    invoke-virtual {v4, v3}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-virtual {v5, v2}, Landroid/app/AlertDialog$Builder;->setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
-
-    move-result-object v2
-
-    const/high16 v3, 0x1040000
+    const/high16 v4, 0x1040000
 
     new-instance v5, Lcom/android/bluetooth/ble/DeviceProfileFragment$5;
 
     invoke-direct {v5, p0, p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment$5;-><init>(Lcom/android/bluetooth/ble/DeviceProfileFragment;Landroid/preference/Preference;)V
 
-    invoke-virtual {v2, v3, v5}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    move-result-object v2
+    move-result-object v3
 
-    const v3, 0x104000a
+    const v4, 0x104000a
 
     new-instance v5, Lcom/android/bluetooth/ble/DeviceProfileFragment$4;
 
     invoke-direct {v5, p0, v1, p1}, Lcom/android/bluetooth/ble/DeviceProfileFragment$4;-><init>(Lcom/android/bluetooth/ble/DeviceProfileFragment;Ljava/lang/String;Landroid/preference/Preference;)V
 
-    invoke-virtual {v2, v3, v5}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-virtual {v3, v4, v5}, Landroid/app/AlertDialog$Builder;->setPositiveButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    move-result-object v2
+    move-result-object v3
 
-    invoke-virtual {v2}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
+    invoke-virtual {v3}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
 
-    move v2, v4
+    goto :goto_1
 
-    .line 237
+    .line 244
+    :cond_3
+    iget v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
+
+    const/4 v3, 0x2
+
+    if-ne v2, v3, :cond_5
+
+    .line 245
+    invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    .line 246
+    iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
+
+    iget-object v3, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+
+    invoke-virtual {v3}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {p1}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-direct {p0, v4}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+
+    move-result v4
+
+    invoke-virtual {v2, v3, v4}, Lmiui/bluetooth/ble/MiBleDeviceManager;->registerAppForBleEvent(Ljava/lang/String;I)Z
+
+    move-result v2
+
     goto/16 :goto_1
 
-    .line 239
-    :cond_3
+    .line 248
+    :cond_4
+    iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
+
+    iget-object v3, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
+
+    invoke-virtual {v3}, Landroid/bluetooth/BluetoothDevice;->getAddress()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-virtual {p1}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-direct {p0, v4}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getSettingsByKey(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-static {v4}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+
+    move-result v4
+
+    invoke-virtual {v2, v3, v4}, Lmiui/bluetooth/ble/MiBleDeviceManager;->unregisterAppForBleEvent(Ljava/lang/String;I)Z
+
+    move-result v2
+
+    goto/16 :goto_1
+
+    .line 251
+    :cond_5
     iget-object v2, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mMiBleDeviceManager:Lmiui/bluetooth/ble/MiBleDeviceManager;
 
     iget-object v3, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDevice:Landroid/bluetooth/BluetoothDevice;
@@ -2380,7 +2696,7 @@
     .prologue
     const/4 v4, 0x1
 
-    .line 246
+    .line 259
     const-string v5, "mi_key_find_mi_key"
 
     invoke-virtual {p2}, Landroid/preference/Preference;->getKey()Ljava/lang/String;
@@ -2393,7 +2709,7 @@
 
     if-eqz v5, :cond_0
 
-    .line 247
+    .line 260
     new-instance v5, Ljava/lang/Thread;
 
     new-instance v6, Lcom/android/bluetooth/ble/DeviceProfileFragment$6;
@@ -2404,11 +2720,11 @@
 
     invoke-virtual {v5}, Ljava/lang/Thread;->start()V
 
-    .line 271
+    .line 284
     :goto_0
     return v4
 
-    .line 256
+    .line 269
     :cond_0
     const-string v5, "goto_package"
 
@@ -2422,7 +2738,7 @@
 
     if-eqz v5, :cond_3
 
-    .line 257
+    .line 270
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getResources()Landroid/content/res/Resources;
 
     move-result-object v5
@@ -2433,7 +2749,7 @@
 
     move-result-object v2
 
-    .line 258
+    .line 271
     .local v2, "pkgs":[Ljava/lang/String;
     iget v5, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
@@ -2447,13 +2763,13 @@
 
     goto :goto_0
 
-    .line 259
+    .line 272
     :cond_1
     iget v5, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mDeviceType:I
 
     aget-object v1, v2, v5
 
-    .line 260
+    .line 273
     .local v1, "pkg":Ljava/lang/String;
     iget-object v5, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mPm:Landroid/content/pm/PackageManager;
 
@@ -2461,16 +2777,16 @@
 
     move-result-object v0
 
-    .line 261
+    .line 274
     .local v0, "intent":Landroid/content/Intent;
     if-eqz v0, :cond_2
 
-    .line 262
+    .line 275
     invoke-virtual {p0, v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->startActivity(Landroid/content/Intent;)V
 
     goto :goto_0
 
-    .line 264
+    .line 277
     :cond_2
     new-instance v5, Ljava/lang/StringBuilder;
 
@@ -2494,7 +2810,7 @@
 
     move-result-object v3
 
-    .line 265
+    .line 278
     .local v3, "uri":Landroid/net/Uri;
     new-instance v0, Landroid/content/Intent;
 
@@ -2503,18 +2819,18 @@
 
     invoke-direct {v0, v5, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;Landroid/net/Uri;)V
 
-    .line 266
+    .line 279
     .restart local v0    # "intent":Landroid/content/Intent;
     const-string v5, "com.xiaomi.market"
 
     invoke-virtual {v0, v5}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 267
+    .line 280
     invoke-virtual {p0, v0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->startActivity(Landroid/content/Intent;)V
 
     goto :goto_0
 
-    .line 271
+    .line 284
     .end local v0    # "intent":Landroid/content/Intent;
     .end local v1    # "pkg":Ljava/lang/String;
     .end local v2    # "pkgs":[Ljava/lang/String;
@@ -2531,10 +2847,10 @@
     .locals 2
 
     .prologue
-    .line 183
+    .line 190
     invoke-super {p0}, Landroid/preference/PreferenceFragment;->onResume()V
 
-    .line 184
+    .line 191
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->getActivity()Landroid/app/Activity;
 
     move-result-object v0
@@ -2547,14 +2863,14 @@
 
     invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setTitle(I)V
 
-    .line 185
+    .line 192
     iget-boolean v0, p0, Lcom/android/bluetooth/ble/DeviceProfileFragment;->mInited:Z
 
     if-eqz v0, :cond_0
 
     invoke-direct {p0}, Lcom/android/bluetooth/ble/DeviceProfileFragment;->updateContent()V
 
-    .line 186
+    .line 193
     :cond_0
     return-void
 .end method

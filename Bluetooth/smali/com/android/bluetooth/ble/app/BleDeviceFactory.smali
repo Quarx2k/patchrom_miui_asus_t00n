@@ -8,7 +8,7 @@
     .locals 0
 
     .prologue
-    .line 11
+    .line 10
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -20,24 +20,24 @@
     .param p1, "address"    # Ljava/lang/String;
 
     .prologue
-    .line 14
+    .line 13
     invoke-static {p1}, Lcom/android/bluetooth/ble/DeviceUtils;->getDeviceType(Ljava/lang/String;)I
 
     move-result v0
 
-    .line 15
+    .line 14
     .local v0, "deviceType":I
     packed-switch v0, :pswitch_data_0
 
-    .line 22
-    new-instance v1, Lcom/android/bluetooth/ble/app/BleDeviceFactory$1;
+    .line 21
+    new-instance v1, Lcom/android/bluetooth/ble/app/CommonBleDevice;
 
-    invoke-direct {v1, p0, p1}, Lcom/android/bluetooth/ble/app/BleDeviceFactory$1;-><init>(Landroid/content/Context;Ljava/lang/String;)V
+    invoke-direct {v1, p0, p1}, Lcom/android/bluetooth/ble/app/CommonBleDevice;-><init>(Landroid/content/Context;Ljava/lang/String;)V
 
     :goto_0
     return-object v1
 
-    .line 17
+    .line 16
     :pswitch_0
     new-instance v1, Lcom/android/bluetooth/ble/app/MiBandDevice;
 
@@ -45,7 +45,7 @@
 
     goto :goto_0
 
-    .line 19
+    .line 18
     :pswitch_1
     new-instance v1, Lcom/android/bluetooth/ble/app/MiKeyDevice;
 
@@ -53,7 +53,7 @@
 
     goto :goto_0
 
-    .line 15
+    .line 14
     nop
 
     :pswitch_data_0

@@ -29,12 +29,12 @@
     .param p2, "charact"    # Ljava/util/UUID;
 
     .prologue
-    .line 996
+    .line 1043
     const/4 v0, 0x0
 
     invoke-direct {p0, p1, p2, v0}, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;-><init>(Ljava/util/UUID;Ljava/util/UUID;Ljava/util/UUID;)V
 
-    .line 997
+    .line 1044
     return-void
 .end method
 
@@ -45,19 +45,19 @@
     .param p3, "desc"    # Ljava/util/UUID;
 
     .prologue
-    .line 989
+    .line 1036
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 990
+    .line 1037
     iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->service:Ljava/util/UUID;
 
-    .line 991
+    .line 1038
     iput-object p2, p0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->characteristic:Ljava/util/UUID;
 
-    .line 992
+    .line 1039
     iput-object p3, p0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->descriptor:Ljava/util/UUID;
 
-    .line 993
+    .line 1040
     return-void
 .end method
 
@@ -68,15 +68,15 @@
     .param p1, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 1015
+    .line 1062
     instance-of v0, p1, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
 
     if-nez v0, :cond_0
 
-    .line 1016
+    .line 1063
     const/4 v0, 0x0
 
-    .line 1019
+    .line 1066
     :goto_0
     return v0
 
@@ -100,7 +100,7 @@
     .locals 3
 
     .prologue
-    .line 1006
+    .line 1053
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->service:Ljava/util/UUID;
 
     invoke-virtual {v1}, Ljava/util/UUID;->hashCode()I
@@ -115,13 +115,13 @@
 
     add-int v0, v1, v2
 
-    .line 1007
+    .line 1054
     .local v0, "hash":I
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->descriptor:Ljava/util/UUID;
 
     if-eqz v1, :cond_0
 
-    .line 1008
+    .line 1055
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->descriptor:Ljava/util/UUID;
 
     invoke-virtual {v1}, Ljava/util/UUID;->hashCode()I
@@ -130,7 +130,7 @@
 
     add-int/2addr v0, v1
 
-    .line 1010
+    .line 1057
     :cond_0
     return v0
 .end method
@@ -139,7 +139,7 @@
     .locals 2
 
     .prologue
-    .line 1001
+    .line 1048
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V

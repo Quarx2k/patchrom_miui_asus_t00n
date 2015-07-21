@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 51
+    .line 56
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$1;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -42,7 +42,7 @@
     .param p2, "binder"    # Landroid/os/IBinder;
 
     .prologue
-    .line 55
+    .line 60
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -52,7 +52,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 58
+    .line 63
     :try_start_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$1;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
@@ -64,15 +64,15 @@
     :try_end_0
     .catch Ljava/lang/ClassCastException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 62
+    .line 67
     :goto_0
     return-void
 
-    .line 59
+    .line 64
     :catch_0
     move-exception v0
 
-    .line 60
+    .line 65
     .local v0, "e":Ljava/lang/ClassCastException;
     invoke-virtual {v0}, Ljava/lang/ClassCastException;->printStackTrace()V
 
@@ -84,7 +84,7 @@
     .param p1, "componentName"    # Landroid/content/ComponentName;
 
     .prologue
-    .line 67
+    .line 72
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -94,7 +94,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 69
+    .line 74
     iget-object v0, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$1;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     const/4 v1, 0x0
@@ -102,6 +102,6 @@
     # setter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->mAppService:Lcom/android/bluetooth/ble/app/IAppService;
     invoke-static {v0, v1}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$102(Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;Lcom/android/bluetooth/ble/app/IAppService;)Lcom/android/bluetooth/ble/app/IAppService;
 
-    .line 70
+    .line 75
     return-void
 .end method

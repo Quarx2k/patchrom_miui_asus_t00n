@@ -1,5 +1,5 @@
 .class Lcom/android/bluetooth/ble/app/MiuiBleAppService$3;
-.super Landroid/database/ContentObserver;
+.super Landroid/content/BroadcastReceiver;
 .source "MiuiBleAppService.java"
 
 
@@ -19,84 +19,78 @@
 
 
 # direct methods
-.method constructor <init>(Lcom/android/bluetooth/ble/app/MiuiBleAppService;Landroid/os/Handler;)V
+.method constructor <init>(Lcom/android/bluetooth/ble/app/MiuiBleAppService;)V
     .locals 0
-    .param p2, "x0"    # Landroid/os/Handler;
 
     .prologue
-    .line 83
+    .line 82
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$3;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
-    invoke-direct {p0, p2}, Landroid/database/ContentObserver;-><init>(Landroid/os/Handler;)V
+    invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
 
     return-void
 .end method
 
 
 # virtual methods
-.method public deliverSelfNotifications()Z
-    .locals 1
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+    .locals 4
+    .param p1, "context"    # Landroid/content/Context;
+    .param p2, "intent"    # Landroid/content/Intent;
 
     .prologue
-    .line 86
-    invoke-super {p0}, Landroid/database/ContentObserver;->deliverSelfNotifications()Z
+    const/16 v3, 0xa
 
-    move-result v0
-
-    return v0
-.end method
-
-.method public onChange(ZLandroid/net/Uri;)V
-    .locals 3
-    .param p1, "selfChange"    # Z
-    .param p2, "uri"    # Landroid/net/Uri;
-
-    .prologue
-    .line 91
-    invoke-super {p0, p1, p2}, Landroid/database/ContentObserver;->onChange(ZLandroid/net/Uri;)V
-
-    .line 92
-    # getter for: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->TAG:Ljava/lang/String;
-    invoke-static {}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$000()Ljava/lang/String;
+    .line 85
+    invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object v0
 
-    new-instance v1, Ljava/lang/StringBuilder;
+    .line 86
+    .local v0, "action":Ljava/lang/String;
+    const-string v2, "android.bluetooth.adapter.action.STATE_CHANGED"
 
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+    invoke-virtual {v2, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    const-string v2, "onChange(): selfChange="
+    move-result v2
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    if-eqz v2, :cond_0
 
-    move-result-object v1
+    .line 87
+    const-string v2, "android.bluetooth.adapter.extra.STATE"
 
-    invoke-virtual {v1, p1}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual {p2, v2, v3}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
 
-    move-result-object v1
+    move-result v1
 
-    const-string v2, " uri="
+    .line 88
+    .local v1, "state":I
+    const/16 v2, 0xc
 
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    if-ne v1, v2, :cond_1
 
-    move-result-object v1
-
-    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 93
-    iget-object v0, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$3;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
+    .line 89
+    iget-object v2, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$3;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
 
     # invokes: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->updateDevices()V
-    invoke-static {v0}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$200(Lcom/android/bluetooth/ble/app/MiuiBleAppService;)V
+    invoke-static {v2}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$200(Lcom/android/bluetooth/ble/app/MiuiBleAppService;)V
 
     .line 94
+    .end local v1    # "state":I
+    :cond_0
+    :goto_0
     return-void
+
+    .line 90
+    .restart local v1    # "state":I
+    :cond_1
+    if-ne v1, v3, :cond_0
+
+    .line 91
+    iget-object v2, p0, Lcom/android/bluetooth/ble/app/MiuiBleAppService$3;->this$0:Lcom/android/bluetooth/ble/app/MiuiBleAppService;
+
+    # invokes: Lcom/android/bluetooth/ble/app/MiuiBleAppService;->stopDevices()V
+    invoke-static {v2}, Lcom/android/bluetooth/ble/app/MiuiBleAppService;->access$300(Lcom/android/bluetooth/ble/app/MiuiBleAppService;)V
+
+    goto :goto_0
 .end method

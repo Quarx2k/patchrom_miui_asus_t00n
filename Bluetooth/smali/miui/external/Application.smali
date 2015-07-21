@@ -7,10 +7,12 @@
 
 
 # static fields
-.field private static final PACKAGE_NAME:Ljava/lang/String; = "com.miui.sdk"
+.field private static final PACKAGE_NAME:Ljava/lang/String; = "com.miui.core"
 
 
 # instance fields
+.field private k:Z
+
 .field private l:Z
 
 .field private m:Lmiui/external/ApplicationDelegate;
@@ -21,22 +23,22 @@
     .locals 1
 
     .prologue
-    .line 49
+    .line 51
     invoke-direct {p0}, Landroid/app/Application;-><init>()V
 
-    .line 50
+    .line 52
     invoke-direct {p0}, Lmiui/external/Application;->i()Z
 
     move-result v0
 
     if-nez v0, :cond_1
 
-    .line 58
+    .line 59
     :cond_0
     :goto_0
     return-void
 
-    .line 53
+    .line 55
     :cond_1
     invoke-direct {p0}, Lmiui/external/Application;->j()Z
 
@@ -44,17 +46,10 @@
 
     if-eqz v0, :cond_0
 
-    .line 56
+    .line 58
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lmiui/external/Application;->l:Z
-
-    .line 57
-    invoke-virtual {p0}, Lmiui/external/Application;->onCreateApplicationDelegate()Lmiui/external/ApplicationDelegate;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
+    iput-boolean v0, p0, Lmiui/external/Application;->k:Z
 
     goto :goto_0
 .end method
@@ -63,7 +58,7 @@
     .locals 3
 
     .prologue
-    .line 138
+    .line 139
     const-string v0, "miuisdk"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -96,12 +91,12 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 140
+    .line 141
     sget-object v0, Lmiui/external/SdkConstants$SdkError;->GENERIC:Lmiui/external/SdkConstants$SdkError;
 
     invoke-static {v0}, Lmiui/external/e;->a(Lmiui/external/SdkConstants$SdkError;)V
 
-    .line 141
+    .line 142
     return-void
 .end method
 
@@ -109,7 +104,7 @@
     .locals 2
 
     .prologue
-    .line 119
+    .line 120
     :goto_0
     if-eqz p1, :cond_0
 
@@ -119,7 +114,7 @@
 
     if-nez v0, :cond_1
 
-    .line 133
+    .line 134
     :cond_0
     const-string v0, "miuisdk"
 
@@ -127,34 +122,34 @@
 
     invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 134
+    .line 135
     sget-object v0, Lmiui/external/SdkConstants$SdkError;->GENERIC:Lmiui/external/SdkConstants$SdkError;
 
     invoke-static {v0}, Lmiui/external/e;->a(Lmiui/external/SdkConstants$SdkError;)V
 
-    .line 135
+    .line 136
     return-void
 
-    .line 123
+    .line 124
     :cond_1
     instance-of v0, p1, Ljava/lang/reflect/InvocationTargetException;
 
     if-eqz v0, :cond_2
 
-    .line 124
+    .line 125
     invoke-virtual {p1}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object p1
 
     goto :goto_0
 
-    .line 126
+    .line 127
     :cond_2
     instance-of v0, p1, Ljava/lang/ExceptionInInitializerError;
 
     if-eqz v0, :cond_0
 
-    .line 127
+    .line 128
     invoke-virtual {p1}, Ljava/lang/Throwable;->getCause()Ljava/lang/Throwable;
 
     move-result-object p1
@@ -168,7 +163,7 @@
     .prologue
     const/4 v0, 0x0
 
-    .line 62
+    .line 63
     :try_start_0
     invoke-static {}, Lmiui/external/d;->isMiuiSystem()Z
 
@@ -176,10 +171,10 @@
 
     if-nez v1, :cond_0
 
-    .line 63
+    .line 64
     const/4 v1, 0x0
 
-    const-string v2, "com.miui.sdk"
+    const-string v2, "com.miui.core"
 
     const-string v3, "miui"
 
@@ -187,16 +182,16 @@
 
     move-result-object v1
 
-    .line 64
+    .line 65
     const/4 v2, 0x0
 
-    const-string v3, "com.miui.sdk"
+    const-string v3, "com.miui.core"
 
     invoke-static {v2, v3}, Lmiui/external/d;->getLibPath(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v2
 
-    .line 65
+    .line 66
     const/4 v3, 0x0
 
     const-class v4, Lmiui/external/Application;
@@ -209,30 +204,30 @@
 
     move-result v1
 
-    .line 66
+    .line 67
     if-nez v1, :cond_0
 
-    .line 67
+    .line 68
     sget-object v1, Lmiui/external/SdkConstants$SdkError;->NO_SDK:Lmiui/external/SdkConstants$SdkError;
 
     invoke-static {v1}, Lmiui/external/e;->a(Lmiui/external/SdkConstants$SdkError;)V
     :try_end_0
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 75
+    .line 76
     :goto_0
     return v0
 
-    .line 71
+    .line 72
     :catch_0
     move-exception v1
 
-    .line 72
+    .line 73
     invoke-direct {p0, v1}, Lmiui/external/Application;->a(Ljava/lang/Throwable;)V
 
     goto :goto_0
 
-    .line 75
+    .line 76
     :cond_0
     const/4 v0, 0x1
 
@@ -247,16 +242,14 @@
 
     const/4 v1, 0x0
 
-    .line 80
+    .line 81
     :try_start_0
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 82
-    const-string v3, "com.miui.internal.core.SdkManager"
-
-    invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+    .line 83
+    invoke-static {}, Lmiui/external/f;->o()Ljava/lang/Class;
 
     move-result-object v3
 
@@ -306,10 +299,10 @@
 
     move-result v0
 
-    .line 85
+    .line 86
     if-eqz v0, :cond_0
 
-    .line 86
+    .line 87
     const-string v2, "initialize"
 
     invoke-direct {p0, v2, v0}, Lmiui/external/Application;->a(Ljava/lang/String;I)V
@@ -318,26 +311,26 @@
 
     move v0, v1
 
-    .line 93
+    .line 94
     :goto_0
     return v0
 
-    .line 89
+    .line 90
     :catch_0
     move-exception v0
 
-    .line 90
+    .line 91
     invoke-direct {p0, v0}, Lmiui/external/Application;->a(Ljava/lang/Throwable;)V
 
     move v0, v1
 
-    .line 91
+    .line 92
     goto :goto_0
 
     :cond_0
     move v0, v2
 
-    .line 93
+    .line 94
     goto :goto_0
 .end method
 
@@ -349,16 +342,14 @@
 
     const/4 v1, 0x0
 
-    .line 98
+    .line 99
     :try_start_0
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 100
-    const-string v3, "com.miui.internal.core.SdkManager"
-
-    invoke-static {v3}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+    .line 101
+    invoke-static {}, Lmiui/external/f;->o()Ljava/lang/Class;
 
     move-result-object v3
 
@@ -398,25 +389,25 @@
 
     move-result v0
 
-    .line 103
+    .line 104
     if-ne v0, v2, :cond_0
 
-    .line 104
+    .line 105
     sget-object v0, Lmiui/external/SdkConstants$SdkError;->LOW_SDK_VERSION:Lmiui/external/SdkConstants$SdkError;
 
     invoke-static {v0}, Lmiui/external/e;->a(Lmiui/external/SdkConstants$SdkError;)V
 
     move v0, v1
 
-    .line 114
+    .line 115
     :goto_0
     return v0
 
-    .line 106
+    .line 107
     :cond_0
     if-eqz v0, :cond_1
 
-    .line 107
+    .line 108
     const-string v2, "start"
 
     invoke-direct {p0, v2, v0}, Lmiui/external/Application;->a(Ljava/lang/String;I)V
@@ -425,25 +416,25 @@
 
     move v0, v1
 
-    .line 108
+    .line 109
     goto :goto_0
 
-    .line 110
+    .line 111
     :catch_0
     move-exception v0
 
-    .line 111
+    .line 112
     invoke-direct {p0, v0}, Lmiui/external/Application;->a(Ljava/lang/Throwable;)V
 
     move v0, v1
 
-    .line 112
+    .line 113
     goto :goto_0
 
     :cond_1
     move v0, v2
 
-    .line 114
+    .line 115
     goto :goto_0
 .end method
 
@@ -453,10 +444,10 @@
     .locals 0
 
     .prologue
-    .line 216
+    .line 227
     invoke-super {p0, p1}, Landroid/app/Application;->onTrimMemory(I)V
 
-    .line 217
+    .line 228
     return-void
 .end method
 
@@ -464,18 +455,69 @@
     .locals 0
 
     .prologue
-    .line 229
+    .line 240
     invoke-super {p0, p1}, Landroid/app/Application;->onConfigurationChanged(Landroid/content/res/Configuration;)V
 
-    .line 230
+    .line 241
     return-void
+.end method
+
+.method protected attachBaseContext(Landroid/content/Context;)V
+    .locals 1
+
+    .prologue
+    .line 161
+    invoke-super {p0, p1}, Landroid/app/Application;->attachBaseContext(Landroid/content/Context;)V
+
+    .line 162
+    iget-boolean v0, p0, Lmiui/external/Application;->k:Z
+
+    if-nez v0, :cond_1
+
+    .line 173
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 165
+    :cond_1
+    invoke-direct {p0}, Lmiui/external/Application;->k()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 168
+    invoke-virtual {p0}, Lmiui/external/Application;->onCreateApplicationDelegate()Lmiui/external/ApplicationDelegate;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
+
+    .line 169
+    iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
+
+    if-eqz v0, :cond_2
+
+    .line 170
+    iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
+
+    invoke-virtual {v0, p0}, Lmiui/external/ApplicationDelegate;->a(Lmiui/external/Application;)V
+
+    .line 172
+    :cond_2
+    const/4 v0, 0x1
+
+    iput-boolean v0, p0, Lmiui/external/Application;->l:Z
+
+    goto :goto_0
 .end method
 
 .method public final getApplicationDelegate()Lmiui/external/ApplicationDelegate;
     .locals 1
 
     .prologue
-    .line 155
+    .line 156
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     return-object v0
@@ -485,10 +527,10 @@
     .locals 0
 
     .prologue
-    .line 177
+    .line 188
     invoke-super {p0}, Landroid/app/Application;->onCreate()V
 
-    .line 178
+    .line 189
     return-void
 .end method
 
@@ -496,10 +538,10 @@
     .locals 0
 
     .prologue
-    .line 190
+    .line 201
     invoke-super {p0}, Landroid/app/Application;->onTerminate()V
 
-    .line 191
+    .line 202
     return-void
 .end method
 
@@ -507,10 +549,10 @@
     .locals 0
 
     .prologue
-    .line 203
+    .line 214
     invoke-super {p0}, Landroid/app/Application;->onLowMemory()V
 
-    .line 204
+    .line 215
     return-void
 .end method
 
@@ -518,21 +560,21 @@
     .locals 1
 
     .prologue
-    .line 221
+    .line 232
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     if-eqz v0, :cond_0
 
-    .line 222
+    .line 233
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     invoke-virtual {v0, p1}, Lmiui/external/ApplicationDelegate;->onConfigurationChanged(Landroid/content/res/Configuration;)V
 
-    .line 226
+    .line 237
     :goto_0
     return-void
 
-    .line 224
+    .line 235
     :cond_0
     invoke-virtual {p0, p1}, Lmiui/external/Application;->a(Landroid/content/res/Configuration;)V
 
@@ -543,49 +585,30 @@
     .locals 1
 
     .prologue
-    .line 160
+    .line 177
     iget-boolean v0, p0, Lmiui/external/Application;->l:Z
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_0
 
-    .line 174
-    :cond_0
+    .line 185
     :goto_0
     return-void
 
-    .line 163
-    :cond_1
+    .line 180
+    :cond_0
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_1
 
-    .line 164
-    iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
-
-    invoke-virtual {v0, p0}, Lmiui/external/ApplicationDelegate;->a(Lmiui/external/Application;)V
-
-    .line 166
-    :cond_2
-    invoke-direct {p0}, Lmiui/external/Application;->k()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 169
-    iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
-
-    if-eqz v0, :cond_3
-
-    .line 170
+    .line 181
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     invoke-virtual {v0}, Lmiui/external/ApplicationDelegate;->onCreate()V
 
     goto :goto_0
 
-    .line 172
-    :cond_3
+    .line 183
+    :cond_1
     invoke-virtual {p0}, Lmiui/external/Application;->l()V
 
     goto :goto_0
@@ -595,7 +618,7 @@
     .locals 1
 
     .prologue
-    .line 148
+    .line 149
     const/4 v0, 0x0
 
     return-object v0
@@ -605,21 +628,21 @@
     .locals 1
 
     .prologue
-    .line 195
+    .line 206
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     if-eqz v0, :cond_0
 
-    .line 196
+    .line 207
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     invoke-virtual {v0}, Lmiui/external/ApplicationDelegate;->onLowMemory()V
 
-    .line 200
+    .line 211
     :goto_0
     return-void
 
-    .line 198
+    .line 209
     :cond_0
     invoke-virtual {p0}, Lmiui/external/Application;->n()V
 
@@ -630,21 +653,21 @@
     .locals 1
 
     .prologue
-    .line 182
+    .line 193
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     if-eqz v0, :cond_0
 
-    .line 183
+    .line 194
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     invoke-virtual {v0}, Lmiui/external/ApplicationDelegate;->onTerminate()V
 
-    .line 187
+    .line 198
     :goto_0
     return-void
 
-    .line 185
+    .line 196
     :cond_0
     invoke-virtual {p0}, Lmiui/external/Application;->m()V
 
@@ -655,21 +678,21 @@
     .locals 1
 
     .prologue
-    .line 208
+    .line 219
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     if-eqz v0, :cond_0
 
-    .line 209
+    .line 220
     iget-object v0, p0, Lmiui/external/Application;->m:Lmiui/external/ApplicationDelegate;
 
     invoke-virtual {v0, p1}, Lmiui/external/ApplicationDelegate;->onTrimMemory(I)V
 
-    .line 213
+    .line 224
     :goto_0
     return-void
 
-    .line 211
+    .line 222
     :cond_0
     invoke-virtual {p0, p1}, Lmiui/external/Application;->a(I)V
 

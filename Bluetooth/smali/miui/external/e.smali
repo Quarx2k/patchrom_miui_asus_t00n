@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field private k:Lmiui/external/SdkConstants$SdkError;
+.field private j:Lmiui/external/SdkConstants$SdkError;
 
 
 # direct methods
@@ -19,7 +19,7 @@
     invoke-direct {p0}, Landroid/app/Instrumentation;-><init>()V
 
     .line 28
-    iput-object p1, p0, Lmiui/external/e;->k:Lmiui/external/SdkConstants$SdkError;
+    iput-object p1, p0, Lmiui/external/e;->j:Lmiui/external/SdkConstants$SdkError;
 
     .line 29
     return-void
@@ -488,7 +488,7 @@
     :cond_0
     const-string v1, "com.miui.sdk.error"
 
-    iget-object v3, p0, Lmiui/external/e;->k:Lmiui/external/SdkConstants$SdkError;
+    iget-object v3, p0, Lmiui/external/e;->j:Lmiui/external/SdkConstants$SdkError;
 
     move-object/from16 v0, p5
 
@@ -569,7 +569,7 @@
     :cond_0
     const-string v0, "com.miui.sdk.error"
 
-    iget-object v1, p0, Lmiui/external/e;->k:Lmiui/external/SdkConstants$SdkError;
+    iget-object v1, p0, Lmiui/external/e;->j:Lmiui/external/SdkConstants$SdkError;
 
     invoke-virtual {p3, v0, v1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/io/Serializable;)Landroid/content/Intent;
 

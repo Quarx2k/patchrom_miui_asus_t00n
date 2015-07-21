@@ -30,7 +30,7 @@
     .locals 0
 
     .prologue
-    .line 102
+    .line 111
     iput-object p1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     iput-object p2, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->val$gatt:Landroid/bluetooth/BluetoothGatt;
@@ -48,12 +48,12 @@
     .locals 3
 
     .prologue
-    .line 106
+    .line 115
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->val$gatt:Landroid/bluetooth/BluetoothGatt;
 
     if-nez v1, :cond_1
 
-    .line 107
+    .line 116
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     const v2, 0xff01
@@ -61,12 +61,12 @@
     # invokes: Lcom/android/bluetooth/ble/SynchronizedGattCallback;->notifyGattOperation(I)V
     invoke-static {v1, v2}, Lcom/android/bluetooth/ble/SynchronizedGattCallback;->access$000(Lcom/android/bluetooth/ble/SynchronizedGattCallback;I)V
 
-    .line 119
+    .line 128
     :cond_0
     :goto_0
     return-void
 
-    .line 110
+    .line 119
     :cond_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
@@ -76,7 +76,7 @@
 
     if-nez v1, :cond_2
 
-    .line 111
+    .line 120
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     const v2, 0xff04
@@ -86,7 +86,7 @@
 
     goto :goto_0
 
-    .line 114
+    .line 123
     :cond_2
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->val$gatt:Landroid/bluetooth/BluetoothGatt;
 
@@ -96,11 +96,11 @@
 
     move-result v0
 
-    .line 115
+    .line 124
     .local v0, "ret":Z
     if-nez v0, :cond_0
 
-    .line 116
+    .line 125
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$2;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     const v2, 0xff02

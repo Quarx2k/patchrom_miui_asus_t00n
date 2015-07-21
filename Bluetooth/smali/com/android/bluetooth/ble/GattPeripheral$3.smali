@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/bluetooth/ble/GattPeripheral;->discoverServices()V
+    value = Lcom/android/bluetooth/ble/GattPeripheral;->connect(Z)Z
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 352
+    .line 274
     iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral$3;->this$0:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,17 +37,15 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .locals 1
 
     .prologue
-    .line 356
+    .line 277
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral$3;->this$0:Lcom/android/bluetooth/ble/GattPeripheral;
 
-    const/4 v1, 0x0
+    # invokes: Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnected()V
+    invoke-static {v0}, Lcom/android/bluetooth/ble/GattPeripheral;->access$100(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    # invokes: Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onServiceDiscovered(Z)V
-    invoke-static {v0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->access$100(Lcom/android/bluetooth/ble/GattPeripheral;Z)V
-
-    .line 357
+    .line 278
     return-void
 .end method

@@ -56,7 +56,7 @@
 
     const/4 v2, 0x0
 
-    .line 967
+    .line 1014
     new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     const-string v1, "CONNECTED"
@@ -65,7 +65,7 @@
 
     sput-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 968
+    .line 1015
     new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     const-string v1, "CONNECTING"
@@ -74,7 +74,7 @@
 
     sput-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTING:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 969
+    .line 1016
     new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     const-string v1, "DISCONNECTED"
@@ -83,7 +83,7 @@
 
     sput-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 970
+    .line 1017
     new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     const-string v1, "DISCONNECTING"
@@ -92,7 +92,7 @@
 
     sput-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTING:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 971
+    .line 1018
     new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     const-string v1, "READY"
@@ -101,7 +101,7 @@
 
     sput-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->READY:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 965
+    .line 1012
     const/4 v0, 0x5
 
     new-array v0, v0, [Lcom/android/bluetooth/ble/GattPeripheral$STATE;
@@ -141,22 +141,22 @@
     .end annotation
 
     .prologue
-    .line 974
+    .line 1021
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
-    .line 975
+    .line 1022
     iput p3, p0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->value:I
 
-    .line 976
+    .line 1023
     return-void
 .end method
 
-.method static synthetic access$200(Lcom/android/bluetooth/ble/GattPeripheral$STATE;)I
+.method static synthetic access$300(Lcom/android/bluetooth/ble/GattPeripheral$STATE;)I
     .locals 1
     .param p0, "x0"    # Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     .prologue
-    .line 965
+    .line 1012
     iget v0, p0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->value:I
 
     return v0
@@ -167,7 +167,7 @@
     .param p0, "name"    # Ljava/lang/String;
 
     .prologue
-    .line 965
+    .line 1012
     const-class v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -183,7 +183,7 @@
     .locals 1
 
     .prologue
-    .line 965
+    .line 1012
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->$VALUES:[Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, [Lcom/android/bluetooth/ble/GattPeripheral$STATE;->clone()Ljava/lang/Object;
@@ -201,7 +201,7 @@
     .locals 1
 
     .prologue
-    .line 979
+    .line 1026
     iget v0, p0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->value:I
 
     return v0

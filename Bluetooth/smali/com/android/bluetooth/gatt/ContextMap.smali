@@ -175,19 +175,25 @@
 .end method
 
 .method addressByConnId(I)Ljava/lang/String;
-    .locals 3
+    .locals 4
     .param p1, "connId"    # I
 
     .prologue
-    .line 239
+    .line 249
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
+    iget-object v3, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
+
+    monitor-enter v3
+
+    .line 250
+    :try_start_0
     iget-object v2, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
 
     invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .line 240
+    .line 251
     .local v1, "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
     :cond_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
@@ -196,14 +202,14 @@
 
     if-eqz v2, :cond_1
 
-    .line 241
+    .line 252
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;
 
-    .line 242
+    .line 253
     .local v0, "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
     iget v2, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->connId:I
 
@@ -211,15 +217,32 @@
 
     iget-object v2, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->address:Ljava/lang/String;
 
-    .line 244
+    monitor-exit v3
+
+    .line 256
     .end local v0    # "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
     :goto_0
     return-object v2
 
+    .line 255
     :cond_1
+    monitor-exit v3
+
+    .line 256
     const/4 v2, 0x0
 
     goto :goto_0
+
+    .line 255
+    .end local v1    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    :catchall_0
+    move-exception v2
+
+    monitor-exit v3
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v2
 .end method
 
 .method clear()V
@@ -313,7 +336,7 @@
 .end method
 
 .method connIdByAddress(ILjava/lang/String;)Ljava/lang/Integer;
-    .locals 5
+    .locals 6
     .param p1, "id"    # I
     .param p2, "address"    # Ljava/lang/String;
 
@@ -321,64 +344,92 @@
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
     const/4 v3, 0x0
 
-    .line 223
+    .line 231
     invoke-virtual {p0, p1}, Lcom/android/bluetooth/gatt/ContextMap;->getById(I)Lcom/android/bluetooth/gatt/ContextMap$App;
 
     move-result-object v1
 
-    .line 224
-    .local v1, "entry":Lcom/android/bluetooth/gatt/ContextMap$App;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;"
-    if-nez v1, :cond_1
-
     .line 232
-    :cond_0
+    .local v1, "entry":Lcom/android/bluetooth/gatt/ContextMap$App;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;"
+    if-nez v1, :cond_0
+
+    .line 242
     :goto_0
     return-object v3
 
-    .line 226
-    :cond_1
+    .line 234
+    :cond_0
     iget-object v4, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
 
-    invoke-interface {v4}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+    monitor-enter v4
+
+    .line 235
+    :try_start_0
+    iget-object v5, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
+
+    invoke-interface {v5}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .line 227
+    .line 236
     .local v2, "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
-    :cond_2
+    :cond_1
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
 
-    move-result v4
+    move-result v5
 
-    if-eqz v4, :cond_0
+    if-eqz v5, :cond_2
 
-    .line 228
+    .line 237
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;
 
-    .line 229
+    .line 238
     .local v0, "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
-    iget-object v4, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->address:Ljava/lang/String;
+    iget-object v5, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->address:Ljava/lang/String;
 
-    invoke-virtual {v4, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v5, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
-    move-result v4
+    move-result v5
 
-    if-eqz v4, :cond_2
+    if-eqz v5, :cond_1
 
-    iget v4, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->appId:I
+    iget v5, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->appId:I
 
-    if-ne v4, p1, :cond_2
+    if-ne v5, p1, :cond_1
 
-    .line 230
+    .line 239
     iget v3, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->connId:I
 
     invoke-static {v3}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v3
+
+    monitor-exit v4
+
+    goto :goto_0
+
+    .line 241
+    .end local v0    # "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
+    .end local v2    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    :catchall_0
+    move-exception v3
+
+    monitor-exit v4
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v3
+
+    .restart local v2    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    :cond_2
+    :try_start_1
+    monitor-exit v4
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
     goto :goto_0
 .end method
@@ -612,7 +663,7 @@
 .end method
 
 .method getByConnId(I)Lcom/android/bluetooth/gatt/ContextMap$App;
-    .locals 3
+    .locals 4
     .param p1, "connId"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -623,15 +674,21 @@
     .end annotation
 
     .prologue
-    .line 209
+    .line 215
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
+    iget-object v3, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
+
+    monitor-enter v3
+
+    .line 216
+    :try_start_0
     iget-object v2, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
 
     invoke-interface {v2}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .line 210
+    .line 217
     .local v1, "ii":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
     :cond_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
@@ -640,35 +697,52 @@
 
     if-eqz v2, :cond_1
 
-    .line 211
+    .line 218
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;
 
-    .line 212
+    .line 219
     .local v0, "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
     iget v2, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->connId:I
 
     if-ne v2, p1, :cond_0
 
-    .line 213
+    .line 220
     iget v2, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->appId:I
 
     invoke-virtual {p0, v2}, Lcom/android/bluetooth/gatt/ContextMap;->getById(I)Lcom/android/bluetooth/gatt/ContextMap$App;
 
     move-result-object v2
 
-    .line 216
+    monitor-exit v3
+
+    .line 224
     .end local v0    # "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
     :goto_0
     return-object v2
 
+    .line 223
     :cond_1
+    monitor-exit v3
+
+    .line 224
     const/4 v2, 0x0
 
     goto :goto_0
+
+    .line 223
+    .end local v1    # "ii":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    :catchall_0
+    move-exception v2
+
+    monitor-exit v3
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v2
 .end method
 
 .method getById(I)Lcom/android/bluetooth/gatt/ContextMap$App;
@@ -685,13 +759,19 @@
     .prologue
     .line 170
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
+    iget-object v3, p0, Lcom/android/bluetooth/gatt/ContextMap;->mApps:Ljava/util/List;
+
+    monitor-enter v3
+
+    .line 171
+    :try_start_0
     iget-object v2, p0, Lcom/android/bluetooth/gatt/ContextMap;->mApps:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .line 171
+    .line 172
     .local v1, "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;>;"
     :cond_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
@@ -700,26 +780,33 @@
 
     if-eqz v2, :cond_1
 
-    .line 172
+    .line 173
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/bluetooth/gatt/ContextMap$App;
 
-    .line 173
+    .line 174
     .local v0, "entry":Lcom/android/bluetooth/gatt/ContextMap$App;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;"
     iget v2, v0, Lcom/android/bluetooth/gatt/ContextMap$App;->id:I
 
     if-ne v2, p1, :cond_0
 
-    .line 176
+    monitor-exit v3
+
+    .line 178
     .end local v0    # "entry":Lcom/android/bluetooth/gatt/ContextMap$App;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;"
     :goto_0
     return-object v0
 
-    .line 175
+    .line 176
     :cond_1
+    monitor-exit v3
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 177
     const-string v2, "BtGatt.ContextMap"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -742,10 +829,22 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 176
+    .line 178
     const/4 v0, 0x0
 
     goto :goto_0
+
+    .line 176
+    .end local v1    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;>;"
+    :catchall_0
+    move-exception v2
+
+    :try_start_1
+    monitor-exit v3
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    throw v2
 .end method
 
 .method getByUuid(Ljava/util/UUID;)Lcom/android/bluetooth/gatt/ContextMap$App;
@@ -762,15 +861,21 @@
     .end annotation
 
     .prologue
-    .line 183
+    .line 185
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
+    iget-object v3, p0, Lcom/android/bluetooth/gatt/ContextMap;->mApps:Ljava/util/List;
+
+    monitor-enter v3
+
+    .line 186
+    :try_start_0
     iget-object v2, p0, Lcom/android/bluetooth/gatt/ContextMap;->mApps:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v1
 
-    .line 184
+    .line 187
     .local v1, "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;>;"
     :cond_0
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
@@ -779,14 +884,14 @@
 
     if-eqz v2, :cond_1
 
-    .line 185
+    .line 188
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/bluetooth/gatt/ContextMap$App;
 
-    .line 186
+    .line 189
     .local v0, "entry":Lcom/android/bluetooth/gatt/ContextMap$App;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;"
     iget-object v2, v0, Lcom/android/bluetooth/gatt/ContextMap$App;->uuid:Ljava/util/UUID;
 
@@ -796,13 +901,20 @@
 
     if-eqz v2, :cond_0
 
-    .line 189
+    monitor-exit v3
+
+    .line 193
     .end local v0    # "entry":Lcom/android/bluetooth/gatt/ContextMap$App;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;"
     :goto_0
     return-object v0
 
-    .line 188
+    .line 191
     :cond_1
+    monitor-exit v3
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 192
     const-string v2, "BtGatt.ContextMap"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -825,14 +937,26 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 189
+    .line 193
     const/4 v0, 0x0
 
     goto :goto_0
+
+    .line 191
+    .end local v1    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.App;>;"
+    :catchall_0
+    move-exception v2
+
+    :try_start_1
+    monitor-exit v3
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    throw v2
 .end method
 
 .method getConnectedDevices()Ljava/util/Set;
-    .locals 4
+    .locals 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -844,21 +968,27 @@
     .end annotation
 
     .prologue
-    .line 196
+    .line 200
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    .line 197
+    .line 201
     .local v0, "addresses":Ljava/util/Set;, "Ljava/util/Set<Ljava/lang/String;>;"
+    iget-object v4, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
+
+    monitor-enter v4
+
+    .line 202
+    :try_start_0
     iget-object v3, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
 
     invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .line 198
+    .line 203
     .local v2, "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
     :goto_0
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
@@ -867,14 +997,14 @@
 
     if-eqz v3, :cond_0
 
-    .line 199
+    .line 204
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Lcom/android/bluetooth/gatt/ContextMap$Connection;
 
-    .line 200
+    .line 205
     .local v1, "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
     iget-object v3, v1, Lcom/android/bluetooth/gatt/ContextMap$Connection;->address:Ljava/lang/String;
 
@@ -882,14 +1012,31 @@
 
     goto :goto_0
 
-    .line 202
+    .line 207
     .end local v1    # "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
+    .end local v2    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    :catchall_0
+    move-exception v3
+
+    monitor-exit v4
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v3
+
+    .restart local v2    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
     :cond_0
+    :try_start_1
+    monitor-exit v4
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    .line 208
     return-object v0
 .end method
 
 .method getConnectionByApp(I)Ljava/util/List;
-    .locals 4
+    .locals 5
     .param p1, "appId"    # I
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -902,21 +1049,27 @@
     .end annotation
 
     .prologue
-    .line 248
+    .line 260
     .local p0, "this":Lcom/android/bluetooth/gatt/ContextMap;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>;"
     new-instance v1, Ljava/util/ArrayList;
 
     invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
 
-    .line 249
+    .line 261
     .local v1, "currentConnections":Ljava/util/List;, "Ljava/util/List<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    iget-object v4, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
+
+    monitor-enter v4
+
+    .line 262
+    :try_start_0
     iget-object v3, p0, Lcom/android/bluetooth/gatt/ContextMap;->mConnections:Ljava/util/Set;
 
     invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
 
-    .line 250
+    .line 263
     .local v2, "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
     :cond_0
     :goto_0
@@ -926,27 +1079,44 @@
 
     if-eqz v3, :cond_1
 
-    .line 251
+    .line 264
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;
 
-    .line 252
+    .line 265
     .local v0, "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
     iget v3, v0, Lcom/android/bluetooth/gatt/ContextMap$Connection;->appId:I
 
     if-ne v3, p1, :cond_0
 
-    .line 253
+    .line 266
     invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     goto :goto_0
 
-    .line 255
+    .line 268
     .end local v0    # "connection":Lcom/android/bluetooth/gatt/ContextMap$Connection;, "Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;"
+    .end local v2    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
+    :catchall_0
+    move-exception v3
+
+    monitor-exit v4
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw v3
+
+    .restart local v2    # "i":Ljava/util/Iterator;, "Ljava/util/Iterator<Lcom/android/bluetooth/gatt/ContextMap<TT;>.Connection;>;"
     :cond_1
+    :try_start_1
+    monitor-exit v4
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+
+    .line 269
     return-object v1
 .end method
 

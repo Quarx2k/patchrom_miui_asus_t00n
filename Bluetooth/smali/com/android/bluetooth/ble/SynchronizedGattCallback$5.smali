@@ -32,7 +32,7 @@
     .locals 0
 
     .prologue
-    .line 176
+    .line 185
     iput-object p1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     iput-object p2, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->val$gatt:Landroid/bluetooth/BluetoothGatt;
@@ -52,12 +52,12 @@
     .locals 3
 
     .prologue
-    .line 180
+    .line 189
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->val$gatt:Landroid/bluetooth/BluetoothGatt;
 
     if-nez v1, :cond_1
 
-    .line 181
+    .line 190
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     const v2, 0xff01
@@ -65,12 +65,12 @@
     # invokes: Lcom/android/bluetooth/ble/SynchronizedGattCallback;->notifyGattOperation(I)V
     invoke-static {v1, v2}, Lcom/android/bluetooth/ble/SynchronizedGattCallback;->access$000(Lcom/android/bluetooth/ble/SynchronizedGattCallback;I)V
 
-    .line 194
+    .line 203
     :cond_0
     :goto_0
     return-void
 
-    .line 184
+    .line 193
     :cond_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
@@ -80,7 +80,7 @@
 
     if-nez v1, :cond_2
 
-    .line 185
+    .line 194
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     const v2, 0xff04
@@ -90,7 +90,7 @@
 
     goto :goto_0
 
-    .line 188
+    .line 197
     :cond_2
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->val$descriptor:Landroid/bluetooth/BluetoothGattDescriptor;
 
@@ -98,7 +98,7 @@
 
     invoke-virtual {v1, v2}, Landroid/bluetooth/BluetoothGattDescriptor;->setValue([B)Z
 
-    .line 189
+    .line 198
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->val$gatt:Landroid/bluetooth/BluetoothGatt;
 
     iget-object v2, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->val$descriptor:Landroid/bluetooth/BluetoothGattDescriptor;
@@ -107,11 +107,11 @@
 
     move-result v0
 
-    .line 190
+    .line 199
     .local v0, "ret":Z
     if-nez v0, :cond_0
 
-    .line 191
+    .line 200
     iget-object v1, p0, Lcom/android/bluetooth/ble/SynchronizedGattCallback$5;->this$0:Lcom/android/bluetooth/ble/SynchronizedGattCallback;
 
     const v2, 0xff02

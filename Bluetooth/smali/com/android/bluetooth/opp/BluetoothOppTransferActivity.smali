@@ -1,5 +1,5 @@
 .class public Lcom/android/bluetooth/opp/BluetoothOppTransferActivity;
-.super Lcom/miui/internal/app/AlertActivity;
+.super Lmiui/app/AlertActivity;
 .source "BluetoothOppTransferActivity.java"
 
 # interfaces
@@ -72,7 +72,7 @@
 
     .prologue
     .line 66
-    invoke-direct {p0}, Lcom/miui/internal/app/AlertActivity;-><init>()V
+    invoke-direct {p0}, Lmiui/app/AlertActivity;-><init>()V
 
     .line 85
     const/4 v0, 0x0
@@ -1884,7 +1884,7 @@
 
     .prologue
     .line 134
-    invoke-super {p0, p1}, Lcom/miui/internal/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 135
     invoke-virtual {p0}, Lcom/android/bluetooth/opp/BluetoothOppTransferActivity;->getIntent()Landroid/content/Intent;
@@ -2025,7 +2025,7 @@
 
     .line 175
     :cond_0
-    invoke-super {p0}, Lcom/miui/internal/app/AlertActivity;->onDestroy()V
+    invoke-super {p0}, Lmiui/app/AlertActivity;->onDestroy()V
 
     .line 176
     return-void

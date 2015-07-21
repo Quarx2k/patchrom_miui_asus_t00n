@@ -62,6 +62,8 @@
 
 .field private mHandler:Landroid/os/Handler;
 
+.field private mIsPrepared:Z
+
 .field private mLastDiscoveredTimestamp:J
 
 .field private mNotifyStateTask:Ljava/lang/Runnable;
@@ -157,128 +159,93 @@
     .prologue
     const/4 v3, 0x0
 
-    .line 88
+    const/4 v2, 0x0
+
+    .line 90
     invoke-direct {p0}, Lcom/android/bluetooth/ble/SynchronizedGattCallback;-><init>()V
 
     .line 60
-    new-instance v1, Ljava/util/LinkedList;
+    new-instance v0, Ljava/util/LinkedList;
 
-    invoke-direct {v1}, Ljava/util/LinkedList;-><init>()V
+    invoke-direct {v0}, Ljava/util/LinkedList;-><init>()V
 
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
     .line 61
-    iput-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+    iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     .line 62
-    new-instance v1, Ljava/util/HashMap;
+    new-instance v0, Ljava/util/HashMap;
 
-    invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
     .line 63
-    sget-object v1, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     .line 64
-    new-instance v1, Ljava/lang/Object;
+    new-instance v0, Ljava/lang/Object;
 
-    invoke-direct {v1}, Ljava/lang/Object;-><init>()V
+    invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     .line 66
-    new-instance v1, Ljava/util/HashMap;
+    new-instance v0, Ljava/util/HashMap;
 
-    invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
     .line 67
-    new-instance v1, Landroid/util/SparseArray;
+    new-instance v0, Landroid/util/SparseArray;
 
-    invoke-direct {v1}, Landroid/util/SparseArray;-><init>()V
+    invoke-direct {v0}, Landroid/util/SparseArray;-><init>()V
 
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
 
     .line 69
-    iput-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileLock:Ljava/nio/channels/FileLock;
+    iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileLock:Ljava/nio/channels/FileLock;
 
     .line 70
-    iput-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
+    iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
     .line 74
-    const-wide/16 v1, 0x0
+    const-wide/16 v0, 0x0
 
-    iput-wide v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mLastDiscoveredTimestamp:J
+    iput-wide v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mLastDiscoveredTimestamp:J
 
     .line 78
-    const/4 v1, 0x1
+    const/4 v0, 0x1
 
-    iput-boolean v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
+    iput-boolean v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
 
     .line 81
-    const/4 v1, 0x0
+    iput v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
 
-    iput v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
+    .line 82
+    iput-boolean v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mIsPrepared:Z
 
-    .line 411
-    iput-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mNotifyStateTask:Ljava/lang/Runnable;
-
-    .line 89
-    iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Context:Landroid/content/Context;
-
-    .line 90
-    iput-object p2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
+    .line 442
+    iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mNotifyStateTask:Ljava/lang/Runnable;
 
     .line 91
+    iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Context:Landroid/content/Context;
+
+    .line 92
+    iput-object p2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
+
+    .line 93
     invoke-static {}, Landroid/bluetooth/BluetoothAdapter;->getDefaultAdapter()Landroid/bluetooth/BluetoothAdapter;
 
-    move-result-object v1
+    move-result-object v0
 
-    sput-object v1, Lcom/android/bluetooth/ble/GattPeripheral;->m_BTA:Landroid/bluetooth/BluetoothAdapter;
-
-    .line 96
-    new-instance v0, Landroid/os/HandlerThread;
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "GattPeripheral"
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-direct {v0, v1}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
+    sput-object v0, Lcom/android/bluetooth/ble/GattPeripheral;->m_BTA:Landroid/bluetooth/BluetoothAdapter;
 
     .line 97
-    .local v0, "thread":Landroid/os/HandlerThread;
-    invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
-
-    .line 98
-    new-instance v1, Landroid/os/Handler;
-
-    invoke-virtual {v0}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
-
-    move-result-object v2
-
-    invoke-direct {v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
-
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
-
-    .line 99
     return-void
 .end method
 
@@ -286,30 +253,30 @@
     .locals 2
 
     .prologue
-    .line 471
+    .line 502
     const-string v0, "GattPeripheral"
 
     const-string v1, "GattCB_onConnected"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 474
+    .line 505
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 475
+    .line 506
     :try_start_0
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 476
+    .line 507
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 478
+    .line 509
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
@@ -318,26 +285,26 @@
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 480
+    .line 511
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     if-eqz v0, :cond_0
 
-    .line 481
+    .line 512
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     invoke-interface {v0, p0}, Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;->onConnected(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    .line 484
+    .line 515
     :cond_0
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
 
-    .line 485
+    .line 516
     return-void
 
-    .line 476
+    .line 507
     :catchall_0
     move-exception v0
 
@@ -353,23 +320,23 @@
     .locals 2
 
     .prologue
-    .line 488
+    .line 519
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 489
+    .line 520
     :try_start_0
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 490
+    .line 521
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 492
+    .line 523
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
@@ -378,37 +345,21 @@
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 496
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+    .line 528
+    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     if-eqz v0, :cond_0
 
-    .line 497
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    invoke-virtual {v0}, Landroid/bluetooth/BluetoothGatt;->close()V
-
-    .line 498
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    .line 501
-    :cond_0
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
-
-    if-eqz v0, :cond_1
-
-    .line 502
+    .line 529
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     invoke-interface {v0, p0}, Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;->onConnectFailed(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    .line 505
-    :cond_1
+    .line 532
+    :cond_0
     return-void
 
-    .line 490
+    .line 521
     :catchall_0
     move-exception v0
 
@@ -424,23 +375,23 @@
     .locals 2
 
     .prologue
-    .line 508
+    .line 535
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 509
+    .line 536
     :try_start_0
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 510
+    .line 537
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 512
+    .line 539
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
@@ -449,21 +400,21 @@
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 515
+    .line 542
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     if-eqz v0, :cond_0
 
-    .line 516
+    .line 543
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     invoke-interface {v0, p0}, Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;->onDisconnected(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    .line 518
+    .line 545
     :cond_0
     return-void
 
-    .line 510
+    .line 537
     :catchall_0
     move-exception v0
 
@@ -480,37 +431,26 @@
     .param p1, "succeed"    # Z
 
     .prologue
-    .line 522
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
+    .line 549
+    if-eqz p1, :cond_0
 
-    if-eqz v0, :cond_0
-
-    .line 523
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
-
-    invoke-interface {v0, p0, p1}, Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;->onServiceDiscovered(Lcom/android/bluetooth/ble/GattPeripheral;Z)V
-
-    .line 526
-    :cond_0
-    if-eqz p1, :cond_1
-
-    .line 527
+    .line 550
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 528
+    .line 551
     :try_start_0
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->READY:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 529
+    .line 552
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 530
+    .line 553
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
@@ -519,11 +459,22 @@
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 532
+    .line 556
+    :cond_0
+    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
+
+    if-eqz v0, :cond_1
+
+    .line 557
+    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
+
+    invoke-interface {v0, p0, p1}, Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;->onServiceDiscovered(Lcom/android/bluetooth/ble/GattPeripheral;Z)V
+
+    .line 559
     :cond_1
     return-void
 
-    .line 529
+    .line 552
     :catchall_0
     move-exception v0
 
@@ -545,7 +496,7 @@
 
     const/4 v8, 0x1
 
-    .line 846
+    .line 893
     :try_start_0
     const-class v9, Landroid/bluetooth/BluetoothGatt;
 
@@ -555,34 +506,34 @@
 
     move-result-object v4
 
-    .line 847
+    .line 894
     .local v4, "m_field_BluetoothGatt_mService":Ljava/lang/reflect/Field;
     const/4 v9, 0x1
 
     invoke-virtual {v4, v9}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 848
+    .line 895
     invoke-virtual {v4, p0}, Ljava/lang/reflect/Field;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v5
 
-    .line 849
+    .line 896
     .local v5, "service":Ljava/lang/Object;
     invoke-virtual {v5}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object v0
 
-    .line 851
+    .line 898
     .local v0, "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     invoke-static {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->__getClientIf(Landroid/bluetooth/BluetoothGatt;)I
 
     move-result v2
 
-    .line 852
+    .line 899
     .local v2, "clientIf":I
     if-gtz v2, :cond_0
 
-    .line 867
+    .line 914
     .end local v0    # "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     .end local v2    # "clientIf":I
     .end local v4    # "m_field_BluetoothGatt_mService":Ljava/lang/reflect/Field;
@@ -590,7 +541,7 @@
     :goto_0
     return v7
 
-    .line 854
+    .line 901
     .restart local v0    # "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     .restart local v2    # "clientIf":I
     .restart local v4    # "m_field_BluetoothGatt_mService":Ljava/lang/reflect/Field;
@@ -602,7 +553,7 @@
 
     if-lt v9, v10, :cond_1
 
-    .line 855
+    .line 902
     const-string v9, "clientConnect"
 
     const/4 v10, 0x4
@@ -637,13 +588,13 @@
 
     move-result-object v1
 
-    .line 857
+    .line 904
     .local v1, "clientConnect":Ljava/lang/reflect/Method;
     invoke-static {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->__getTransport(Landroid/bluetooth/BluetoothGatt;)I
 
     move-result v6
 
-    .line 858
+    .line 905
     .local v6, "transport":I
     const/4 v9, 0x4
 
@@ -689,10 +640,10 @@
     :goto_1
     move v7, v8
 
-    .line 864
+    .line 911
     goto :goto_0
 
-    .line 860
+    .line 907
     .end local v1    # "clientConnect":Ljava/lang/reflect/Method;
     :cond_1
     const-string v9, "clientConnect"
@@ -723,7 +674,7 @@
 
     move-result-object v1
 
-    .line 862
+    .line 909
     .restart local v1    # "clientConnect":Ljava/lang/reflect/Method;
     const/4 v9, 0x3
 
@@ -761,7 +712,7 @@
 
     goto :goto_1
 
-    .line 865
+    .line 912
     .end local v0    # "clazz":Ljava/lang/Class;, "Ljava/lang/Class<*>;"
     .end local v1    # "clientConnect":Ljava/lang/reflect/Method;
     .end local v2    # "clientIf":I
@@ -770,7 +721,7 @@
     :catch_0
     move-exception v3
 
-    .line 866
+    .line 913
     .local v3, "e":Ljava/lang/Exception;
     invoke-virtual {v3}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -786,27 +737,27 @@
 
     const/4 v4, 0x0
 
-    .line 872
+    .line 919
     sget-boolean v2, Lcom/android/bluetooth/ble/GattPeripheral;->__feature__forceRefresh:Z
 
     if-nez v2, :cond_0
 
     move v2, v3
 
-    .line 883
+    .line 930
     :goto_0
     return v2
 
-    .line 875
+    .line 922
     :cond_0
     if-nez p0, :cond_1
 
     move v2, v4
 
-    .line 876
+    .line 923
     goto :goto_0
 
-    .line 878
+    .line 925
     :cond_1
     :try_start_0
     const-class v5, Landroid/bluetooth/BluetoothGatt;
@@ -821,7 +772,7 @@
 
     move-result-object v1
 
-    .line 879
+    .line 926
     .local v1, "refresh":Ljava/lang/reflect/Method;
     const/4 v2, 0x0
 
@@ -833,21 +784,21 @@
 
     move v2, v3
 
-    .line 880
+    .line 927
     goto :goto_0
 
-    .line 881
+    .line 928
     .end local v1    # "refresh":Ljava/lang/reflect/Method;
     :catch_0
     move-exception v0
 
-    .line 882
+    .line 929
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
     move v2, v4
 
-    .line 883
+    .line 930
     goto :goto_0
 .end method
 
@@ -858,14 +809,14 @@
     .prologue
     const/4 v0, -0x1
 
-    .line 902
+    .line 949
     if-nez p0, :cond_0
 
-    .line 912
+    .line 959
     :goto_0
     return v0
 
-    .line 905
+    .line 952
     :cond_0
     :try_start_0
     const-class v3, Landroid/bluetooth/BluetoothGatt;
@@ -876,30 +827,30 @@
 
     move-result-object v2
 
-    .line 906
+    .line 953
     .local v2, "m_field_BluetoothGatt_mClientIf":Ljava/lang/reflect/Field;
     const/4 v3, 0x1
 
     invoke-virtual {v2, v3}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 907
+    .line 954
     invoke-virtual {v2, p0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     move-result v0
 
-    .line 908
+    .line 955
     .local v0, "clientIf":I
     goto :goto_0
 
-    .line 909
+    .line 956
     .end local v0    # "clientIf":I
     .end local v2    # "m_field_BluetoothGatt_mClientIf":Ljava/lang/reflect/Field;
     :catch_0
     move-exception v1
 
-    .line 910
+    .line 957
     .local v1, "e":Ljava/lang/Exception;
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -913,14 +864,14 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 888
+    .line 935
     if-nez p0, :cond_0
 
-    .line 898
+    .line 945
     :goto_0
     return v2
 
-    .line 891
+    .line 938
     :cond_0
     :try_start_0
     const-class v3, Landroid/bluetooth/BluetoothGatt;
@@ -931,30 +882,30 @@
 
     move-result-object v1
 
-    .line 892
+    .line 939
     .local v1, "m_field_BluetoothGatt_mTransport":Ljava/lang/reflect/Field;
     const/4 v3, 0x1
 
     invoke-virtual {v1, v3}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
-    .line 893
+    .line 940
     invoke-virtual {v1, p0}, Ljava/lang/reflect/Field;->getInt(Ljava/lang/Object;)I
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     move-result v2
 
-    .line 894
+    .line 941
     .local v2, "transport":I
     goto :goto_0
 
-    .line 895
+    .line 942
     .end local v1    # "m_field_BluetoothGatt_mTransport":Ljava/lang/reflect/Field;
     .end local v2    # "transport":I
     :catch_0
     move-exception v0
 
-    .line 896
+    .line 943
     .local v0, "e":Ljava/lang/Exception;
     invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -965,16 +916,16 @@
     .locals 4
 
     .prologue
-    .line 916
+    .line 963
     sget-boolean v2, Lcom/android/bluetooth/ble/GattPeripheral;->__feature__lockServiceDiscovery:Z
 
     if-nez v2, :cond_0
 
-    .line 929
+    .line 976
     :goto_0
     return-void
 
-    .line 920
+    .line 967
     :cond_0
     :try_start_0
     new-instance v2, Ljava/lang/StringBuilder;
@@ -999,7 +950,7 @@
 
     move-result-object v0
 
-    .line 921
+    .line 968
     .local v0, "PATH":Ljava/lang/String;
     new-instance v2, Ljava/io/FileOutputStream;
 
@@ -1007,7 +958,7 @@
 
     iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
-    .line 922
+    .line 969
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
     invoke-virtual {v2}, Ljava/io/FileOutputStream;->getChannel()Ljava/nio/channels/FileChannel;
@@ -1020,7 +971,7 @@
 
     iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileLock:Ljava/nio/channels/FileLock;
 
-    .line 923
+    .line 970
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
     const/4 v3, 0x1
@@ -1032,23 +983,23 @@
 
     goto :goto_0
 
-    .line 924
+    .line 971
     .end local v0    # "PATH":Ljava/lang/String;
     :catch_0
     move-exception v1
 
-    .line 925
+    .line 972
     .local v1, "e":Ljava/io/FileNotFoundException;
     invoke-virtual {v1}, Ljava/io/FileNotFoundException;->printStackTrace()V
 
     goto :goto_0
 
-    .line 926
+    .line 973
     .end local v1    # "e":Ljava/io/FileNotFoundException;
     :catch_1
     move-exception v1
 
-    .line 927
+    .line 974
     .local v1, "e":Ljava/io/IOException;
     invoke-virtual {v1}, Ljava/io/IOException;->printStackTrace()V
 
@@ -1059,17 +1010,17 @@
     .locals 3
 
     .prologue
-    .line 932
+    .line 979
     sget-boolean v1, Lcom/android/bluetooth/ble/GattPeripheral;->__feature__lockServiceDiscovery:Z
 
     if-nez v1, :cond_1
 
-    .line 946
+    .line 993
     :cond_0
     :goto_0
     return-void
 
-    .line 935
+    .line 982
     :cond_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
@@ -1079,7 +1030,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 937
+    .line 984
     :try_start_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
@@ -1087,22 +1038,22 @@
 
     invoke-virtual {v1, v2}, Ljava/io/FileOutputStream;->write(I)V
 
-    .line 938
+    .line 985
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileLock:Ljava/nio/channels/FileLock;
 
     invoke-virtual {v1}, Ljava/nio/channels/FileLock;->release()V
 
-    .line 939
+    .line 986
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
 
     invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
 
-    .line 940
+    .line 987
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileLock:Ljava/nio/channels/FileLock;
 
-    .line 941
+    .line 988
     const/4 v1, 0x0
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->__android_bug_FileOutputStream:Ljava/io/FileOutputStream;
@@ -1111,11 +1062,11 @@
 
     goto :goto_0
 
-    .line 942
+    .line 989
     :catch_0
     move-exception v0
 
-    .line 943
+    .line 990
     .local v0, "e":Ljava/io/IOException;
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
@@ -1133,7 +1084,18 @@
     return-void
 .end method
 
-.method static synthetic access$100(Lcom/android/bluetooth/ble/GattPeripheral;Z)V
+.method static synthetic access$100(Lcom/android/bluetooth/ble/GattPeripheral;)V
+    .locals 0
+    .param p0, "x0"    # Lcom/android/bluetooth/ble/GattPeripheral;
+
+    .prologue
+    .line 42
+    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnected()V
+
+    return-void
+.end method
+
+.method static synthetic access$200(Lcom/android/bluetooth/ble/GattPeripheral;Z)V
     .locals 0
     .param p0, "x0"    # Lcom/android/bluetooth/ble/GattPeripheral;
     .param p1, "x1"    # Z
@@ -1145,7 +1107,7 @@
     return-void
 .end method
 
-.method static synthetic access$300(Lcom/android/bluetooth/ble/GattPeripheral;)Ljava/util/HashMap;
+.method static synthetic access$400(Lcom/android/bluetooth/ble/GattPeripheral;)Ljava/util/HashMap;
     .locals 1
     .param p0, "x0"    # Lcom/android/bluetooth/ble/GattPeripheral;
 
@@ -1156,7 +1118,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$400(Lcom/android/bluetooth/ble/GattPeripheral;)Ljava/util/List;
+.method static synthetic access$500(Lcom/android/bluetooth/ble/GattPeripheral;)Ljava/util/List;
     .locals 1
     .param p0, "x0"    # Lcom/android/bluetooth/ble/GattPeripheral;
 
@@ -1167,7 +1129,7 @@
     return-object v0
 .end method
 
-.method static synthetic access$500(Lcom/android/bluetooth/ble/GattPeripheral;)Landroid/bluetooth/BluetoothDevice;
+.method static synthetic access$600(Lcom/android/bluetooth/ble/GattPeripheral;)Landroid/bluetooth/BluetoothDevice;
     .locals 1
     .param p0, "x0"    # Lcom/android/bluetooth/ble/GattPeripheral;
 
@@ -1187,7 +1149,7 @@
 
     const/4 v2, 0x0
 
-    .line 84
+    .line 85
     and-int/lit8 v0, p0, 0x1
 
     if-lez v0, :cond_0
@@ -1197,7 +1159,7 @@
     :goto_0
     sput-boolean v0, Lcom/android/bluetooth/ble/GattPeripheral;->__feature__forceRefresh:Z
 
-    .line 85
+    .line 86
     and-int/lit8 v0, p0, 0x2
 
     if-lez v0, :cond_1
@@ -1205,19 +1167,19 @@
     :goto_1
     sput-boolean v1, Lcom/android/bluetooth/ble/GattPeripheral;->__feature__lockServiceDiscovery:Z
 
-    .line 86
+    .line 87
     return-void
 
     :cond_0
     move v0, v2
 
-    .line 84
+    .line 85
     goto :goto_0
 
     :cond_1
     move v1, v2
 
-    .line 85
+    .line 86
     goto :goto_1
 .end method
 
@@ -1231,48 +1193,56 @@
 
     const/4 v3, 0x0
 
-    .line 670
+    .line 702
     const/4 v1, 0x0
 
-    .line 672
+    .line 705
     .local v1, "ret":Z
+    iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    if-nez v4, :cond_1
+
+    .line 706
+    const/4 v1, 0x0
+
+    .line 735
+    :cond_0
+    :goto_0
+    return v1
+
+    .line 710
+    :cond_1
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     invoke-virtual {v4, p1, p2}, Landroid/bluetooth/BluetoothGatt;->setCharacteristicNotification(Landroid/bluetooth/BluetoothGattCharacteristic;Z)Z
 
     move-result v1
 
-    .line 673
-    if-nez v1, :cond_1
+    .line 711
+    if-eqz v1, :cond_0
 
-    .line 697
-    :cond_0
-    :goto_0
-    return v1
-
-    .line 677
-    :cond_1
+    .line 715
     sget-object v4, Lcom/android/bluetooth/ble/GattPeripheral;->UUID_DESCRIPTOR_CLIENT_CHARACTERISTIC_CONFIGURATION:Ljava/util/UUID;
 
     invoke-virtual {p1, v4}, Landroid/bluetooth/BluetoothGattCharacteristic;->getDescriptor(Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattDescriptor;
 
     move-result-object v0
 
-    .line 679
+    .line 717
     .local v0, "descriptor":Landroid/bluetooth/BluetoothGattDescriptor;
     if-nez v0, :cond_2
 
-    .line 680
+    .line 718
     const/4 v1, 0x0
 
-    .line 681
+    .line 719
     goto :goto_0
 
-    .line 683
+    .line 721
     :cond_2
     if-eqz p2, :cond_6
 
-    .line 684
+    .line 722
     invoke-virtual {p1}, Landroid/bluetooth/BluetoothGattCharacteristic;->getProperties()I
 
     move-result v4
@@ -1281,7 +1251,7 @@
 
     if-lez v4, :cond_4
 
-    .line 685
+    .line 723
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     sget-object v5, Landroid/bluetooth/BluetoothGattDescriptor;->ENABLE_NOTIFICATION_VALUE:[B
@@ -1302,7 +1272,7 @@
 
     goto :goto_1
 
-    .line 687
+    .line 725
     :cond_4
     invoke-virtual {p1}, Landroid/bluetooth/BluetoothGattCharacteristic;->getProperties()I
 
@@ -1312,7 +1282,7 @@
 
     if-lez v4, :cond_0
 
-    .line 688
+    .line 726
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     sget-object v5, Landroid/bluetooth/BluetoothGattDescriptor;->ENABLE_INDICATION_VALUE:[B
@@ -1333,7 +1303,7 @@
 
     goto :goto_2
 
-    .line 691
+    .line 729
     :cond_6
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
@@ -1347,14 +1317,14 @@
 
     move v1, v2
 
-    .line 695
+    .line 733
     :goto_3
     goto :goto_0
 
     :cond_7
     move v1, v3
 
-    .line 691
+    .line 729
     goto :goto_3
 .end method
 
@@ -1363,7 +1333,7 @@
     .param p1, "characteristic"    # Landroid/bluetooth/BluetoothGattCharacteristic;
 
     .prologue
-    .line 666
+    .line 698
     new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
 
     invoke-virtual {p1}, Landroid/bluetooth/BluetoothGattCharacteristic;->getService()Landroid/bluetooth/BluetoothGattService;
@@ -1390,19 +1360,19 @@
     .param p3, "descriptorUUID"    # Ljava/util/UUID;
 
     .prologue
-    .line 555
+    .line 582
     invoke-virtual {p0, p1, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->getCharacteristic(Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v0
 
-    .line 556
+    .line 583
     .local v0, "ch":Landroid/bluetooth/BluetoothGattCharacteristic;
     if-nez v0, :cond_0
 
-    .line 557
+    .line 584
     const/4 v1, 0x0
 
-    .line 559
+    .line 586
     :goto_0
     return-object v1
 
@@ -1419,7 +1389,7 @@
     .param p1, "state"    # I
 
     .prologue
-    .line 415
+    .line 446
     const-string v0, "GattPeripheral"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1442,32 +1412,32 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 418
+    .line 449
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mNotifyStateTask:Ljava/lang/Runnable;
 
     if-eqz v0, :cond_0
 
-    .line 419
+    .line 450
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mNotifyStateTask:Ljava/lang/Runnable;
 
     invoke-virtual {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->removeTask(Ljava/lang/Runnable;)V
 
-    .line 422
+    .line 453
     :cond_0
-    new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$4;
+    new-instance v0, Lcom/android/bluetooth/ble/GattPeripheral$7;
 
-    invoke-direct {v0, p0, p1}, Lcom/android/bluetooth/ble/GattPeripheral$4;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;I)V
+    invoke-direct {v0, p0, p1}, Lcom/android/bluetooth/ble/GattPeripheral$7;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;I)V
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mNotifyStateTask:Ljava/lang/Runnable;
 
-    .line 454
+    .line 485
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mNotifyStateTask:Ljava/lang/Runnable;
 
     const-wide/16 v1, 0x64
 
     invoke-virtual {p0, v0, v1, v2}, Lcom/android/bluetooth/ble/GattPeripheral;->postDelayed(Ljava/lang/Runnable;J)V
 
-    .line 455
+    .line 486
     return-void
 .end method
 
@@ -1475,7 +1445,7 @@
     .locals 6
 
     .prologue
-    .line 772
+    .line 810
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
     invoke-interface {v4}, Ljava/util/Map;->keySet()Ljava/util/Set;
@@ -1501,8 +1471,20 @@
 
     check-cast v2, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
 
-    .line 773
+    .line 811
     .local v2, "key":Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
+    iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    if-nez v4, :cond_2
+
+    .line 826
+    .end local v2    # "key":Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
+    :cond_1
+    return-void
+
+    .line 815
+    .restart local v2    # "key":Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
+    :cond_2
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     iget-object v5, v2, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->service:Ljava/util/UUID;
@@ -1511,34 +1493,27 @@
 
     move-result-object v3
 
-    .line 774
+    .line 816
     .local v3, "service":Landroid/bluetooth/BluetoothGattService;
     if-eqz v3, :cond_0
 
-    .line 778
+    .line 820
     iget-object v4, v2, Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;->characteristic:Ljava/util/UUID;
 
     invoke-virtual {v3, v4}, Landroid/bluetooth/BluetoothGattService;->getCharacteristic(Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v0
 
-    .line 779
+    .line 821
     .local v0, "charact":Landroid/bluetooth/BluetoothGattCharacteristic;
     if-eqz v0, :cond_0
 
-    .line 782
+    .line 824
     const/4 v4, 0x1
 
     invoke-direct {p0, v0, v4}, Lcom/android/bluetooth/ble/GattPeripheral;->enableNotification(Landroid/bluetooth/BluetoothGattCharacteristic;Z)Z
 
     goto :goto_0
-
-    .line 784
-    .end local v0    # "charact":Landroid/bluetooth/BluetoothGattCharacteristic;
-    .end local v2    # "key":Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
-    .end local v3    # "service":Landroid/bluetooth/BluetoothGattService;
-    :cond_1
-    return-void
 .end method
 
 
@@ -1547,41 +1522,51 @@
     .locals 2
 
     .prologue
-    .line 311
+    .line 339
     const-string v0, "GattPeripheral"
 
     const-string v1, "cancelConnect()"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 312
+    .line 340
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 313
+    .line 341
     :try_start_0
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 314
-    monitor-exit v1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
-
-    .line 316
+    .line 342
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     if-eqz v0, :cond_0
 
-    .line 317
+    .line 343
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothGatt;->disconnect()V
 
-    .line 320
+    .line 344
+    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    invoke-virtual {v0}, Landroid/bluetooth/BluetoothGatt;->close()V
+
+    .line 345
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    .line 347
     :cond_0
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 349
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
@@ -1590,21 +1575,21 @@
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 322
+    .line 351
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     if-eqz v0, :cond_1
 
-    .line 323
+    .line 352
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     invoke-interface {v0, p0}, Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;->onConnectFailed(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    .line 326
+    .line 355
     :cond_1
     return-void
 
-    .line 314
+    .line 347
     :catchall_0
     move-exception v0
 
@@ -1620,41 +1605,41 @@
     .locals 2
 
     .prologue
-    .line 788
+    .line 830
     invoke-super {p0}, Lcom/android/bluetooth/ble/SynchronizedGattCallback;->cleanup()V
 
-    .line 789
+    .line 831
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 790
+    .line 832
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
     monitor-enter v1
 
-    .line 791
+    .line 833
     :try_start_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 792
+    .line 834
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 793
+    .line 835
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
 
     invoke-virtual {v0}, Landroid/util/SparseArray;->clear()V
 
-    .line 794
+    .line 836
     return-void
 
-    .line 792
+    .line 834
     :catchall_0
     move-exception v0
 
@@ -1667,85 +1652,109 @@
 .end method
 
 .method public final close()V
-    .locals 2
+    .locals 4
 
     .prologue
-    .line 799
-    const-string v0, "GattPeripheral"
+    const/4 v3, 0x0
 
-    const-string v1, "close()"
+    .line 841
+    const-string v1, "GattPeripheral"
 
-    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    const-string v2, "close()"
 
-    .line 801
-    const/4 v0, 0x0
+    invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    iput-boolean v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
+    .line 842
+    invoke-super {p0}, Lcom/android/bluetooth/ble/SynchronizedGattCallback;->close()V
 
-    .line 802
-    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
+    .line 844
+    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
-    monitor-enter v1
+    .line 845
+    .local v0, "oldHandler":Landroid/os/Handler;
+    sget-object v1, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 803
+    invoke-virtual {v1}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
+
+    move-result v1
+
+    invoke-direct {p0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
+
+    .line 846
+    iput-boolean v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
+
+    .line 847
+    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
+
+    monitor-enter v2
+
+    .line 848
     :try_start_0
-    sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    sget-object v1, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 804
-    monitor-exit v1
+    .line 849
+    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    if-eqz v1, :cond_0
+
+    .line 850
+    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    invoke-virtual {v1}, Landroid/bluetooth/BluetoothGatt;->disconnect()V
+
+    .line 851
+    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    invoke-virtual {v1}, Landroid/bluetooth/BluetoothGatt;->close()V
+
+    .line 852
+    const/4 v1, 0x0
+
+    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    .line 854
+    :cond_0
+    const/4 v1, 0x0
+
+    iput-boolean v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mIsPrepared:Z
+
+    .line 855
+    monitor-exit v2
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 805
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
-
-    invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
-
-    move-result v0
-
-    invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
-
-    .line 807
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    if-eqz v0, :cond_0
-
-    .line 808
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    invoke-virtual {v0}, Landroid/bluetooth/BluetoothGatt;->close()V
-
-    .line 809
-    const/4 v0, 0x0
-
-    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    .line 811
-    :cond_0
+    .line 857
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->cleanup()V
 
-    .line 813
+    .line 859
+    invoke-virtual {v0}, Landroid/os/Handler;->getLooper()Landroid/os/Looper;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Landroid/os/Looper;->quit()V
+
+    .line 860
     return-void
 
-    .line 804
+    .line 855
     :catchall_0
-    move-exception v0
+    move-exception v1
 
     :try_start_1
-    monitor-exit v1
+    monitor-exit v2
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    throw v0
+    throw v1
 .end method
 
 .method public connect()Z
     .locals 1
 
     .prologue
-    .line 219
+    .line 225
     const/4 v0, 0x1
 
     invoke-virtual {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->connect(Z)Z
@@ -1756,204 +1765,277 @@
 .end method
 
 .method public connect(Z)Z
-    .locals 6
+    .locals 7
     .param p1, "autoReconnect"    # Z
 
     .prologue
-    const/4 v1, 0x0
+    const/4 v1, 0x1
 
-    .line 223
-    iget v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
-
-    add-int/lit8 v2, v2, 0x1
-
-    iput v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
-
-    .line 224
-    iput-boolean p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
-
-    .line 226
-    const/4 v0, 0x0
+    const/4 v2, 0x0
 
     .line 229
-    .local v0, "succeed":Z
-    sget-object v2, Lcom/android/bluetooth/ble/GattPeripheral;->m_BTA:Landroid/bluetooth/BluetoothAdapter;
+    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
-    invoke-virtual {v2}, Landroid/bluetooth/BluetoothAdapter;->getState()I
-
-    move-result v2
-
-    const/16 v3, 0xc
-
-    if-eq v2, v3, :cond_0
+    monitor-enter v3
 
     .line 230
+    :try_start_0
+    iget-boolean v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mIsPrepared:Z
+
+    if-nez v4, :cond_0
+
+    .line 231
+    invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->prepare()V
+
+    .line 232
+    const/4 v4, 0x1
+
+    iput-boolean v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mIsPrepared:Z
+
+    .line 234
+    :cond_0
+    monitor-exit v3
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    .line 236
+    iget v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
+
+    add-int/lit8 v3, v3, 0x1
+
+    iput v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
+
+    .line 237
+    iput-boolean p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
+
+    .line 239
+    const/4 v0, 0x0
+
+    .line 242
+    .local v0, "succeed":Z
+    sget-object v3, Lcom/android/bluetooth/ble/GattPeripheral;->m_BTA:Landroid/bluetooth/BluetoothAdapter;
+
+    invoke-virtual {v3}, Landroid/bluetooth/BluetoothAdapter;->getState()I
+
+    move-result v3
+
+    const/16 v4, 0xc
+
+    if-eq v3, v4, :cond_1
+
+    .line 243
     const-string v1, "GattPeripheral"
 
     const-string v2, "Bluetooth is off!"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 292
+    .line 244
+    new-instance v1, Lcom/android/bluetooth/ble/GattPeripheral$1;
+
+    invoke-direct {v1, p0}, Lcom/android/bluetooth/ble/GattPeripheral$1;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
+
+    invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->post(Ljava/lang/Runnable;)V
+
+    .line 320
     :goto_0
     return v0
 
     .line 234
-    :cond_0
-    sget-object v2, Lcom/android/bluetooth/ble/GattPeripheral;->m_BTA:Landroid/bluetooth/BluetoothAdapter;
+    .end local v0    # "succeed":Z
+    :catchall_0
+    move-exception v1
 
-    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
+    :try_start_1
+    monitor-exit v3
+    :try_end_1
+    .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    invoke-virtual {v2, v3}, Landroid/bluetooth/BluetoothAdapter;->getRemoteDevice(Ljava/lang/String;)Landroid/bluetooth/BluetoothDevice;
+    throw v1
 
-    move-result-object v2
+    .line 253
+    .restart local v0    # "succeed":Z
+    :cond_1
+    sget-object v3, Lcom/android/bluetooth/ble/GattPeripheral;->m_BTA:Landroid/bluetooth/BluetoothAdapter;
 
-    iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+    iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
 
-    .line 235
-    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+    invoke-virtual {v3, v4}, Landroid/bluetooth/BluetoothAdapter;->getRemoteDevice(Ljava/lang/String;)Landroid/bluetooth/BluetoothDevice;
 
-    if-nez v2, :cond_1
+    move-result-object v3
 
-    .line 236
+    iput-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+
+    .line 254
+    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+
+    if-nez v3, :cond_2
+
+    .line 255
     const-string v1, "GattPeripheral"
 
     const-string v2, "BluetoothDevice is null"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
+    .line 256
+    new-instance v1, Lcom/android/bluetooth/ble/GattPeripheral$2;
+
+    invoke-direct {v1, p0}, Lcom/android/bluetooth/ble/GattPeripheral$2;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
+
+    invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->post(Ljava/lang/Runnable;)V
+
     goto :goto_0
 
-    .line 240
-    :cond_1
-    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
-
-    invoke-virtual {v2}, Landroid/bluetooth/BluetoothDevice;->getType()I
-
-    move-result v2
-
-    if-nez v2, :cond_2
-
-    .line 241
-    const-string v2, "GattPeripheral"
-
-    const-string v3, "DEVICE TYPE: UNKNOWN (BLUETOOTH OFF?)"
-
-    invoke-static {v2, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 244
+    .line 265
     :cond_2
+    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+
+    invoke-virtual {v3}, Landroid/bluetooth/BluetoothDevice;->getType()I
+
+    move-result v3
+
+    if-nez v3, :cond_3
+
+    .line 266
+    const-string v3, "GattPeripheral"
+
+    const-string v4, "DEVICE TYPE: UNKNOWN (BLUETOOTH OFF?)"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 269
+    :cond_3
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->isConnected()Z
 
-    move-result v2
+    move-result v3
 
-    if-eqz v2, :cond_3
+    if-eqz v3, :cond_4
 
-    .line 246
+    .line 271
     const-string v1, "GattPeripheral"
 
     const-string v2, "Already connected, skip"
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 248
+    .line 273
     const/4 v0, 0x1
 
-    .line 249
+    .line 274
+    new-instance v1, Lcom/android/bluetooth/ble/GattPeripheral$3;
+
+    invoke-direct {v1, p0}, Lcom/android/bluetooth/ble/GattPeripheral$3;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
+
+    invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->post(Ljava/lang/Runnable;)V
+
     goto :goto_0
 
-    .line 252
-    :cond_3
-    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
-
-    monitor-enter v2
-
-    .line 253
-    :try_start_0
-    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
-
-    sget-object v4, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
-
-    if-eq v3, v4, :cond_4
-
-    .line 254
-    const-string v3, "GattPeripheral"
-
-    new-instance v4, Ljava/lang/StringBuilder;
-
-    invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v5, "CONNECTION ABORTED, REASON: ILLEGAL STATE ("
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    iget-object v5, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    const-string v5, ")"
-
-    invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v4
-
-    invoke-virtual {v4}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v4
-
-    invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 258
+    .line 283
     :cond_4
-    sget-object v3, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTING:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
-    iput-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    monitor-enter v3
 
-    .line 259
-    monitor-exit v2
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    .line 284
+    :try_start_2
+    iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 261
-    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+    sget-object v5, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    if-nez v2, :cond_7
+    if-eq v4, v5, :cond_5
 
-    .line 262
-    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+    .line 285
+    const-string v4, "GattPeripheral"
 
-    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Context:Landroid/content/Context;
+    new-instance v5, Ljava/lang/StringBuilder;
 
-    invoke-virtual {v2, v3, v1, p0}, Landroid/bluetooth/BluetoothDevice;->connectGatt(Landroid/content/Context;ZLandroid/bluetooth/BluetoothGattCallback;)Landroid/bluetooth/BluetoothGatt;
+    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
 
-    move-result-object v2
+    const-string v6, "CONNECTION ABORTED, REASON: ILLEGAL STATE ("
 
-    iput-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 263
-    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+    move-result-object v5
 
-    if-nez v2, :cond_6
+    iget-object v6, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    const/4 v0, 0x1
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
-    .line 264
+    move-result-object v5
+
+    const-string v6, ")"
+
+    invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v5
+
+    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v5
+
+    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 289
+    :cond_5
+    sget-object v4, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTING:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+
+    iput-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+
+    .line 290
+    monitor-exit v3
+    :try_end_2
+    .catchall {:try_start_2 .. :try_end_2} :catchall_1
+
+    .line 292
+    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    if-nez v3, :cond_8
+
+    .line 293
+    iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
+
+    monitor-enter v3
+
+    .line 294
+    :try_start_3
+    iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
+
+    iget-object v5, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Context:Landroid/content/Context;
+
+    const/4 v6, 0x0
+
+    invoke-virtual {v4, v5, v6, p0}, Landroid/bluetooth/BluetoothDevice;->connectGatt(Landroid/content/Context;ZLandroid/bluetooth/BluetoothGattCallback;)Landroid/bluetooth/BluetoothGatt;
+
+    move-result-object v4
+
+    iput-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    .line 295
+    iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    if-nez v4, :cond_7
+
+    move v0, v1
+
+    .line 296
     :goto_1
-    if-nez v0, :cond_5
+    monitor-exit v3
+    :try_end_3
+    .catchall {:try_start_3 .. :try_end_3} :catchall_2
 
-    .line 266
+    .line 297
+    if-nez v0, :cond_6
+
+    .line 299
     const-string v1, "GattPeripheral"
 
     const-string v2, "connectGatt() return error"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 288
-    :cond_5
+    .line 316
+    :cond_6
     :goto_2
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
@@ -1961,25 +2043,36 @@
 
     goto/16 :goto_0
 
-    .line 259
-    :catchall_0
+    .line 290
+    :catchall_1
     move-exception v1
 
-    :try_start_1
-    monitor-exit v2
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_start_4
+    monitor-exit v3
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_1
 
     throw v1
 
-    :cond_6
-    move v0, v1
+    :cond_7
+    move v0, v2
 
-    .line 263
+    .line 295
     goto :goto_1
 
-    .line 270
-    :cond_7
+    .line 296
+    :catchall_2
+    move-exception v1
+
+    :try_start_5
+    monitor-exit v3
+    :try_end_5
+    .catchall {:try_start_5 .. :try_end_5} :catchall_2
+
+    throw v1
+
+    .line 303
+    :cond_8
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
@@ -1988,41 +2081,20 @@
 
     move-result v0
 
-    .line 271
-    if-nez v0, :cond_5
+    .line 304
+    if-nez v0, :cond_6
 
-    .line 273
+    .line 306
     const-string v1, "GattPeripheral"
 
     const-string v2, "__clientConnect return false"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 274
-    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+    .line 307
+    new-instance v1, Lcom/android/bluetooth/ble/GattPeripheral$4;
 
-    if-eqz v1, :cond_8
-
-    .line 275
-    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    invoke-virtual {v1}, Landroid/bluetooth/BluetoothGatt;->disconnect()V
-
-    .line 276
-    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    invoke-virtual {v1}, Landroid/bluetooth/BluetoothGatt;->close()V
-
-    .line 277
-    const/4 v1, 0x0
-
-    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    .line 279
-    :cond_8
-    new-instance v1, Lcom/android/bluetooth/ble/GattPeripheral$1;
-
-    invoke-direct {v1, p0}, Lcom/android/bluetooth/ble/GattPeripheral$1;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
+    invoke-direct {v1, p0}, Lcom/android/bluetooth/ble/GattPeripheral$4;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
     invoke-virtual {p0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->post(Ljava/lang/Runnable;)V
 
@@ -2033,34 +2105,34 @@
     .locals 2
 
     .prologue
-    .line 301
-    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    if-eqz v0, :cond_0
-
-    .line 302
+    .line 329
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 303
+    .line 330
     :try_start_0
+    iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
+
+    if-eqz v0, :cond_0
+
+    .line 331
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     invoke-virtual {v0}, Landroid/bluetooth/BluetoothGatt;->disconnect()V
 
-    .line 304
+    .line 333
+    :cond_0
     sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 305
+    .line 334
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 307
-    :cond_0
+    .line 335
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->getValue()I
@@ -2069,10 +2141,10 @@
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 308
+    .line 336
     return-void
 
-    .line 305
+    .line 334
     :catchall_0
     move-exception v0
 
@@ -2092,7 +2164,7 @@
 
     const/4 v3, 0x0
 
-    .line 330
+    .line 359
     const-string v4, "GattPeripheral"
 
     new-instance v5, Ljava/lang/StringBuilder;
@@ -2117,7 +2189,7 @@
 
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 333
+    .line 362
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->isConnected()Z
 
     move-result v4
@@ -2140,7 +2212,7 @@
 
     move v1, v2
 
-    .line 335
+    .line 364
     .local v1, "useCache":Z
     :goto_0
     const-string v4, "GattPeripheral"
@@ -2165,19 +2237,19 @@
 
     invoke-static {v4, v5}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 338
+    .line 367
     if-eqz v1, :cond_2
 
-    .line 339
+    .line 368
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
-    new-instance v3, Lcom/android/bluetooth/ble/GattPeripheral$2;
+    new-instance v3, Lcom/android/bluetooth/ble/GattPeripheral$5;
 
-    invoke-direct {v3, p0}, Lcom/android/bluetooth/ble/GattPeripheral$2;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
+    invoke-direct {v3, p0}, Lcom/android/bluetooth/ble/GattPeripheral$5;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
     invoke-virtual {v2, v3}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 362
+    .line 391
     :cond_0
     :goto_1
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
@@ -2188,17 +2260,17 @@
 
     invoke-direct {p0, v2}, Lcom/android/bluetooth/ble/GattPeripheral;->notifyConnectionState(I)V
 
-    .line 364
+    .line 393
     return-void
 
     .end local v1    # "useCache":Z
     :cond_1
     move v1, v3
 
-    .line 333
+    .line 362
     goto :goto_0
 
-    .line 348
+    .line 377
     .restart local v1    # "useCache":Z
     :cond_2
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
@@ -2215,24 +2287,24 @@
 
     move v0, v2
 
-    .line 349
+    .line 378
     .local v0, "ret":Z
     :goto_2
     if-nez v0, :cond_0
 
-    .line 351
+    .line 380
     const-string v2, "GattPeripheral"
 
     const-string v3, "Gatt discoverServices() error!"
 
     invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 352
+    .line 381
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
-    new-instance v3, Lcom/android/bluetooth/ble/GattPeripheral$3;
+    new-instance v3, Lcom/android/bluetooth/ble/GattPeripheral$6;
 
-    invoke-direct {v3, p0}, Lcom/android/bluetooth/ble/GattPeripheral$3;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
+    invoke-direct {v3, p0}, Lcom/android/bluetooth/ble/GattPeripheral$6;-><init>(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
     invoke-virtual {v2, v3}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
@@ -2242,7 +2314,7 @@
     :cond_3
     move v0, v3
 
-    .line 348
+    .line 377
     goto :goto_2
 .end method
 
@@ -2251,12 +2323,12 @@
     .param p1, "o"    # Ljava/lang/Object;
 
     .prologue
-    .line 959
+    .line 1006
     instance-of v0, p1, Lcom/android/bluetooth/ble/GattPeripheral;
 
     if-eqz v0, :cond_0
 
-    .line 960
+    .line 1007
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
 
     check-cast p1, Lcom/android/bluetooth/ble/GattPeripheral;
@@ -2270,7 +2342,7 @@
 
     move-result v0
 
-    .line 962
+    .line 1009
     :goto_0
     return v0
 
@@ -2289,17 +2361,17 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 543
+    .line 570
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     if-nez v2, :cond_1
 
-    .line 551
+    .line 578
     :cond_0
     :goto_0
     return-object v1
 
-    .line 546
+    .line 573
     :cond_1
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
@@ -2307,11 +2379,11 @@
 
     move-result-object v0
 
-    .line 547
+    .line 574
     .local v0, "service":Landroid/bluetooth/BluetoothGattService;
     if-eqz v0, :cond_0
 
-    .line 551
+    .line 578
     invoke-virtual {v0, p2}, Landroid/bluetooth/BluetoothGattService;->getCharacteristic(Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v1
@@ -2323,7 +2395,7 @@
     .locals 1
 
     .prologue
-    .line 833
+    .line 880
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Context:Landroid/content/Context;
 
     return-object v0
@@ -2333,7 +2405,7 @@
     .locals 1
 
     .prologue
-    .line 829
+    .line 876
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
 
     return-object v0
@@ -2343,7 +2415,7 @@
     .locals 1
 
     .prologue
-    .line 837
+    .line 884
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
 
     return-object v0
@@ -2354,7 +2426,7 @@
     .param p1, "property"    # I
 
     .prologue
-    .line 949
+    .line 996
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
 
     invoke-virtual {v1, p1}, Landroid/util/SparseArray;->get(I)Ljava/lang/Object;
@@ -2363,21 +2435,21 @@
 
     check-cast v0, Lcom/android/bluetooth/ble/property/BleProperty;
 
-    .line 950
+    .line 997
     .local v0, "prop":Lcom/android/bluetooth/ble/property/BleProperty;
     if-nez v0, :cond_0
 
-    .line 951
+    .line 998
     invoke-static {p0, p1}, Lcom/android/bluetooth/ble/property/BlePropertyFactory;->buildProperty(Lcom/android/bluetooth/ble/GattPeripheral;I)Lcom/android/bluetooth/ble/property/BleProperty;
 
     move-result-object v0
 
-    .line 952
+    .line 999
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
 
     invoke-virtual {v1, p1, v0}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
-    .line 954
+    .line 1001
     :cond_0
     return-object v0
 .end method
@@ -2386,7 +2458,7 @@
     .locals 1
 
     .prologue
-    .line 462
+    .line 493
     iget v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
 
     return v0
@@ -2397,7 +2469,7 @@
     .param p1, "uuid"    # Ljava/util/UUID;
 
     .prologue
-    .line 841
+    .line 888
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     invoke-virtual {v0, p1}, Landroid/bluetooth/BluetoothGatt;->getService(Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattService;
@@ -2420,7 +2492,7 @@
     .end annotation
 
     .prologue
-    .line 535
+    .line 562
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     if-nez v0, :cond_0
@@ -2444,12 +2516,12 @@
     .locals 2
 
     .prologue
-    .line 823
+    .line 870
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 824
+    .line 871
     :try_start_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
@@ -2457,7 +2529,7 @@
 
     return-object v0
 
-    .line 825
+    .line 872
     :catchall_0
     move-exception v0
 
@@ -2472,12 +2544,12 @@
     .locals 2
 
     .prologue
-    .line 188
+    .line 194
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
     monitor-enter v1
 
-    .line 189
+    .line 195
     :try_start_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
@@ -2499,7 +2571,7 @@
 
     goto :goto_0
 
-    .line 190
+    .line 196
     :catchall_0
     move-exception v0
 
@@ -2514,10 +2586,10 @@
     .locals 1
 
     .prologue
-    .line 767
+    .line 805
     invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->restoreCharacteristicNotify()V
 
-    .line 768
+    .line 806
     const/4 v0, 0x1
 
     return v0
@@ -2527,7 +2599,7 @@
     .locals 1
 
     .prologue
-    .line 215
+    .line 221
     iget-boolean v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mAutoReconnect:Z
 
     return v0
@@ -2537,12 +2609,12 @@
     .locals 3
 
     .prologue
-    .line 817
+    .line 864
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 818
+    .line 865
     :try_start_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
@@ -2569,7 +2641,7 @@
 
     goto :goto_0
 
-    .line 819
+    .line 866
     :catchall_0
     move-exception v0
 
@@ -2584,7 +2656,7 @@
     .locals 2
 
     .prologue
-    .line 458
+    .line 489
     iget v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
 
     const/4 v1, 0x3
@@ -2608,18 +2680,18 @@
     .param p2, "characteristic"    # Landroid/bluetooth/BluetoothGattCharacteristic;
 
     .prologue
-    .line 643
+    .line 675
     invoke-virtual {p2}, Landroid/bluetooth/BluetoothGattCharacteristic;->getValue()[B
 
     move-result-object v4
 
-    .line 644
+    .line 676
     .local v4, "value":[B
     invoke-direct {p0, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->getCharacteristicUUIDKey(Landroid/bluetooth/BluetoothGattCharacteristic;)Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
 
     move-result-object v1
 
-    .line 646
+    .line 678
     .local v1, "combinedUUID":Lcom/android/bluetooth/ble/GattPeripheral$CombinedUUID;
     const-string v5, "GattPeripheral"
 
@@ -2661,7 +2733,7 @@
 
     invoke-static {v5, v6}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 647
+    .line 679
     iget-object v5, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
     invoke-interface {v5, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -2670,11 +2742,11 @@
 
     check-cast v3, Ljava/util/List;
 
-    .line 648
+    .line 680
     .local v3, "notifyCBs":Ljava/util/List;, "Ljava/util/List<Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;>;"
     if-eqz v3, :cond_0
 
-    .line 649
+    .line 681
     invoke-interface {v3}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v2
@@ -2693,13 +2765,13 @@
 
     check-cast v0, Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;
 
-    .line 650
+    .line 682
     .local v0, "cb":Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;
     invoke-interface {v0, v4}, Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;->notify([B)V
 
     goto :goto_0
 
-    .line 653
+    .line 685
     .end local v0    # "cb":Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;
     .end local v2    # "i$":Ljava/util/Iterator;
     :cond_0
@@ -2713,7 +2785,7 @@
     .param p3, "newState"    # I
 
     .prologue
-    .line 369
+    .line 398
     const-string v0, "GattPeripheral"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2746,46 +2818,35 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 370
-    iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
-
-    .line 372
-    if-nez p2, :cond_0
-
-    .line 373
-    packed-switch p3, :pswitch_data_0
-
-    .line 388
-    :pswitch_0
-    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnectionFailed()V
-
-    .line 409
-    :goto_0
-    return-void
-
-    .line 375
-    :pswitch_1
+    .line 399
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 376
+    .line 400
     :try_start_0
-    sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
-    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
-
-    .line 377
+    .line 401
     monitor-exit v1
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 378
-    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnected()V
+    .line 403
+    if-nez p2, :cond_0
 
-    goto :goto_0
+    .line 404
+    packed-switch p3, :pswitch_data_0
 
-    .line 377
+    .line 419
+    :pswitch_0
+    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnectionFailed()V
+
+    .line 440
+    :goto_0
+    return-void
+
+    .line 401
     :catchall_0
     move-exception v0
 
@@ -2796,29 +2857,29 @@
 
     throw v0
 
-    .line 381
-    :pswitch_2
+    .line 406
+    :pswitch_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v1
 
-    .line 382
+    .line 407
     :try_start_2
-    sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+    sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->CONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
-    .line 383
+    .line 408
     monitor-exit v1
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_1
 
-    .line 384
-    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onDisconnected()V
+    .line 409
+    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnected()V
 
     goto :goto_0
 
-    .line 383
+    .line 408
     :catchall_1
     move-exception v0
 
@@ -2829,11 +2890,44 @@
 
     throw v0
 
-    .line 391
+    .line 412
+    :pswitch_2
+    iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
+
+    monitor-enter v1
+
+    .line 413
+    :try_start_4
+    sget-object v0, Lcom/android/bluetooth/ble/GattPeripheral$STATE;->DISCONNECTED:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+
+    iput-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
+
+    .line 414
+    monitor-exit v1
+    :try_end_4
+    .catchall {:try_start_4 .. :try_end_4} :catchall_2
+
+    .line 415
+    invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onDisconnected()V
+
+    goto :goto_0
+
+    .line 414
+    :catchall_2
+    move-exception v0
+
+    :try_start_5
+    monitor-exit v1
+    :try_end_5
+    .catchall {:try_start_5 .. :try_end_5} :catchall_2
+
+    throw v0
+
+    .line 422
     :cond_0
     sparse-switch p2, :sswitch_data_0
 
-    .line 404
+    .line 435
     const-string v0, "GattPeripheral"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2856,13 +2950,13 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 407
+    .line 438
     :goto_1
     invoke-direct {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onConnectionFailed()V
 
     goto :goto_0
 
-    .line 393
+    .line 424
     :sswitch_0
     const-string v0, "GattPeripheral"
 
@@ -2872,7 +2966,7 @@
 
     goto :goto_1
 
-    .line 397
+    .line 428
     :sswitch_1
     const-string v0, "GattPeripheral"
 
@@ -2882,7 +2976,7 @@
 
     goto :goto_1
 
-    .line 400
+    .line 431
     :sswitch_2
     const-string v0, "GattPeripheral"
 
@@ -2892,7 +2986,9 @@
 
     goto :goto_1
 
-    .line 373
+    .line 404
+    nop
+
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_2
@@ -2900,7 +2996,7 @@
         :pswitch_1
     .end packed-switch
 
-    .line 391
+    .line 422
     :sswitch_data_0
     .sparse-switch
         0x85 -> :sswitch_1
@@ -2915,7 +3011,7 @@
     .param p2, "status"    # I
 
     .prologue
-    .line 657
+    .line 689
     return-void
 .end method
 
@@ -2925,31 +3021,31 @@
     .param p2, "status"    # I
 
     .prologue
-    .line 634
+    .line 666
     if-nez p2, :cond_1
 
     const/4 v0, 0x1
 
-    .line 635
+    .line 667
     .local v0, "succeed":Z
     :goto_0
     if-eqz v0, :cond_0
 
-    .line 636
+    .line 668
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
     iput-wide v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mLastDiscoveredTimestamp:J
 
-    .line 638
+    .line 670
     :cond_0
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/GattPeripheral;->GattCB_onServiceDiscovered(Z)V
 
-    .line 639
+    .line 671
     return-void
 
-    .line 634
+    .line 666
     .end local v0    # "succeed":Z
     :cond_1
     const/4 v0, 0x0
@@ -2962,12 +3058,12 @@
     .param p1, "task"    # Ljava/lang/Runnable;
 
     .prologue
-    .line 197
+    .line 203
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, p1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    .line 198
+    .line 204
     return-void
 .end method
 
@@ -2977,12 +3073,63 @@
     .param p2, "delayMillis"    # J
 
     .prologue
-    .line 204
+    .line 210
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, p1, p2, p3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 205
+    .line 211
+    return-void
+.end method
+
+.method protected prepare()V
+    .locals 3
+
+    .prologue
+    .line 101
+    invoke-super {p0}, Lcom/android/bluetooth/ble/SynchronizedGattCallback;->prepare()V
+
+    .line 102
+    new-instance v0, Landroid/os/HandlerThread;
+
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "GattPeripheral"
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Address:Ljava/lang/String;
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-direct {v0, v1}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
+
+    .line 103
+    .local v0, "thread":Landroid/os/HandlerThread;
+    invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
+
+    .line 104
+    new-instance v1, Landroid/os/Handler;
+
+    invoke-virtual {v0}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
+
+    iput-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
+
+    .line 105
     return-void
 .end method
 
@@ -2993,20 +3140,54 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 572
+    .line 600
+    const-string v2, "GattPeripheral"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "read characteristic: "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {p1}, Landroid/bluetooth/BluetoothGattCharacteristic;->getUuid()Ljava/util/UUID;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 601
     if-nez p1, :cond_0
 
-    .line 585
+    .line 602
+    const-string v2, "GattPeripheral"
+
+    const-string v3, "target characteristic is null"
+
+    invoke-static {v2, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 616
     :goto_0
     return-object v1
 
-    .line 574
+    .line 605
     :cond_0
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v2
 
-    .line 575
+    .line 606
     :try_start_0
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
@@ -3014,19 +3195,19 @@
 
     if-eq v3, v4, :cond_1
 
-    .line 576
+    .line 607
     const-string v3, "GattPeripheral"
 
     const-string v4, "device is not connected ready!"
 
     invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 577
+    .line 608
     monitor-exit v2
 
     goto :goto_0
 
-    .line 579
+    .line 610
     :catchall_0
     move-exception v1
 
@@ -3042,25 +3223,25 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 580
+    .line 611
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     invoke-virtual {p0, v2, p1}, Lcom/android/bluetooth/ble/GattPeripheral;->synchronizedReadCharacteristic(Landroid/bluetooth/BluetoothGatt;Landroid/bluetooth/BluetoothGattCharacteristic;)I
 
     move-result v0
 
-    .line 581
+    .line 612
     .local v0, "ret":I
     if-nez v0, :cond_2
 
-    .line 582
+    .line 613
     invoke-virtual {p1}, Landroid/bluetooth/BluetoothGattCharacteristic;->getValue()[B
 
     move-result-object v1
 
     goto :goto_0
 
-    .line 584
+    .line 615
     :cond_2
     const-string v2, "GattPeripheral"
 
@@ -3077,16 +3258,16 @@
     .param p2, "charactUUID"    # Ljava/util/UUID;
 
     .prologue
-    .line 563
+    .line 590
     invoke-virtual {p0, p1, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->getCharacteristic(Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v0
 
-    .line 564
+    .line 591
     .local v0, "characteristic":Landroid/bluetooth/BluetoothGattCharacteristic;
     if-nez v0, :cond_0
 
-    .line 565
+    .line 592
     const-string v1, "GattPeripheral"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -3119,10 +3300,10 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 566
+    .line 593
     const/4 v1, 0x0
 
-    .line 568
+    .line 595
     :goto_0
     return-object v1
 
@@ -3143,16 +3324,16 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 623
+    .line 655
     invoke-direct {p0, p1, p2, p3}, Lcom/android/bluetooth/ble/GattPeripheral;->getDescriptor(Ljava/util/UUID;Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattDescriptor;
 
     move-result-object v0
 
-    .line 624
+    .line 656
     .local v0, "des":Landroid/bluetooth/BluetoothGattDescriptor;
     if-nez v0, :cond_1
 
-    .line 625
+    .line 657
     const-string v3, "GattPeripheral"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -3195,12 +3376,12 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 629
+    .line 661
     :cond_0
     :goto_0
     return-object v2
 
-    .line 628
+    .line 660
     :cond_1
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
@@ -3208,7 +3389,7 @@
 
     move-result v1
 
-    .line 629
+    .line 661
     .local v1, "ret":I
     if-nez v1, :cond_0
 
@@ -3223,7 +3404,7 @@
     .locals 1
 
     .prologue
-    .line 539
+    .line 566
     monitor-enter p0
 
     :try_start_0
@@ -3253,23 +3434,23 @@
     .param p2, "callback"    # Lmiui/bluetooth/ble/IBluetoothMiBleCallback;
 
     .prologue
-    .line 102
+    .line 108
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
     monitor-enter v2
 
-    .line 103
+    .line 109
     :try_start_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
     invoke-virtual {v1, p1, p2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 104
+    .line 110
     monitor-exit v2
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 106
+    .line 112
     const-string v1, "GattPeripheral"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -3292,7 +3473,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 109
+    .line 115
     :try_start_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
@@ -3304,13 +3485,13 @@
     :try_end_1
     .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
 
-    .line 115
+    .line 121
     :goto_0
     const/4 v1, 0x1
 
     return v1
 
-    .line 104
+    .line 110
     :catchall_0
     move-exception v1
 
@@ -3321,15 +3502,15 @@
 
     throw v1
 
-    .line 110
+    .line 116
     :catch_0
     move-exception v0
 
-    .line 111
+    .line 117
     .local v0, "e":Landroid/os/RemoteException;
     invoke-virtual {v0}, Landroid/os/RemoteException;->printStackTrace()V
 
-    .line 112
+    .line 118
     const-string v1, "GattPeripheral"
 
     const-string v2, "callback.onConnectionState() error"
@@ -3344,20 +3525,20 @@
     .param p1, "callback"    # Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
 
     .prologue
-    .line 146
+    .line 152
     if-nez p1, :cond_0
 
-    .line 167
+    .line 173
     :goto_0
     return-void
 
-    .line 150
+    .line 156
     :cond_0
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
     monitor-enter v4
 
-    .line 151
+    .line 157
     :try_start_0
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
@@ -3365,11 +3546,11 @@
 
     move-result-object v2
 
-    .line 152
+    .line 158
     .local v2, "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/ref/WeakReference<Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;>;>;"
     const/4 v0, 0x0
 
-    .line 153
+    .line 159
     .local v0, "alreadyAdded":Z
     :cond_1
     invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
@@ -3378,7 +3559,7 @@
 
     if-eqz v3, :cond_2
 
-    .line 154
+    .line 160
     invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v3
@@ -3391,19 +3572,19 @@
 
     check-cast v1, Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
 
-    .line 155
+    .line 161
     .local v1, "cb":Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
     if-ne v1, p1, :cond_1
 
-    .line 156
+    .line 162
     const/4 v0, 0x1
 
-    .line 161
+    .line 167
     .end local v1    # "cb":Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
     :cond_2
     if-nez v0, :cond_3
 
-    .line 162
+    .line 168
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
     new-instance v5, Ljava/lang/ref/WeakReference;
@@ -3412,13 +3593,13 @@
 
     invoke-interface {v3, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 164
+    .line 170
     :cond_3
     monitor-exit v4
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 166
+    .line 172
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Device:Landroid/bluetooth/BluetoothDevice;
 
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
@@ -3431,7 +3612,7 @@
 
     goto :goto_0
 
-    .line 164
+    .line 170
     .end local v0    # "alreadyAdded":Z
     .end local v2    # "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/ref/WeakReference<Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;>;>;"
     :catchall_0
@@ -3451,21 +3632,21 @@
     .param p2, "notifyCB"    # Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;
 
     .prologue
-    .line 702
+    .line 740
     if-eqz p2, :cond_0
 
     if-nez p1, :cond_2
 
-    .line 703
+    .line 741
     :cond_0
     const/4 v2, 0x0
 
-    .line 725
+    .line 763
     :cond_1
     :goto_0
     return v2
 
-    .line 706
+    .line 744
     :cond_2
     const-string v3, "GattPeripheral"
 
@@ -3493,7 +3674,7 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 709
+    .line 747
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
     invoke-interface {v3, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -3502,17 +3683,17 @@
 
     check-cast v0, Ljava/util/List;
 
-    .line 710
+    .line 748
     .local v0, "callbacks":Ljava/util/List;, "Ljava/util/List<Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;>;"
     if-nez v0, :cond_3
 
-    .line 711
+    .line 749
     new-instance v0, Ljava/util/LinkedList;
 
     .end local v0    # "callbacks":Ljava/util/List;, "Ljava/util/List<Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;>;"
     invoke-direct {v0}, Ljava/util/LinkedList;-><init>()V
 
-    .line 712
+    .line 750
     .restart local v0    # "callbacks":Ljava/util/List;, "Ljava/util/List<Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;>;"
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
@@ -3522,13 +3703,13 @@
 
     invoke-interface {v3, v4, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 715
+    .line 753
     :cond_3
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
 
     move-result v1
 
-    .line 716
+    .line 754
     .local v1, "empty":Z
     invoke-interface {v0, p2}, Ljava/util/List;->contains(Ljava/lang/Object;)Z
 
@@ -3536,14 +3717,14 @@
 
     if-nez v3, :cond_4
 
-    .line 717
+    .line 755
     invoke-interface {v0, p2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 720
+    .line 758
     :cond_4
     const/4 v2, 0x1
 
-    .line 721
+    .line 759
     .local v2, "ret":Z
     if-eqz v1, :cond_1
 
@@ -3555,7 +3736,7 @@
 
     if-eqz p1, :cond_1
 
-    .line 722
+    .line 760
     const/4 v3, 0x1
 
     invoke-direct {p0, p1, v3}, Lcom/android/bluetooth/ble/GattPeripheral;->enableNotification(Landroid/bluetooth/BluetoothGattCharacteristic;Z)Z
@@ -3572,12 +3753,12 @@
     .param p3, "callback"    # Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;
 
     .prologue
-    .line 661
+    .line 693
     invoke-virtual {p0, p1, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->getCharacteristic(Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v0
 
-    .line 662
+    .line 694
     .local v0, "ch":Landroid/bluetooth/BluetoothGattCharacteristic;
     invoke-virtual {p0, v0, p3}, Lcom/android/bluetooth/ble/GattPeripheral;->registerNotification(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;)Z
 
@@ -3591,12 +3772,12 @@
     .param p1, "task"    # Ljava/lang/Runnable;
 
     .prologue
-    .line 211
+    .line 217
     iget-object v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, p1}, Landroid/os/Handler;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 212
+    .line 218
     return-void
 .end method
 
@@ -3604,12 +3785,12 @@
     .locals 1
 
     .prologue
-    .line 466
+    .line 497
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mRetryConnectTimes:I
 
-    .line 467
+    .line 498
     return-void
 .end method
 
@@ -3618,10 +3799,10 @@
     .param p1, "listener"    # Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
     .prologue
-    .line 142
+    .line 148
     iput-object p1, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mConnectionListener:Lcom/android/bluetooth/ble/GattPeripheral$OnConnectionListener;
 
-    .line 143
+    .line 149
     return-void
 .end method
 
@@ -3632,7 +3813,7 @@
     .prologue
     const/4 v6, 0x1
 
-    .line 120
+    .line 126
     const-string v3, "GattPeripheral"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -3655,12 +3836,12 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 122
+    .line 128
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
     monitor-enter v4
 
-    .line 123
+    .line 129
     :try_start_0
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
@@ -3670,27 +3851,27 @@
 
     if-nez v3, :cond_0
 
-    .line 124
+    .line 130
     monitor-exit v4
 
-    .line 138
+    .line 144
     :goto_0
     return v6
 
-    .line 127
+    .line 133
     :cond_0
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
 
     invoke-virtual {v3, p1}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 128
+    .line 134
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
 
     invoke-virtual {v3}, Landroid/util/SparseArray;->size()I
 
     move-result v0
 
-    .line 129
+    .line 135
     .local v0, "cnt":I
     const/4 v1, 0x0
 
@@ -3698,7 +3879,7 @@
     :goto_1
     if-ge v1, v0, :cond_1
 
-    .line 130
+    .line 136
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mProperties:Landroid/util/SparseArray;
 
     invoke-virtual {v3, v1}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
@@ -3707,16 +3888,16 @@
 
     check-cast v2, Lcom/android/bluetooth/ble/property/BleProperty;
 
-    .line 131
+    .line 137
     .local v2, "prop":Lcom/android/bluetooth/ble/property/BleProperty;
     invoke-virtual {v2, p1}, Lcom/android/bluetooth/ble/property/BleProperty;->removePropertyCallback(Landroid/os/ParcelUuid;)Z
 
-    .line 129
+    .line 135
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_1
 
-    .line 134
+    .line 140
     .end local v2    # "prop":Lcom/android/bluetooth/ble/property/BleProperty;
     :cond_1
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->mClients:Ljava/util/HashMap;
@@ -3727,10 +3908,10 @@
 
     if-eqz v3, :cond_2
 
-    .line 135
+    .line 141
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->close()V
 
-    .line 137
+    .line 143
     :cond_2
     monitor-exit v4
 
@@ -3753,20 +3934,20 @@
     .param p1, "callback"    # Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
 
     .prologue
-    .line 170
+    .line 176
     if-nez p1, :cond_0
 
-    .line 185
+    .line 191
     :goto_0
     return-void
 
-    .line 174
+    .line 180
     :cond_0
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
     monitor-enter v3
 
-    .line 175
+    .line 181
     :try_start_0
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_ConnCBs:Ljava/util/List;
 
@@ -3774,7 +3955,7 @@
 
     move-result-object v1
 
-    .line 176
+    .line 182
     .local v1, "iterator":Ljava/util/Iterator;, "Ljava/util/Iterator<Ljava/lang/ref/WeakReference<Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;>;>;"
     :cond_1
     invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
@@ -3783,7 +3964,7 @@
 
     if-eqz v2, :cond_2
 
-    .line 177
+    .line 183
     invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v2
@@ -3796,14 +3977,14 @@
 
     check-cast v0, Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
 
-    .line 178
+    .line 184
     .local v0, "cb":Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
     if-ne v0, p1, :cond_1
 
-    .line 179
+    .line 185
     invoke-interface {v1}, Ljava/util/Iterator;->remove()V
 
-    .line 183
+    .line 189
     .end local v0    # "cb":Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
     :cond_2
     monitor-exit v3
@@ -3831,15 +4012,15 @@
 
     const/4 v2, 0x0
 
-    .line 737
+    .line 775
     if-nez p1, :cond_1
 
-    .line 763
+    .line 801
     :cond_0
     :goto_0
     return v2
 
-    .line 740
+    .line 778
     :cond_1
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
@@ -3849,7 +4030,7 @@
 
     check-cast v0, Ljava/util/List;
 
-    .line 742
+    .line 780
     .local v0, "callbacks":Ljava/util/List;, "Ljava/util/List<Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;>;"
     if-eqz v0, :cond_2
 
@@ -3862,14 +4043,14 @@
     :cond_2
     move v2, v3
 
-    .line 743
+    .line 781
     goto :goto_0
 
-    .line 746
+    .line 784
     :cond_3
     invoke-interface {v0, p2}, Ljava/util/List;->remove(Ljava/lang/Object;)Z
 
-    .line 748
+    .line 786
     invoke-interface {v0}, Ljava/util/List;->size()I
 
     move-result v4
@@ -3878,21 +4059,21 @@
 
     move v2, v3
 
-    .line 749
+    .line 787
     goto :goto_0
 
-    .line 752
+    .line 790
     :cond_4
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_NotifyCBs:Ljava/util/Map;
 
     invoke-interface {v3, p1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 754
+    .line 792
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v3
 
-    .line 755
+    .line 793
     :try_start_0
     iget-object v4, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
@@ -3900,12 +4081,12 @@
 
     if-eq v4, v5, :cond_5
 
-    .line 756
+    .line 794
     monitor-exit v3
 
     goto :goto_0
 
-    .line 758
+    .line 796
     :catchall_0
     move-exception v2
 
@@ -3921,12 +4102,12 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 760
+    .line 798
     invoke-direct {p0, p1, v2}, Lcom/android/bluetooth/ble/GattPeripheral;->enableNotification(Landroid/bluetooth/BluetoothGattCharacteristic;Z)Z
 
     move-result v1
 
-    .line 761
+    .line 799
     .local v1, "ret":Z
     if-nez v1, :cond_0
 
@@ -3940,12 +4121,12 @@
     .param p3, "callback"    # Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;
 
     .prologue
-    .line 731
+    .line 769
     invoke-virtual {p0, p1, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->getCharacteristic(Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v0
 
-    .line 732
+    .line 770
     .local v0, "ch":Landroid/bluetooth/BluetoothGattCharacteristic;
     invoke-virtual {p0, v0, p3}, Lcom/android/bluetooth/ble/GattPeripheral;->unregisterNotification(Landroid/bluetooth/BluetoothGattCharacteristic;Lcom/android/bluetooth/ble/IGattCallback$INotifyCallback;)Z
 
@@ -3962,7 +4143,7 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 600
+    .line 632
     const-string v2, "GattPeripheral"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -3989,23 +4170,23 @@
 
     invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 601
+    .line 633
     if-eqz p1, :cond_0
 
     if-nez p2, :cond_1
 
-    .line 609
+    .line 641
     :cond_0
     :goto_0
     return v1
 
-    .line 603
+    .line 635
     :cond_1
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_StateLock:Ljava/lang/Object;
 
     monitor-enter v2
 
-    .line 604
+    .line 636
     :try_start_0
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_State:Lcom/android/bluetooth/ble/GattPeripheral$STATE;
 
@@ -4013,12 +4194,12 @@
 
     if-eq v3, v4, :cond_2
 
-    .line 605
+    .line 637
     monitor-exit v2
 
     goto :goto_0
 
-    .line 607
+    .line 639
     :catchall_0
     move-exception v1
 
@@ -4034,14 +4215,14 @@
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 608
+    .line 640
     iget-object v2, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
     invoke-virtual {p0, v2, p1, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->synchronizedWriteCharacteristic(Landroid/bluetooth/BluetoothGatt;Landroid/bluetooth/BluetoothGattCharacteristic;[B)I
 
     move-result v0
 
-    .line 609
+    .line 641
     .local v0, "ret":I
     if-nez v0, :cond_0
 
@@ -4051,25 +4232,48 @@
 .end method
 
 .method public final write(Ljava/util/UUID;Ljava/util/UUID;[B)Z
-    .locals 2
+    .locals 4
     .param p1, "serviceUUID"    # Ljava/util/UUID;
     .param p2, "charactUUID"    # Ljava/util/UUID;
     .param p3, "value"    # [B
 
     .prologue
-    .line 590
+    .line 621
     invoke-virtual {p0, p1, p2}, Lcom/android/bluetooth/ble/GattPeripheral;->getCharacteristic(Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattCharacteristic;
 
     move-result-object v0
 
-    .line 591
+    .line 622
     .local v0, "characteristic":Landroid/bluetooth/BluetoothGattCharacteristic;
     if-nez v0, :cond_0
 
-    .line 592
+    .line 623
+    const-string v1, "GattPeripheral"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "no characteristic: "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 624
     const/4 v1, 0x0
 
-    .line 595
+    .line 627
     :goto_0
     return v1
 
@@ -4091,16 +4295,16 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 613
+    .line 645
     invoke-direct {p0, p1, p2, p3}, Lcom/android/bluetooth/ble/GattPeripheral;->getDescriptor(Ljava/util/UUID;Ljava/util/UUID;Ljava/util/UUID;)Landroid/bluetooth/BluetoothGattDescriptor;
 
     move-result-object v0
 
-    .line 614
+    .line 646
     .local v0, "des":Landroid/bluetooth/BluetoothGattDescriptor;
     if-nez v0, :cond_1
 
-    .line 615
+    .line 647
     const-string v3, "GattPeripheral"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -4143,12 +4347,12 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 619
+    .line 651
     :cond_0
     :goto_0
     return v2
 
-    .line 618
+    .line 650
     :cond_1
     iget-object v3, p0, Lcom/android/bluetooth/ble/GattPeripheral;->m_Gatt:Landroid/bluetooth/BluetoothGatt;
 
@@ -4156,7 +4360,7 @@
 
     move-result v1
 
-    .line 619
+    .line 651
     .local v1, "ret":I
     if-nez v1, :cond_0
 

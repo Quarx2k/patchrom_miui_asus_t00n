@@ -65,7 +65,7 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mBluetoothBroadcastReceiver:Landroid/content/BroadcastReceiver;
 
-    .line 456
+    .line 457
     return-void
 .end method
 
@@ -96,14 +96,14 @@
     .param p1, "token"    # Landroid/os/IBinder;
 
     .prologue
-    .line 162
+    .line 163
     iget-object v2, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mClients:Ljava/util/List;
 
     invoke-interface {v2}, Ljava/util/List;->size()I
 
     move-result v1
 
-    .line 163
+    .line 164
     .local v1, "size":I
     const/4 v0, 0x0
 
@@ -111,7 +111,7 @@
     :goto_0
     if-ge v0, v1, :cond_1
 
-    .line 164
+    .line 165
     iget-object v2, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mClients:Ljava/util/List;
 
     invoke-interface {v2, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
@@ -124,19 +124,19 @@
 
     if-ne v2, p1, :cond_0
 
-    .line 168
+    .line 169
     .end local v0    # "i":I
     :goto_1
     return v0
 
-    .line 163
+    .line 164
     .restart local v0    # "i":I
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 168
+    .line 169
     :cond_1
     const/4 v0, -0x1
 
@@ -151,20 +151,20 @@
     .param p2, "clientId"    # Landroid/os/ParcelUuid;
 
     .prologue
-    .line 172
+    .line 173
     invoke-virtual {p0, p1}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->getGattPeripheral(Ljava/lang/String;)Lcom/android/bluetooth/ble/GattPeripheral;
 
     move-result-object v0
 
-    .line 173
+    .line 174
     .local v0, "peripheral":Lcom/android/bluetooth/ble/GattPeripheral;
     if-nez v0, :cond_0
 
-    .line 177
+    .line 178
     :goto_0
     return-void
 
-    .line 176
+    .line 177
     :cond_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
@@ -179,16 +179,16 @@
     .param p2, "clientId"    # Landroid/os/ParcelUuid;
 
     .prologue
-    .line 180
+    .line 181
     invoke-virtual {p0, p1}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->getGattPeripheral(Ljava/lang/String;)Lcom/android/bluetooth/ble/GattPeripheral;
 
     move-result-object v0
 
-    .line 181
+    .line 182
     .local v0, "peripheral":Lcom/android/bluetooth/ble/GattPeripheral;
     if-nez v0, :cond_0
 
-    .line 186
+    .line 187
     :cond_0
     return-void
 .end method
@@ -206,7 +206,7 @@
     .end annotation
 
     .prologue
-    .line 193
+    .line 194
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->getConnectedDevices()Ljava/util/List;
@@ -221,7 +221,7 @@
     .param p1, "deviceAddress"    # Ljava/lang/String;
 
     .prologue
-    .line 189
+    .line 190
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     invoke-virtual {v0, p1}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->getGattPeripheral(Ljava/lang/String;)Lcom/android/bluetooth/ble/GattPeripheral;
@@ -236,14 +236,14 @@
     .param p1, "intent"    # Landroid/content/Intent;
 
     .prologue
-    .line 95
+    .line 96
     const-string v0, "BluetoothMiBleService"
 
     const-string v1, "onBind"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 97
+    .line 98
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mBinder:Lcom/android/bluetooth/ble/BluetoothMiBleService$GattPeripheralBinder;
 
     return-object v0
@@ -253,22 +253,22 @@
     .locals 3
 
     .prologue
-    .line 69
+    .line 70
     invoke-super {p0}, Landroid/app/Service;->onCreate()V
 
-    .line 70
+    .line 71
     invoke-static {}, Landroid/bluetooth/BluetoothAdapter;->getDefaultAdapter()Landroid/bluetooth/BluetoothAdapter;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mAdapter:Landroid/bluetooth/BluetoothAdapter;
 
-    .line 72
+    .line 73
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mAdapter:Landroid/bluetooth/BluetoothAdapter;
 
     if-nez v1, :cond_0
 
-    .line 73
+    .line 74
     new-instance v1, Ljava/lang/RuntimeException;
 
     const-string v2, "Bluetooth is not support on this device"
@@ -277,7 +277,7 @@
 
     throw v1
 
-    .line 75
+    .line 76
     :cond_0
     new-instance v1, Lcom/android/bluetooth/ble/BluetoothMiBleService$GattPeripheralBinder;
 
@@ -285,35 +285,35 @@
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mBinder:Lcom/android/bluetooth/ble/BluetoothMiBleService$GattPeripheralBinder;
 
-    .line 77
+    .line 78
     new-instance v1, Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     invoke-direct {v1, p0}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;-><init>(Landroid/content/Context;)V
 
     iput-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
-    .line 78
+    .line 79
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     invoke-virtual {v1}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->start()V
 
-    .line 80
+    .line 81
     new-instance v0, Landroid/content/IntentFilter;
 
     invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
 
-    .line 81
+    .line 82
     .local v0, "filter":Landroid/content/IntentFilter;
     const-string v1, "android.bluetooth.adapter.action.STATE_CHANGED"
 
     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
 
-    .line 82
+    .line 83
     iget-object v1, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mBluetoothBroadcastReceiver:Landroid/content/BroadcastReceiver;
 
     invoke-virtual {p0, v1, v0}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
 
-    .line 83
+    .line 84
     return-void
 .end method
 
@@ -321,20 +321,20 @@
     .locals 1
 
     .prologue
-    .line 87
+    .line 88
     invoke-super {p0}, Landroid/app/Service;->onDestroy()V
 
-    .line 88
+    .line 89
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->stop()V
 
-    .line 89
+    .line 90
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mBluetoothBroadcastReceiver:Landroid/content/BroadcastReceiver;
 
     invoke-virtual {p0, v0}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
 
-    .line 90
+    .line 91
     return-void
 .end method
 
@@ -345,14 +345,16 @@
     .param p3, "startId"    # I
 
     .prologue
-    .line 108
+    .line 109
     const-string v0, "BluetoothMiBleService"
 
     const-string v1, "onStartCommand()"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 111
+    .line 112
+    if-eqz p1, :cond_0
+
     sget-object v0, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->RECONNECT_ACTION:Ljava/lang/String;
 
     invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
@@ -365,14 +367,14 @@
 
     if-eqz v0, :cond_0
 
-    .line 112
+    .line 113
     iget-object v0, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->reconnectAllIfNecessary(Z)V
 
-    .line 114
+    .line 115
     :cond_0
     const/4 v0, 0x2
 
@@ -384,7 +386,7 @@
     .param p1, "intent"    # Landroid/content/Intent;
 
     .prologue
-    .line 102
+    .line 103
     invoke-super {p0, p1}, Landroid/app/Service;->onUnbind(Landroid/content/Intent;)Z
 
     move-result v0
@@ -400,27 +402,27 @@
     .param p4, "callback"    # Lmiui/bluetooth/ble/IBluetoothMiBleCallback;
 
     .prologue
-    .line 119
+    .line 120
     invoke-direct {p0, p1}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->findClientIndex(Landroid/os/IBinder;)I
 
     move-result v2
 
-    .line 120
+    .line 121
     .local v2, "idx":I
     if-gez v2, :cond_0
 
-    .line 121
+    .line 122
     new-instance v0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;
 
     invoke-direct {v0, p0, p1, p3, p2}, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;-><init>(Lcom/android/bluetooth/ble/BluetoothMiBleService;Landroid/os/IBinder;Landroid/os/ParcelUuid;Ljava/lang/String;)V
 
-    .line 122
+    .line 123
     .local v0, "client":Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;
     iget-object v4, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mClients:Ljava/util/List;
 
     invoke-interface {v4, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 127
+    .line 128
     :goto_0
     iget-object v4, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
@@ -428,18 +430,18 @@
 
     move-result-object v3
 
-    .line 128
+    .line 129
     .local v3, "peripheral":Lcom/android/bluetooth/ble/GattPeripheral;
     invoke-virtual {v0, v3}, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->setPeripheral(Lcom/android/bluetooth/ble/GattPeripheral;)V
 
-    .line 130
+    .line 131
     if-nez v3, :cond_1
 
-    .line 140
+    .line 141
     :goto_1
     return-void
 
-    .line 124
+    .line 125
     .end local v0    # "client":Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;
     .end local v3    # "peripheral":Lcom/android/bluetooth/ble/GattPeripheral;
     :cond_0
@@ -454,7 +456,7 @@
     .restart local v0    # "client":Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;
     goto :goto_0
 
-    .line 135
+    .line 136
     .restart local v3    # "peripheral":Lcom/android/bluetooth/ble/GattPeripheral;
     :cond_1
     const/4 v4, 0x0
@@ -464,17 +466,17 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 139
+    .line 140
     :goto_2
     invoke-virtual {v3, p3, p4}, Lcom/android/bluetooth/ble/GattPeripheral;->registerClient(Landroid/os/ParcelUuid;Lmiui/bluetooth/ble/IBluetoothMiBleCallback;)Z
 
     goto :goto_1
 
-    .line 136
+    .line 137
     :catch_0
     move-exception v1
 
-    .line 137
+    .line 138
     .local v1, "e":Landroid/os/RemoteException;
     invoke-virtual {v1}, Landroid/os/RemoteException;->printStackTrace()V
 
@@ -488,21 +490,21 @@
     .param p3, "clientId"    # Landroid/os/ParcelUuid;
 
     .prologue
-    .line 143
+    .line 144
     invoke-direct {p0, p1}, Lcom/android/bluetooth/ble/BluetoothMiBleService;->findClientIndex(Landroid/os/IBinder;)I
 
     move-result v1
 
-    .line 144
+    .line 145
     .local v1, "idx":I
     if-gez v1, :cond_1
 
-    .line 159
+    .line 160
     :cond_0
     :goto_0
     return-void
 
-    .line 148
+    .line 149
     :cond_1
     iget-object v3, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mClients:Ljava/util/List;
 
@@ -512,7 +514,7 @@
 
     check-cast v0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;
 
-    .line 149
+    .line 150
     .local v0, "client":Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;
     iget-object v3, v0, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->token:Landroid/os/IBinder;
 
@@ -520,26 +522,26 @@
 
     invoke-interface {v3, v0, v4}, Landroid/os/IBinder;->unlinkToDeath(Landroid/os/IBinder$DeathRecipient;I)Z
 
-    .line 150
+    .line 151
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/BluetoothMiBleService$AppClient;->getPeripheral()Lcom/android/bluetooth/ble/GattPeripheral;
 
     move-result-object v2
 
-    .line 151
+    .line 152
     .local v2, "peripheral":Lcom/android/bluetooth/ble/GattPeripheral;
     if-eqz v2, :cond_0
 
-    .line 154
+    .line 155
     invoke-virtual {v2, p3}, Lcom/android/bluetooth/ble/GattPeripheral;->unregisterClient(Landroid/os/ParcelUuid;)Z
 
-    .line 156
+    .line 157
     invoke-virtual {v2}, Lcom/android/bluetooth/ble/GattPeripheral;->hasClients()Z
 
     move-result v3
 
     if-nez v3, :cond_0
 
-    .line 157
+    .line 158
     iget-object v3, p0, Lcom/android/bluetooth/ble/BluetoothMiBleService;->mConnectionManager:Lcom/android/bluetooth/ble/PeripheralConnectionManager;
 
     invoke-virtual {v3, p2}, Lcom/android/bluetooth/ble/PeripheralConnectionManager;->removeGattPeripheral(Ljava/lang/String;)V

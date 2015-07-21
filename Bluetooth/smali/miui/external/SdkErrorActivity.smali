@@ -16,11 +16,11 @@
 
 
 # instance fields
-.field private g:Ljava/lang/String;
+.field private f:Ljava/lang/String;
+
+.field private g:Landroid/content/DialogInterface$OnClickListener;
 
 .field private h:Landroid/content/DialogInterface$OnClickListener;
-
-.field private i:Landroid/content/DialogInterface$OnClickListener;
 
 
 # direct methods
@@ -36,14 +36,14 @@
 
     invoke-direct {v0, p0}, Lmiui/external/a;-><init>(Lmiui/external/SdkErrorActivity;)V
 
-    iput-object v0, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iput-object v0, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     .line 70
     new-instance v0, Lmiui/external/c;
 
     invoke-direct {v0, p0}, Lmiui/external/c;-><init>(Lmiui/external/SdkErrorActivity;)V
 
-    iput-object v0, p0, Lmiui/external/SdkErrorActivity;->i:Landroid/content/DialogInterface$OnClickListener;
+    iput-object v0, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
 
     .line 103
     return-void
@@ -61,7 +61,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -77,7 +77,7 @@
 
     .line 149
     :goto_0
-    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     invoke-direct {p0, v1, v0, v2}, Lmiui/external/SdkErrorActivity;->a(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/Dialog;
 
@@ -209,7 +209,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -225,7 +225,7 @@
 
     .line 162
     :goto_0
-    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     invoke-direct {p0, v1, v0, v2}, Lmiui/external/SdkErrorActivity;->a(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/Dialog;
 
@@ -274,7 +274,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -290,7 +290,7 @@
 
     .line 176
     :goto_0
-    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     invoke-direct {p0, v1, v0, v2}, Lmiui/external/SdkErrorActivity;->a(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/Dialog;
 
@@ -317,7 +317,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -333,9 +333,9 @@
 
     .line 185
     :goto_2
-    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->i:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
 
-    iget-object v3, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v3, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     invoke-direct {p0, v1, v0, v2, v3}, Lmiui/external/SdkErrorActivity;->a(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/Dialog;
 
@@ -377,7 +377,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -437,7 +437,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -453,7 +453,7 @@
 
     .line 212
     :goto_0
-    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     invoke-direct {p0, v1, v0, v2}, Lmiui/external/SdkErrorActivity;->a(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/Dialog;
 
@@ -483,7 +483,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iget-object v1, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -499,7 +499,7 @@
 
     .line 225
     :goto_0
-    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->h:Landroid/content/DialogInterface$OnClickListener;
+    iget-object v2, p0, Lmiui/external/SdkErrorActivity;->g:Landroid/content/DialogInterface$OnClickListener;
 
     invoke-direct {p0, v1, v0, v2}, Lmiui/external/SdkErrorActivity;->a(Ljava/lang/String;Ljava/lang/String;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/Dialog;
 
@@ -526,9 +526,7 @@
     .line 229
     .line 231
     :try_start_0
-    const-string v0, "com.miui.internal.core.SdkManager"
-
-    invoke-static {v0}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+    invoke-static {}, Lmiui/external/f;->o()Ljava/lang/Class;
 
     move-result-object v0
 
@@ -602,9 +600,7 @@
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     .line 247
-    const-string v2, "com.miui.internal.core.SdkManager"
-
-    invoke-static {v2}, Ljava/lang/Class;->forName(Ljava/lang/String;)Ljava/lang/Class;
+    invoke-static {}, Lmiui/external/f;->o()Ljava/lang/Class;
 
     move-result-object v2
 
@@ -685,7 +681,7 @@
 
     move-result-object v0
 
-    iput-object v0, p0, Lmiui/external/SdkErrorActivity;->g:Ljava/lang/String;
+    iput-object v0, p0, Lmiui/external/SdkErrorActivity;->f:Ljava/lang/String;
 
     .line 37
     const/4 v0, 0x0
@@ -716,7 +712,7 @@
 
     .line 47
     :cond_1
-    sget-object v1, Lmiui/external/SdkErrorActivity$1;->j:[I
+    sget-object v1, Lmiui/external/SdkErrorActivity$1;->i:[I
 
     invoke-virtual {v0}, Lmiui/external/SdkConstants$SdkError;->ordinal()I
 

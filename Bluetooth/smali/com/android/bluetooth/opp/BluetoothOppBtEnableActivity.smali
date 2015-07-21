@@ -1,5 +1,5 @@
 .class public Lcom/android/bluetooth/opp/BluetoothOppBtEnableActivity;
-.super Lcom/android/internal/app/AlertActivity;
+.super Lmiui/app/AlertActivity;
 .source "BluetoothOppBtEnableActivity.java"
 
 # interfaces
@@ -12,7 +12,7 @@
 
     .prologue
     .line 50
-    invoke-direct {p0}, Lcom/android/internal/app/AlertActivity;-><init>()V
+    invoke-direct {p0}, Lmiui/app/AlertActivity;-><init>()V
 
     return-void
 .end method
@@ -180,7 +180,7 @@
 
     .prologue
     .line 55
-    invoke-super {p0, p1}, Lcom/android/internal/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 58
     iget-object v0, p0, Lcom/android/bluetooth/opp/BluetoothOppBtEnableActivity;->mAlertParams:Lcom/android/internal/app/AlertController$AlertParams;

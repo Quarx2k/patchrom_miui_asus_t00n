@@ -129,7 +129,7 @@
     .locals 4
 
     .prologue
-    .line 651
+    .line 650
     const-string v1, "BtOppObexServer"
 
     new-instance v2, Ljava/lang/StringBuilder;
@@ -156,7 +156,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 652
+    .line 651
     iget-object v1, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mContext:Landroid/content/Context;
 
     iget-object v2, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mInfo:Lcom/android/bluetooth/opp/BluetoothOppShareInfo;
@@ -167,7 +167,7 @@
 
     move-result-object v0
 
-    .line 660
+    .line 659
     .local v0, "fileInfo":Lcom/android/bluetooth/opp/BluetoothOppReceiveFileInfo;
     return-object v0
 .end method
@@ -178,26 +178,26 @@
     .param p2, "op"    # Ljavax/obex/Operation;
 
     .prologue
-    .line 521
+    .line 520
     const/16 v16, -0x1
 
-    .line 522
+    .line 521
     .local v16, "status":I
     const/4 v9, 0x0
 
-    .line 523
+    .line 522
     .local v9, "bos":Ljava/io/BufferedOutputStream;
     const/4 v2, 0x0
 
-    .line 525
+    .line 524
     .local v2, "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     const/4 v13, 0x0
 
-    .line 526
+    .line 525
     .local v13, "is":Ljava/io/InputStream;
     const/4 v12, 0x0
 
-    .line 528
+    .line 527
     .local v12, "error":Z
     :try_start_0
     invoke-interface/range {p2 .. p2}, Ljavax/obex/Operation;->openInputStream()Ljava/io/InputStream;
@@ -206,7 +206,7 @@
 
     move-result-object v13
 
-    .line 535
+    .line 534
     :goto_0
     new-instance v3, Ljava/lang/StringBuilder;
 
@@ -242,16 +242,16 @@
 
     move-result-object v5
 
-    .line 537
+    .line 536
     .local v5, "contentUri":Landroid/net/Uri;
     if-nez v12, :cond_0
 
-    .line 538
+    .line 537
     new-instance v20, Landroid/content/ContentValues;
 
     invoke-direct/range {v20 .. v20}, Landroid/content/ContentValues;-><init>()V
 
-    .line 539
+    .line 538
     .local v20, "updateValues":Landroid/content/ContentValues;
     const-string v3, "_data"
 
@@ -263,7 +263,7 @@
 
     invoke-virtual {v0, v3, v4}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 540
+    .line 539
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mContext:Landroid/content/Context;
@@ -282,16 +282,16 @@
 
     invoke-virtual {v3, v5, v0, v4, v1}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
 
-    .line 543
+    .line 542
     .end local v20    # "updateValues":Landroid/content/ContentValues;
     :cond_0
     const-wide/16 v6, 0x0
 
-    .line 544
+    .line 543
     .local v6, "position":J
     if-nez v12, :cond_1
 
-    .line 545
+    .line 544
     new-instance v9, Ljava/io/BufferedOutputStream;
 
     .end local v9    # "bos":Ljava/io/BufferedOutputStream;
@@ -303,32 +303,32 @@
 
     invoke-direct {v9, v3, v4}, Ljava/io/BufferedOutputStream;-><init>(Ljava/io/OutputStream;I)V
 
-    .line 548
+    .line 547
     .restart local v9    # "bos":Ljava/io/BufferedOutputStream;
     :cond_1
     if-nez v12, :cond_3
 
-    .line 549
+    .line 548
     invoke-interface/range {p2 .. p2}, Ljavax/obex/Operation;->getMaxPacketSize()I
 
     move-result v14
 
-    .line 550
+    .line 549
     .local v14, "outputBufferSize":I
     new-array v8, v14, [B
 
-    .line 551
+    .line 550
     .local v8, "b":[B
     const/4 v15, 0x0
 
-    .line 552
+    .line 551
     .local v15, "readLength":I
     const-wide/16 v17, 0x0
 
     .local v17, "timestamp":J
     move-object/from16 v19, v2
 
-    .line 554
+    .line 553
     .end local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .local v19, "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     :goto_1
@@ -347,17 +347,17 @@
 
     if-eqz v3, :cond_2
 
-    .line 558
+    .line 557
     invoke-virtual {v13, v8}, Ljava/io/InputStream;->read([B)I
 
     move-result v15
 
-    .line 560
+    .line 559
     const/4 v3, -0x1
 
     if-ne v15, v3, :cond_6
 
-    .line 561
+    .line 560
     const-string v3, "BtOppObexServer"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -385,25 +385,25 @@
     .catch Ljava/io/IOException; {:try_start_1 .. :try_end_1} :catch_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 585
+    .line 584
     :cond_2
     if-eqz v19, :cond_d
 
-    .line 590
+    .line 589
     :try_start_2
     invoke-virtual/range {v19 .. v19}, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;->interrupt()V
 
-    .line 591
+    .line 590
     invoke-virtual/range {v19 .. v19}, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;->join()V
     :try_end_2
     .catch Ljava/lang/InterruptedException; {:try_start_2 .. :try_end_2} :catch_4
     .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_1
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 592
+    .line 591
     const/4 v2, 0x0
 
-    .line 594
+    .line 593
     .end local v19    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .restart local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     :try_start_3
@@ -411,7 +411,7 @@
 
     invoke-direct/range {v20 .. v20}, Landroid/content/ContentValues;-><init>()V
 
-    .line 595
+    .line 594
     .restart local v20    # "updateValues":Landroid/content/ContentValues;
     const-string v3, "current_bytes"
 
@@ -423,7 +423,7 @@
 
     invoke-virtual {v0, v3, v4}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
-    .line 596
+    .line 595
     move-object/from16 v0, p0
 
     iget-object v3, v0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mContext:Landroid/content/Context;
@@ -446,19 +446,19 @@
     .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 615
+    .line 614
     .end local v20    # "updateValues":Landroid/content/ContentValues;
     :goto_2
     if-eqz v2, :cond_3
 
-    .line 619
+    .line 618
     invoke-virtual {v2}, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;->interrupt()V
 
-    .line 620
+    .line 619
     :goto_3
     const/4 v2, 0x0
 
-    .line 625
+    .line 624
     .end local v8    # "b":[B
     .end local v14    # "outputBufferSize":I
     .end local v15    # "readLength":I
@@ -470,39 +470,39 @@
 
     if-eqz v3, :cond_b
 
-    .line 626
+    .line 625
     const-string v3, "BtOppObexServer"
 
     const-string v4, "receiving file interrupted by user."
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 627
+    .line 626
     const/16 v16, 0x1ea
 
-    .line 640
+    .line 639
     :cond_4
     :goto_4
     if-eqz v9, :cond_5
 
-    .line 642
+    .line 641
     :try_start_4
     invoke-virtual {v9}, Ljava/io/BufferedOutputStream;->close()V
     :try_end_4
     .catch Ljava/io/IOException; {:try_start_4 .. :try_end_4} :catch_2
 
-    .line 647
+    .line 646
     :cond_5
     :goto_5
     return v16
 
-    .line 529
+    .line 528
     .end local v5    # "contentUri":Landroid/net/Uri;
     .end local v6    # "position":J
     :catch_0
     move-exception v11
 
-    .line 530
+    .line 529
     .local v11, "e1":Ljava/io/IOException;
     const-string v3, "BtOppObexServer"
 
@@ -510,15 +510,15 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 531
+    .line 530
     const/16 v16, 0x1f0
 
-    .line 532
+    .line 531
     const/4 v12, 0x1
 
     goto/16 :goto_0
 
-    .line 565
+    .line 564
     .end local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .end local v11    # "e1":Ljava/io/IOException;
     .restart local v5    # "contentUri":Landroid/net/Uri;
@@ -534,15 +534,15 @@
     :try_start_5
     invoke-virtual {v9, v8, v3, v15}, Ljava/io/BufferedOutputStream;->write([BII)V
 
-    .line 566
+    .line 565
     int-to-long v3, v15
 
     add-long/2addr v6, v3
 
-    .line 574
+    .line 573
     if-nez v19, :cond_7
 
-    .line 575
+    .line 574
     new-instance v2, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
 
     move-object/from16 v0, p0
@@ -556,7 +556,7 @@
     .catch Ljava/io/IOException; {:try_start_5 .. :try_end_5} :catch_1
     .catchall {:try_start_5 .. :try_end_5} :catchall_0
 
-    .line 579
+    .line 578
     .end local v19    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .restart local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     :try_start_6
@@ -571,7 +571,7 @@
     .restart local v19    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     goto/16 :goto_1
 
-    .line 581
+    .line 580
     :cond_7
     :try_start_7
     move-object/from16 v0, v19
@@ -583,13 +583,13 @@
 
     goto/16 :goto_1
 
-    .line 602
+    .line 601
     :catch_1
     move-exception v11
 
     move-object/from16 v2, v19
 
-    .line 603
+    .line 602
     .end local v19    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .restart local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .restart local v11    # "e1":Ljava/io/IOException;
@@ -619,7 +619,7 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 605
+    .line 604
     const-string v3, "Abort Received"
 
     invoke-virtual {v11}, Ljava/io/IOException;->getMessage()Ljava/lang/String;
@@ -632,10 +632,10 @@
 
     if-eqz v3, :cond_9
 
-    .line 606
+    .line 605
     const/16 v16, 0x1ea
 
-    .line 610
+    .line 609
     :goto_7
     move-object/from16 v0, p0
 
@@ -645,7 +645,7 @@
 
     if-eqz v3, :cond_8
 
-    .line 611
+    .line 610
     new-instance v3, Ljava/io/File;
 
     move-object/from16 v0, p0
@@ -660,25 +660,25 @@
     :try_end_8
     .catchall {:try_start_8 .. :try_end_8} :catchall_1
 
-    .line 613
+    .line 612
     :cond_8
     const/4 v12, 0x1
 
-    .line 615
+    .line 614
     if-eqz v2, :cond_3
 
-    .line 619
+    .line 618
     invoke-virtual {v2}, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;->interrupt()V
 
     goto/16 :goto_3
 
-    .line 608
+    .line 607
     :cond_9
     const/16 v16, 0x1f0
 
     goto :goto_7
 
-    .line 615
+    .line 614
     .end local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .end local v11    # "e1":Ljava/io/IOException;
     .restart local v19    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
@@ -692,17 +692,17 @@
     :goto_8
     if-eqz v2, :cond_a
 
-    .line 619
+    .line 618
     invoke-virtual {v2}, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;->interrupt()V
 
-    .line 620
+    .line 619
     const/4 v2, 0x0
 
-    .line 615
+    .line 614
     :cond_a
     throw v3
 
-    .line 629
+    .line 628
     .end local v8    # "b":[B
     .end local v14    # "outputBufferSize":I
     .end local v15    # "readLength":I
@@ -716,7 +716,7 @@
 
     if-nez v3, :cond_c
 
-    .line 630
+    .line 629
     const-string v3, "BtOppObexServer"
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -749,12 +749,12 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 631
+    .line 630
     const/16 v16, 0xc8
 
     goto/16 :goto_4
 
-    .line 633
+    .line 632
     :cond_c
     const-string v3, "BtOppObexServer"
 
@@ -800,23 +800,23 @@
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 634
+    .line 633
     const/4 v3, -0x1
 
     move/from16 v0, v16
 
     if-ne v0, v3, :cond_4
 
-    .line 635
+    .line 634
     const/16 v16, 0x1eb
 
     goto/16 :goto_4
 
-    .line 643
+    .line 642
     :catch_2
     move-exception v10
 
-    .line 644
+    .line 643
     .local v10, "e":Ljava/io/IOException;
     const-string v3, "BtOppObexServer"
 
@@ -826,7 +826,7 @@
 
     goto/16 :goto_5
 
-    .line 615
+    .line 614
     .end local v10    # "e":Ljava/io/IOException;
     .restart local v8    # "b":[B
     .restart local v14    # "outputBufferSize":I
@@ -837,13 +837,13 @@
 
     goto :goto_8
 
-    .line 602
+    .line 601
     :catch_3
     move-exception v11
 
     goto/16 :goto_6
 
-    .line 598
+    .line 597
     .end local v2    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     .restart local v19    # "uiUpdateThread":Lcom/android/bluetooth/opp/BluetoothOppObexServerSession$ContentResolverUpdateThread;
     :catch_4
@@ -874,7 +874,7 @@
     .locals 1
 
     .prologue
-    .line 712
+    .line 711
     monitor-enter p0
 
     :try_start_0
@@ -886,12 +886,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 713
+    .line 712
     iget-object v0, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mWakeLock:Landroid/os/PowerManager$WakeLock;
 
     invoke-virtual {v0}, Landroid/os/PowerManager$WakeLock;->release()V
 
-    .line 715
+    .line 714
     :cond_0
     iget-object v0, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mPartialWakeLock:Landroid/os/PowerManager$WakeLock;
 
@@ -901,20 +901,20 @@
 
     if-eqz v0, :cond_1
 
-    .line 716
+    .line 715
     iget-object v0, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mPartialWakeLock:Landroid/os/PowerManager$WakeLock;
 
     invoke-virtual {v0}, Landroid/os/PowerManager$WakeLock;->release()V
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 718
+    .line 717
     :cond_1
     monitor-exit p0
 
     return-void
 
-    .line 712
+    .line 711
     :catchall_0
     move-exception v0
 
@@ -973,36 +973,36 @@
     .locals 2
 
     .prologue
-    .line 723
+    .line 722
     invoke-direct {p0}, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->releaseWakeLocks()V
 
-    .line 726
+    .line 725
     iget-object v1, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mCallback:Landroid/os/Handler;
 
     if-eqz v1, :cond_0
 
-    .line 727
+    .line 726
     iget-object v1, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mCallback:Landroid/os/Handler;
 
     invoke-static {v1}, Landroid/os/Message;->obtain(Landroid/os/Handler;)Landroid/os/Message;
 
     move-result-object v0
 
-    .line 728
+    .line 727
     .local v0, "msg":Landroid/os/Message;
     const/4 v1, 0x1
 
     iput v1, v0, Landroid/os/Message;->what:I
 
-    .line 729
+    .line 728
     iget-object v1, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mInfo:Lcom/android/bluetooth/opp/BluetoothOppShareInfo;
 
     iput-object v1, v0, Landroid/os/Message;->obj:Ljava/lang/Object;
 
-    .line 730
+    .line 729
     invoke-virtual {v0}, Landroid/os/Message;->sendToTarget()V
 
-    .line 732
+    .line 731
     .end local v0    # "msg":Landroid/os/Message;
     :cond_0
     return-void
@@ -1014,17 +1014,17 @@
     .param p2, "reply"    # Ljavax/obex/HeaderSet;
 
     .prologue
-    .line 666
+    .line 665
     const-string v7, "BtOppObexServer"
 
     const-string v8, "onConnect"
 
     invoke-static {v7, v8}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 668
+    .line 667
     const/4 v5, 0x0
 
-    .line 670
+    .line 669
     .local v5, "objectCount":Ljava/lang/Long;
     const/16 v7, 0x46
 
@@ -1041,19 +1041,19 @@
 
     move-object v6, v0
 
-    .line 672
+    .line 671
     .local v6, "uuid":[B
     if-eqz v6, :cond_0
 
-    .line 673
+    .line 672
     const/16 v7, 0xc6
 
-    .line 702
+    .line 701
     .end local v6    # "uuid":[B
     :goto_0
     return v7
 
-    .line 676
+    .line 675
     .restart local v6    # "uuid":[B
     :cond_0
     const/16 v7, 0xc0
@@ -1070,14 +1070,14 @@
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 682
+    .line 681
     iget-object v7, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mTransport:Ljavax/obex/ObexTransport;
 
     instance-of v7, v7, Lcom/android/bluetooth/opp/BluetoothOppRfcommTransport;
 
     if-eqz v7, :cond_2
 
-    .line 683
+    .line 682
     iget-object v7, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mTransport:Ljavax/obex/ObexTransport;
 
     check-cast v7, Lcom/android/bluetooth/opp/BluetoothOppRfcommTransport;
@@ -1086,7 +1086,7 @@
 
     move-result-object v1
 
-    .line 687
+    .line 686
     .local v1, "destination":Ljava/lang/String;
     :goto_1
     iget-object v7, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mContext:Landroid/content/Context;
@@ -1099,22 +1099,22 @@
 
     move-result v4
 
-    .line 689
+    .line 688
     .local v4, "isHandover":Z
     if-eqz v4, :cond_1
 
-    .line 691
+    .line 690
     new-instance v3, Landroid/content/Intent;
 
     const-string v7, "android.btopp.intent.action.BT_OPP_HANDOVER_STARTED"
 
     invoke-direct {v3, v7}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 692
+    .line 691
     .local v3, "intent":Landroid/content/Intent;
     if-eqz v5, :cond_3
 
-    .line 693
+    .line 692
     const-string v7, "android.btopp.intent.extra.BT_OPP_OBJECT_COUNT"
 
     invoke-virtual {v5}, Ljava/lang/Long;->intValue()I
@@ -1123,20 +1123,20 @@
 
     invoke-virtual {v3, v7, v8}, Landroid/content/Intent;->putExtra(Ljava/lang/String;I)Landroid/content/Intent;
 
-    .line 698
+    .line 697
     :goto_2
     const-string v7, "android.btopp.intent.extra.BT_OPP_ADDRESS"
 
     invoke-virtual {v3, v7, v1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 699
+    .line 698
     iget-object v7, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mContext:Landroid/content/Context;
 
     const-string v8, "com.android.permission.HANDOVER_STATUS"
 
     invoke-virtual {v7, v3, v8}, Landroid/content/Context;->sendBroadcast(Landroid/content/Intent;Ljava/lang/String;)V
 
-    .line 701
+    .line 700
     .end local v3    # "intent":Landroid/content/Intent;
     :cond_1
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -1145,19 +1145,19 @@
 
     iput-wide v7, p0, Lcom/android/bluetooth/opp/BluetoothOppObexServerSession;->mTimestamp:J
 
-    .line 702
+    .line 701
     const/16 v7, 0xa0
 
     goto :goto_0
 
-    .line 677
+    .line 676
     .end local v1    # "destination":Ljava/lang/String;
     .end local v4    # "isHandover":Z
     .end local v6    # "uuid":[B
     :catch_0
     move-exception v2
 
-    .line 678
+    .line 677
     .local v2, "e":Ljava/io/IOException;
     const-string v7, "BtOppObexServer"
 
@@ -1167,12 +1167,12 @@
 
     invoke-static {v7, v8}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 679
+    .line 678
     const/16 v7, 0xd0
 
     goto :goto_0
 
-    .line 685
+    .line 684
     .end local v2    # "e":Ljava/io/IOException;
     .restart local v6    # "uuid":[B
     :cond_2
@@ -1181,7 +1181,7 @@
     .restart local v1    # "destination":Ljava/lang/String;
     goto :goto_1
 
-    .line 695
+    .line 694
     .restart local v3    # "intent":Landroid/content/Intent;
     .restart local v4    # "isHandover":Z
     :cond_3
@@ -1200,19 +1200,19 @@
     .param p2, "resp"    # Ljavax/obex/HeaderSet;
 
     .prologue
-    .line 707
+    .line 706
     const-string v0, "BtOppObexServer"
 
     const-string v1, "onDisconnect"
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 708
+    .line 707
     const/16 v0, 0xa0
 
     iput v0, p2, Ljavax/obex/HeaderSet;->responseCode:I
 
-    .line 709
+    .line 708
     return-void
 .end method
 

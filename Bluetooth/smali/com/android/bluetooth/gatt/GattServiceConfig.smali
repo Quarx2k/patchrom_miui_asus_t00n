@@ -4,7 +4,7 @@
 
 
 # static fields
-.field public static final DBG:Z = true
+.field public static final DBG:Z = false
 
 .field public static final DEBUG_ADMIN:Z = true
 

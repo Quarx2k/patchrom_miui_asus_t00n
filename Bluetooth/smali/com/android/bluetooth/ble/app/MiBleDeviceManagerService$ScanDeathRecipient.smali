@@ -29,15 +29,15 @@
     .param p2, "clientId"    # Landroid/os/ParcelUuid;
 
     .prologue
-    .line 250
+    .line 296
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$ScanDeathRecipient;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 251
+    .line 297
     iput-object p2, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$ScanDeathRecipient;->clientId:Landroid/os/ParcelUuid;
 
-    .line 252
+    .line 298
     return-void
 .end method
 
@@ -47,7 +47,7 @@
     .locals 4
 
     .prologue
-    .line 256
+    .line 302
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -75,7 +75,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 257
+    .line 303
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$ScanDeathRecipient;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->mScanCallbacks:Ljava/util/Map;
@@ -91,11 +91,11 @@
 
     check-cast v0, Landroid/bluetooth/BluetoothAdapter$LeScanCallback;
 
-    .line 258
+    .line 304
     .local v0, "leScanCallback":Landroid/bluetooth/BluetoothAdapter$LeScanCallback;
     if-eqz v0, :cond_0
 
-    .line 259
+    .line 305
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$ScanDeathRecipient;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->mBluetoothAdatper:Landroid/bluetooth/BluetoothAdapter;
@@ -105,7 +105,7 @@
 
     invoke-virtual {v1, v0}, Landroid/bluetooth/BluetoothAdapter;->stopLeScan(Landroid/bluetooth/BluetoothAdapter$LeScanCallback;)V
 
-    .line 260
+    .line 306
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$ScanDeathRecipient;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->mScanCallbacks:Ljava/util/Map;
@@ -117,7 +117,7 @@
 
     invoke-interface {v1, v2}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 262
+    .line 308
     :cond_0
     return-void
 .end method

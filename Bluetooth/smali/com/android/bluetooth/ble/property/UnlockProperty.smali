@@ -195,7 +195,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->post(Ljava/lang/Runnable;)V
 
-    .line 177
+    .line 175
     return-void
 .end method
 
@@ -364,21 +364,21 @@
 
     const/16 v14, 0x10
 
-    .line 325
+    .line 328
     const-string v11, "UnlockProperty"
 
     const-string v12, "authenticate()"
 
     invoke-static {v11, v12}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 326
+    .line 329
     if-nez p0, :cond_0
 
-    .line 407
+    .line 413
     :goto_0
     return v5
 
-    .line 330
+    .line 333
     :cond_0
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->getContext()Landroid/content/Context;
 
@@ -392,11 +392,11 @@
 
     move-result-object v8
 
-    .line 331
+    .line 334
     .local v8, "savedKey":Ljava/lang/String;
     const/4 v2, 0x0
 
-    .line 332
+    .line 335
     .local v2, "key":[B
     invoke-static {v8}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -404,7 +404,7 @@
 
     if-nez v11, :cond_2
 
-    .line 333
+    .line 336
     invoke-virtual {v8}, Ljava/lang/String;->getBytes()[B
 
     move-result-object v11
@@ -413,7 +413,7 @@
 
     move-result-object v2
 
-    .line 338
+    .line 341
     :goto_1
     if-eqz v2, :cond_1
 
@@ -421,7 +421,7 @@
 
     if-eq v11, v14, :cond_3
 
-    .line 339
+    .line 342
     :cond_1
     const-string v11, "UnlockProperty"
 
@@ -431,7 +431,7 @@
 
     goto :goto_0
 
-    .line 335
+    .line 338
     :cond_2
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->getContext()Landroid/content/Context;
 
@@ -447,13 +447,13 @@
 
     goto :goto_1
 
-    .line 348
+    .line 351
     :cond_3
     const/16 v11, 0x14
 
     new-array v3, v11, [B
 
-    .line 349
+    .line 352
     .local v3, "plaintext":[B
     new-instance v11, Ljava/util/Random;
 
@@ -461,36 +461,36 @@
 
     invoke-virtual {v11, v3}, Ljava/util/Random;->nextBytes([B)V
 
-    .line 350
+    .line 353
     const/4 v10, -0x1
 
-    .line 351
+    .line 354
     .local v10, "tmp82_81":B
     const/16 v11, 0x13
 
     aput-byte v10, v3, v11
 
-    .line 352
+    .line 355
     const/16 v11, 0x12
 
     aput-byte v10, v3, v11
 
-    .line 353
+    .line 356
     const/16 v11, 0x11
 
     aput-byte v10, v3, v11
 
-    .line 354
+    .line 357
     aput-byte v10, v3, v14
 
-    .line 355
+    .line 358
     const/4 v4, 0x0
 
-    .line 356
+    .line 359
     .local v4, "result":[B
     const/4 v9, 0x0
 
-    .line 357
+    .line 360
     .local v9, "success":Z
     sget-object v11, Lcom/android/bluetooth/ble/property/MiliConstants;->UUID_AUTHORISE_SERVICE:Ljava/util/UUID;
 
@@ -500,10 +500,10 @@
 
     move-result v9
 
-    .line 359
+    .line 362
     if-nez v9, :cond_4
 
-    .line 360
+    .line 363
     const-string v11, "UnlockProperty"
 
     const-string v12, "write plain text failed"
@@ -512,7 +512,7 @@
 
     goto :goto_0
 
-    .line 363
+    .line 366
     :cond_4
     sget-object v11, Lcom/android/bluetooth/ble/property/MiliConstants;->UUID_AUTHORISE_SERVICE:Ljava/util/UUID;
 
@@ -522,32 +522,60 @@
 
     move-result-object v4
 
-    .line 367
-    if-eqz v4, :cond_5
+    .line 369
+    if-nez v4, :cond_5
 
-    array-length v11, v4
-
-    if-ge v11, v14, :cond_6
-
-    .line 368
-    :cond_5
+    .line 370
     const-string v11, "UnlockProperty"
 
-    const-string v12, "encrypt data failed"
+    const-string v12, "get encrypt data is null"
 
     invoke-static {v11, v12}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
     goto :goto_0
 
-    .line 372
+    .line 373
+    :cond_5
+    array-length v11, v4
+
+    if-ge v11, v14, :cond_6
+
+    .line 374
+    const-string v11, "UnlockProperty"
+
+    new-instance v12, Ljava/lang/StringBuilder;
+
+    invoke-direct {v12}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v13, "get encrypt data length error: len = "
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    array-length v13, v4
+
+    invoke-virtual {v12, v13}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v12
+
+    invoke-virtual {v12}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v12
+
+    invoke-static {v11, v12}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto/16 :goto_0
+
+    .line 378
     :cond_6
     new-array v6, v14, [B
 
-    .line 373
+    .line 379
     .local v6, "reversedKey":[B
     new-array v7, v14, [B
 
-    .line 374
+    .line 380
     .local v7, "reversedPlaintext":[B
     const/4 v1, 0x0
 
@@ -555,43 +583,43 @@
     :goto_2
     if-ge v1, v14, :cond_7
 
-    .line 375
+    .line 381
     rsub-int/lit8 v11, v1, 0xf
 
     aget-byte v11, v2, v11
 
     aput-byte v11, v6, v1
 
-    .line 376
+    .line 382
     rsub-int/lit8 v11, v1, 0xf
 
     aget-byte v11, v3, v11
 
     aput-byte v11, v7, v1
 
-    .line 374
+    .line 380
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_2
 
-    .line 378
+    .line 384
     :cond_7
     invoke-static {v6, v7}, Lcom/android/bluetooth/ble/Utils;->AESEncrypt([B[B)[B
 
     move-result-object v0
 
-    .line 380
+    .line 386
     .local v0, "encrypted":[B
     const/4 v5, 0x1
 
-    .line 381
+    .line 387
     .local v5, "ret":Z
     const/4 v1, 0x0
 
     :goto_3
     if-ge v1, v14, :cond_8
 
-    .line 382
+    .line 388
     aget-byte v11, v4, v1
 
     rsub-int/lit8 v12, v1, 0xf
@@ -600,49 +628,49 @@
 
     if-eq v11, v12, :cond_9
 
-    .line 383
+    .line 389
     const/4 v5, 0x0
 
-    .line 387
+    .line 393
     :cond_8
     if-eqz v5, :cond_a
 
-    .line 389
+    .line 395
     const-string v11, "UnlockProperty"
 
     const-string v12, "[AES] AUTHENTICATION SUCCESS"
 
     invoke-static {v11, v12}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 391
+    .line 397
     const/4 v5, 0x1
 
     goto/16 :goto_0
 
-    .line 381
+    .line 387
     :cond_9
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_3
 
-    .line 393
+    .line 399
     :cond_a
     const/4 v5, 0x1
 
-    .line 395
+    .line 401
     const-string v11, "UnlockProperty"
 
     const-string v12, "[AES] AUTHENTICATION FAILED"
 
     invoke-static {v11, v12}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 398
+    .line 404
     const/4 v1, 0x0
 
     :goto_4
     if-ge v1, v14, :cond_c
 
-    .line 399
+    .line 405
     aget-byte v11, v4, v1
 
     aget-byte v12, v2, v1
@@ -653,16 +681,16 @@
 
     if-eq v11, v12, :cond_b
 
-    .line 400
+    .line 406
     const/4 v5, 0x0
 
-    .line 398
+    .line 404
     :cond_b
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_4
 
-    .line 404
+    .line 410
     :cond_c
     const-string v11, "UnlockProperty"
 
@@ -695,28 +723,44 @@
     .param p1, "data"    # [B
 
     .prologue
-    .line 288
+    const/4 v2, 0x0
+
+    .line 286
     const-string v3, "UnlockProperty"
 
     const-string v4, "authorize()"
 
     invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 289
-    if-eqz p0, :cond_0
+    .line 287
+    if-nez p0, :cond_1
 
-    if-nez p1, :cond_2
+    .line 288
+    const-string v3, "UnlockProperty"
 
-    .line 290
+    const-string v4, "peripheral == null"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 308
     :cond_0
-    const/4 v2, 0x0
-
-    .line 305
-    :cond_1
     :goto_0
     return v2
 
-    .line 296
+    .line 291
+    :cond_1
+    if-nez p1, :cond_2
+
+    .line 292
+    const-string v3, "UnlockProperty"
+
+    const-string v4, "data == null"
+
+    invoke-static {v3, v4}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
+
+    .line 299
     :cond_2
     const/16 v3, 0x10
 
@@ -724,7 +768,7 @@
 
     move-result-object v0
 
-    .line 297
+    .line 300
     .local v0, "fixKey":[B
     sget-object v3, Lcom/android/bluetooth/ble/property/MiliConstants;->UUID_AUTHORISE_SERVICE:Ljava/util/UUID;
 
@@ -734,11 +778,11 @@
 
     move-result v2
 
-    .line 300
+    .line 303
     .local v2, "ret":Z
-    if-eqz v2, :cond_1
+    if-eqz v2, :cond_0
 
-    .line 301
+    .line 304
     new-instance v3, Ljava/lang/StringBuilder;
 
     invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
@@ -761,7 +805,7 @@
 
     move-result-object v1
 
-    .line 302
+    .line 305
     .local v1, "prefKey":Ljava/lang/String;
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/GattPeripheral;->getContext()Landroid/content/Context;
 
@@ -792,7 +836,7 @@
     .locals 3
 
     .prologue
-    .line 193
+    .line 191
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-static {v0}, Lcom/android/bluetooth/ble/property/UnlockProperty;->authenticate(Lcom/android/bluetooth/ble/GattPeripheral;)Z
@@ -801,7 +845,7 @@
 
     iput-boolean v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mAuthorised:Z
 
-    .line 194
+    .line 192
     iget-boolean v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mAuthorised:Z
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/property/UnlockProperty;->requestUnlockState(Z)B
@@ -810,7 +854,7 @@
 
     iput-byte v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mUnLockState:B
 
-    .line 197
+    .line 195
     const-string v0, "UnlockProperty"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -847,15 +891,15 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 200
+    .line 198
     iget-byte v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mUnLockState:B
 
     invoke-direct {p0, v0}, Lcom/android/bluetooth/ble/property/UnlockProperty;->notifyUnlockState(B)V
 
-    .line 201
+    .line 199
     monitor-enter p0
 
-    .line 202
+    .line 200
     :try_start_0
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
@@ -867,7 +911,7 @@
 
     invoke-virtual {v0, v1}, Lmiui/analytics/Analytics;->startSession(Landroid/content/Context;)V
 
-    .line 203
+    .line 201
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
     const-string v1, "device"
@@ -876,7 +920,7 @@
 
     invoke-virtual {v0, v1, v2}, Lmiui/analytics/Analytics;->trackEvent(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 204
+    .line 202
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
     const-string v1, "authorised"
@@ -889,18 +933,18 @@
 
     invoke-virtual {v0, v1, v2}, Lmiui/analytics/Analytics;->trackEvent(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 205
+    .line 203
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
     invoke-virtual {v0}, Lmiui/analytics/Analytics;->endSession()V
 
-    .line 206
+    .line 204
     monitor-exit p0
 
-    .line 207
+    .line 205
     return-void
 
-    .line 206
+    .line 204
     :catchall_0
     move-exception v0
 
@@ -917,7 +961,7 @@
     .param p1, "device"    # Ljava/lang/String;
 
     .prologue
-    .line 281
+    .line 279
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -936,7 +980,7 @@
 
     move-result-object v0
 
-    .line 282
+    .line 280
     .local v0, "prefKey":Ljava/lang/String;
     invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
@@ -957,10 +1001,10 @@
     .param p1, "device"    # Ljava/lang/String;
 
     .prologue
-    .line 310
+    .line 313
     const/4 v1, 0x0
 
-    .line 311
+    .line 314
     .local v1, "key":[B
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -972,7 +1016,7 @@
 
     move-result-object v2
 
-    .line 313
+    .line 316
     .local v2, "oldDevice":Ljava/lang/String;
     if-eqz v2, :cond_0
 
@@ -982,7 +1026,7 @@
 
     if-eqz v4, :cond_0
 
-    .line 314
+    .line 317
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
     move-result-object v4
@@ -993,7 +1037,7 @@
 
     move-result-object v3
 
-    .line 315
+    .line 318
     .local v3, "oldKey":Ljava/lang/String;
     invoke-static {v3}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
 
@@ -1001,14 +1045,14 @@
 
     if-nez v4, :cond_0
 
-    .line 316
+    .line 319
     const/4 v4, 0x0
 
     invoke-static {v3, v4}, Landroid/util/Base64;->decode(Ljava/lang/String;I)[B
 
     move-result-object v0
 
-    .line 317
+    .line 320
     .local v0, "data":[B
     const/16 v4, 0x10
 
@@ -1016,7 +1060,7 @@
 
     move-result-object v1
 
-    .line 320
+    .line 323
     .end local v0    # "data":[B
     .end local v3    # "oldKey":Ljava/lang/String;
     :cond_0
@@ -1029,7 +1073,7 @@
     .param p1, "device"    # Ljava/lang/String;
 
     .prologue
-    .line 417
+    .line 423
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1048,7 +1092,7 @@
 
     move-result-object v0
 
-    .line 418
+    .line 424
     .local v0, "prefKey":Ljava/lang/String;
     invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
@@ -1068,12 +1112,12 @@
     .param p1, "log"    # Ljava/lang/String;
 
     .prologue
-    .line 237
+    .line 235
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mLogFile:Ljava/io/FileOutputStream;
 
     if-eqz v1, :cond_0
 
-    .line 239
+    .line 237
     :try_start_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mLogFile:Ljava/io/FileOutputStream;
 
@@ -1085,16 +1129,16 @@
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 244
+    .line 242
     :cond_0
     :goto_0
     return-void
 
-    .line 240
+    .line 238
     :catch_0
     move-exception v0
 
-    .line 241
+    .line 239
     .local v0, "e":Ljava/io/IOException;
     invoke-virtual {v0}, Ljava/io/IOException;->printStackTrace()V
 
@@ -1149,17 +1193,17 @@
     .param p1, "auth"    # Z
 
     .prologue
-    .line 180
+    .line 178
     if-eqz p1, :cond_1
 
-    .line 181
+    .line 179
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-virtual {v1}, Lcom/android/bluetooth/ble/GattPeripheral;->readRemoteRSSI()I
 
     move-result v0
 
-    .line 182
+    .line 180
     .local v0, "rssi":I
     iget v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mRssiThreshold:I
 
@@ -1167,19 +1211,19 @@
 
     const/4 v1, 0x2
 
-    .line 184
+    .line 182
     .end local v0    # "rssi":I
     :goto_0
     return v1
 
-    .line 182
+    .line 180
     .restart local v0    # "rssi":I
     :cond_0
     const/4 v1, 0x1
 
     goto :goto_0
 
-    .line 184
+    .line 182
     .end local v0    # "rssi":I
     :cond_1
     const/4 v1, 0x0
@@ -1194,7 +1238,7 @@
     .param p2, "rssi"    # I
 
     .prologue
-    .line 411
+    .line 417
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -1213,7 +1257,7 @@
 
     move-result-object v0
 
-    .line 412
+    .line 418
     .local v0, "prefKey":Ljava/lang/String;
     invoke-static {p0}, Landroid/preference/PreferenceManager;->getDefaultSharedPreferences(Landroid/content/Context;)Landroid/content/SharedPreferences;
 
@@ -1237,7 +1281,7 @@
 
 # virtual methods
 .method protected finalize()V
-    .locals 2
+    .locals 3
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -1245,38 +1289,63 @@
     .end annotation
 
     .prologue
-    .line 424
-    iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
+    .line 430
+    iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
-    if-eqz v0, :cond_0
+    if-eqz v1, :cond_0
 
-    .line 425
-    iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
+    .line 431
+    iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
-    iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mStateCallback:Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
+    iget-object v2, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mStateCallback:Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;
 
-    invoke-virtual {v0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->unregisterConnectSateListener(Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;)V
+    invoke-virtual {v1, v2}, Lcom/android/bluetooth/ble/GattPeripheral;->unregisterConnectSateListener(Lcom/android/bluetooth/ble/IGattCallback$IConnectionStateChangeCallback;)V
 
-    .line 427
+    .line 434
     :cond_0
+    iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mLogFile:Ljava/io/FileOutputStream;
+
+    if-eqz v1, :cond_1
+
+    .line 436
+    :try_start_0
+    iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mLogFile:Ljava/io/FileOutputStream;
+
+    invoke-virtual {v1}, Ljava/io/FileOutputStream;->close()V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 441
+    :cond_1
+    :goto_0
     invoke-super {p0}, Ljava/lang/Object;->finalize()V
 
-    .line 428
+    .line 442
     return-void
+
+    .line 437
+    :catch_0
+    move-exception v0
+
+    .line 438
+    .local v0, "e":Ljava/lang/Exception;
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
+
+    goto :goto_0
 .end method
 
 .method public getProperty()[B
     .locals 3
 
     .prologue
-    .line 232
+    .line 230
     iget-boolean v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mAuthorised:Z
 
     invoke-direct {p0, v1}, Lcom/android/bluetooth/ble/property/UnlockProperty;->requestUnlockState(Z)B
 
     move-result v0
 
-    .line 233
+    .line 231
     .local v0, "state":B
     const/4 v1, 0x1
 
@@ -1296,7 +1365,7 @@
     .param p3, "isFirst"    # Z
 
     .prologue
-    .line 249
+    .line 247
     const/4 v1, 0x1
 
     const/4 v2, 0x1
@@ -1314,18 +1383,18 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 254
+    .line 252
     :goto_0
     if-eqz p3, :cond_0
 
-    .line 255
+    .line 253
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     iget-object v2, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mCheckLockTask:Ljava/lang/Runnable;
 
     invoke-virtual {v1, v2}, Lcom/android/bluetooth/ble/GattPeripheral;->removeTask(Ljava/lang/Runnable;)V
 
-    .line 256
+    .line 254
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     iget-object v2, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mCheckLockTask:Ljava/lang/Runnable;
@@ -1334,11 +1403,11 @@
 
     invoke-virtual {v1, v2, v3, v4}, Lcom/android/bluetooth/ble/GattPeripheral;->postDelayed(Ljava/lang/Runnable;J)V
 
-    .line 259
+    .line 257
     :cond_0
     monitor-enter p0
 
-    .line 260
+    .line 258
     :try_start_1
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
@@ -1350,7 +1419,7 @@
 
     invoke-virtual {v1, v2}, Lmiui/analytics/Analytics;->startSession(Landroid/content/Context;)V
 
-    .line 261
+    .line 259
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
     const-string v2, "device"
@@ -1359,7 +1428,7 @@
 
     invoke-virtual {v1, v2, v3}, Lmiui/analytics/Analytics;->trackEvent(Ljava/lang/String;Ljava/lang/Object;)V
 
-    .line 262
+    .line 260
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
     const-string v2, "unlock_state"
@@ -1370,30 +1439,30 @@
 
     invoke-virtual {v1, v2, v3, v4}, Lmiui/analytics/Analytics;->trackEvent(Ljava/lang/String;J)V
 
-    .line 263
+    .line 261
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mTracker:Lmiui/analytics/Analytics;
 
     invoke-virtual {v1}, Lmiui/analytics/Analytics;->endSession()V
 
-    .line 264
+    .line 262
     monitor-exit p0
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 271
+    .line 269
     return-void
 
-    .line 250
+    .line 248
     :catch_0
     move-exception v0
 
-    .line 251
+    .line 249
     .local v0, "e":Landroid/os/RemoteException;
     invoke-virtual {v0}, Landroid/os/RemoteException;->printStackTrace()V
 
     goto :goto_0
 
-    .line 264
+    .line 262
     .end local v0    # "e":Landroid/os/RemoteException;
     :catchall_0
     move-exception v1
@@ -1412,17 +1481,17 @@
     .param p2, "isLast"    # Z
 
     .prologue
-    .line 275
+    .line 273
     if-eqz p2, :cond_0
 
-    .line 276
+    .line 274
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mCheckLockTask:Ljava/lang/Runnable;
 
     invoke-virtual {v0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->removeTask(Ljava/lang/Runnable;)V
 
-    .line 278
+    .line 276
     :cond_0
     return-void
 .end method
@@ -1431,7 +1500,7 @@
     .locals 2
 
     .prologue
-    .line 211
+    .line 209
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     new-instance v1, Lcom/android/bluetooth/ble/property/UnlockProperty$4;
@@ -1440,7 +1509,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/bluetooth/ble/GattPeripheral;->post(Ljava/lang/Runnable;)V
 
-    .line 218
+    .line 216
     return-void
 .end method
 
@@ -1449,24 +1518,24 @@
     .param p1, "data"    # [B
 
     .prologue
-    .line 222
+    .line 220
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/property/UnlockProperty;->checkPermission()V
 
-    .line 223
+    .line 221
     iget-object v1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-static {v1, p1}, Lcom/android/bluetooth/ble/property/UnlockProperty;->authorize(Lcom/android/bluetooth/ble/GattPeripheral;[B)Z
 
     move-result v0
 
-    .line 224
+    .line 222
     .local v0, "ret":Z
     if-eqz v0, :cond_0
 
-    .line 225
+    .line 223
     invoke-virtual {p0}, Lcom/android/bluetooth/ble/property/UnlockProperty;->postInvalide()V
 
-    .line 227
+    .line 225
     :cond_0
     return v0
 .end method
@@ -1476,10 +1545,10 @@
     .param p1, "rssi"    # I
 
     .prologue
-    .line 188
+    .line 186
     iput p1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mRssiThreshold:I
 
-    .line 189
+    .line 187
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty;->mPeripheral:Lcom/android/bluetooth/ble/GattPeripheral;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/GattPeripheral;->getContext()Landroid/content/Context;

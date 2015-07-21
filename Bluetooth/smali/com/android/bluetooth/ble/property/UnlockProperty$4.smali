@@ -26,7 +26,7 @@
     .locals 0
 
     .prologue
-    .line 211
+    .line 209
     iput-object p1, p0, Lcom/android/bluetooth/ble/property/UnlockProperty$4;->this$0:Lcom/android/bluetooth/ble/property/UnlockProperty;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -40,12 +40,12 @@
     .locals 1
 
     .prologue
-    .line 215
+    .line 213
     iget-object v0, p0, Lcom/android/bluetooth/ble/property/UnlockProperty$4;->this$0:Lcom/android/bluetooth/ble/property/UnlockProperty;
 
     # invokes: Lcom/android/bluetooth/ble/property/UnlockProperty;->checkUnlockState()V
     invoke-static {v0}, Lcom/android/bluetooth/ble/property/UnlockProperty;->access$800(Lcom/android/bluetooth/ble/property/UnlockProperty;)V
 
-    .line 216
+    .line 214
     return-void
 .end method

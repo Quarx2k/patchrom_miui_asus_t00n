@@ -26,13 +26,13 @@
     .param p1, "service"    # Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     .prologue
-    .line 309
+    .line 355
     invoke-direct {p0}, Lmiui/bluetooth/ble/IMiBleDeviceManager$Stub;-><init>()V
 
-    .line 310
+    .line 356
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mService:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
-    .line 311
+    .line 357
     iget-object v0, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mService:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     invoke-virtual {v0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->getPackageManager()Landroid/content/pm/PackageManager;
@@ -41,10 +41,10 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mPM:Landroid/content/pm/PackageManager;
 
-    .line 312
+    .line 358
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->initTrustSinatures()V
 
-    .line 313
+    .line 359
     return-void
 .end method
 
@@ -52,12 +52,12 @@
     .locals 13
 
     .prologue
-    .line 316
+    .line 362
     invoke-static {}, Landroid/os/Binder;->getCallingUid()I
 
     move-result v10
 
-    .line 317
+    .line 363
     .local v10, "uid":I
     iget-object v11, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mPM:Landroid/content/pm/PackageManager;
 
@@ -65,11 +65,11 @@
 
     move-result-object v7
 
-    .line 318
+    .line 364
     .local v7, "packages":[Ljava/lang/String;
     if-eqz v7, :cond_2
 
-    .line 319
+    .line 365
     move-object v0, v7
 
     .local v0, "arr$":[Ljava/lang/String;
@@ -90,7 +90,7 @@
 
     aget-object v8, v0, v4
 
-    .line 320
+    .line 366
     .local v8, "pkgName":Ljava/lang/String;
     const-string v11, ":"
 
@@ -102,7 +102,7 @@
 
     aget-object v8, v11, v12
 
-    .line 329
+    .line 375
     :try_start_0
     iget-object v11, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mPM:Landroid/content/pm/PackageManager;
 
@@ -127,7 +127,7 @@
 
     aget-object v9, v1, v3
 
-    .line 332
+    .line 378
     .local v9, "signatrue":Landroid/content/pm/Signature;
     invoke-static {v9}, Lcom/android/bluetooth/ble/app/MiuiBleAppPermissions;->checkSignature(Landroid/content/pm/Signature;)Z
     :try_end_0
@@ -138,18 +138,18 @@
 
     if-eqz v11, :cond_0
 
-    .line 333
+    .line 379
     const/4 v11, 0x1
 
     return v11
 
-    .line 329
+    .line 375
     :cond_0
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_1
 
-    .line 336
+    .line 382
     .end local v1    # "arr$":[Landroid/content/pm/Signature;
     .end local v3    # "i$":I
     .end local v6    # "len$":I
@@ -157,11 +157,11 @@
     :catch_0
     move-exception v2
 
-    .line 337
+    .line 383
     .local v2, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     invoke-virtual {v2}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
 
-    .line 319
+    .line 365
     .end local v2    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     :cond_1
     :goto_2
@@ -174,18 +174,18 @@
     .restart local v4    # "i$":I
     goto :goto_0
 
-    .line 338
+    .line 384
     .end local v4    # "i$":I
     :catch_1
     move-exception v2
 
-    .line 339
+    .line 385
     .local v2, "e":Ljava/lang/Exception;
     invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_2
 
-    .line 343
+    .line 389
     .end local v2    # "e":Ljava/lang/Exception;
     .end local v8    # "pkgName":Ljava/lang/String;
     :cond_2
@@ -202,7 +202,7 @@
     .locals 1
 
     .prologue
-    .line 348
+    .line 394
     iget-object v0, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mService:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     return-object v0
@@ -212,7 +212,7 @@
     .locals 9
 
     .prologue
-    .line 300
+    .line 346
     :try_start_0
     iget-object v6, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->mPM:Landroid/content/pm/PackageManager;
 
@@ -230,7 +230,7 @@
 
     iget-object v5, v6, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
 
-    .line 301
+    .line 347
     .local v5, "signs":[Landroid/content/pm/Signature;
     move-object v0, v5
 
@@ -246,18 +246,18 @@
 
     aget-object v4, v0, v2
 
-    .line 302
+    .line 348
     .local v4, "signature":Landroid/content/pm/Signature;
     invoke-static {v4}, Lcom/android/bluetooth/ble/app/MiuiBleAppPermissions;->addTrustSignature(Landroid/content/pm/Signature;)V
     :try_end_0
     .catch Landroid/content/pm/PackageManager$NameNotFoundException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 301
+    .line 347
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 304
+    .line 350
     .end local v0    # "arr$":[Landroid/content/pm/Signature;
     .end local v2    # "i$":I
     .end local v3    # "len$":I
@@ -266,11 +266,11 @@
     :catch_0
     move-exception v1
 
-    .line 305
+    .line 351
     .local v1, "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     invoke-virtual {v1}, Landroid/content/pm/PackageManager$NameNotFoundException;->printStackTrace()V
 
-    .line 307
+    .line 353
     .end local v1    # "e":Landroid/content/pm/PackageManager$NameNotFoundException;
     :cond_0
     return-void
@@ -288,7 +288,7 @@
     .end annotation
 
     .prologue
-    .line 405
+    .line 449
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -320,7 +320,7 @@
     .end annotation
 
     .prologue
-    .line 359
+    .line 405
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -330,7 +330,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 361
+    .line 407
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -353,7 +353,7 @@
     .end annotation
 
     .prologue
-    .line 400
+    .line 444
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -376,7 +376,7 @@
     .end annotation
 
     .prologue
-    .line 410
+    .line 454
     invoke-static {p1}, Lcom/android/bluetooth/ble/DeviceUtils;->getDeviceType(Ljava/lang/String;)I
 
     move-result v0
@@ -395,7 +395,7 @@
     .end annotation
 
     .prologue
-    .line 470
+    .line 514
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -425,7 +425,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 472
+    .line 516
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -447,8 +447,8 @@
     .end annotation
 
     .prologue
-    .line 353
-    const/4 v0, 0x3
+    .line 399
+    const/4 v0, 0x6
 
     return v0
 .end method
@@ -464,7 +464,7 @@
     .end annotation
 
     .prologue
-    .line 393
+    .line 437
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -490,7 +490,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 395
+    .line 439
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -514,7 +514,7 @@
     .end annotation
 
     .prologue
-    .line 376
+    .line 421
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -540,7 +540,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 378
+    .line 423
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -564,7 +564,7 @@
     .end annotation
 
     .prologue
-    .line 452
+    .line 496
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -594,7 +594,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 455
+    .line 499
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -619,7 +619,7 @@
     .end annotation
 
     .prologue
-    .line 435
+    .line 479
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -645,7 +645,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 437
+    .line 481
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -670,7 +670,7 @@
     .end annotation
 
     .prologue
-    .line 384
+    .line 429
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -696,10 +696,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 386
-    invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->confirmRestrictPermission()Z
-
-    .line 387
+    .line 431
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -724,7 +721,7 @@
     .end annotation
 
     .prologue
-    .line 367
+    .line 413
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -750,10 +747,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 369
-    invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->confirmRestrictPermission()Z
-
-    .line 370
+    .line 415
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -779,7 +773,7 @@
     .end annotation
 
     .prologue
-    .line 418
+    .line 462
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -805,7 +799,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 420
+    .line 464
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -828,7 +822,7 @@
     .end annotation
 
     .prologue
-    .line 426
+    .line 470
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -854,7 +848,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 428
+    .line 472
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -862,7 +856,7 @@
     # invokes: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->stopScanDevice(Landroid/os/ParcelUuid;)V
     invoke-static {v0, p1}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$1200(Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;Landroid/os/ParcelUuid;)V
 
-    .line 429
+    .line 473
     return-void
 .end method
 
@@ -877,7 +871,7 @@
     .end annotation
 
     .prologue
-    .line 462
+    .line 506
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -907,7 +901,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 464
+    .line 508
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0
@@ -932,7 +926,7 @@
     .end annotation
 
     .prologue
-    .line 444
+    .line 488
     # getter for: Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->TAG:Ljava/lang/String;
     invoke-static {}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;->access$000()Ljava/lang/String;
 
@@ -958,7 +952,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 446
+    .line 490
     invoke-direct {p0}, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$DeviceManagerBinder;->getService()Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     move-result-object v0

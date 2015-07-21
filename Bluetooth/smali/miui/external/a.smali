@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field final synthetic b:Lmiui/external/SdkErrorActivity;
+.field final synthetic a:Lmiui/external/SdkErrorActivity;
 
 
 # direct methods
@@ -27,7 +27,7 @@
 
     .prologue
     .line 61
-    iput-object p1, p0, Lmiui/external/a;->b:Lmiui/external/SdkErrorActivity;
+    iput-object p1, p0, Lmiui/external/a;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -44,7 +44,7 @@
     invoke-interface {p1}, Landroid/content/DialogInterface;->dismiss()V
 
     .line 65
-    iget-object v0, p0, Lmiui/external/a;->b:Lmiui/external/SdkErrorActivity;
+    iget-object v0, p0, Lmiui/external/a;->a:Lmiui/external/SdkErrorActivity;
 
     invoke-virtual {v0}, Lmiui/external/SdkErrorActivity;->finish()V
 

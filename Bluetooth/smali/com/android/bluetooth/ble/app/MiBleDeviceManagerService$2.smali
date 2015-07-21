@@ -28,7 +28,7 @@
     .param p4, "x2"    # Landroid/os/IBinder$DeathRecipient;
 
     .prologue
-    .line 165
+    .line 205
     iput-object p1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$2;->this$0:Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService;
 
     iput p5, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$2;->val$property:I
@@ -47,7 +47,7 @@
     .param p3, "scanData"    # [B
 
     .prologue
-    .line 170
+    .line 210
     :try_start_0
     iget-object v1, p0, Lcom/android/bluetooth/ble/app/MiBleDeviceManagerService$2;->callback:Lmiui/bluetooth/ble/IScanDeviceCallback;
 
@@ -57,15 +57,15 @@
     :try_end_0
     .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 174
+    .line 214
     :goto_0
     return-void
 
-    .line 171
+    .line 211
     :catch_0
     move-exception v0
 
-    .line 172
+    .line 212
     .local v0, "e":Landroid/os/RemoteException;
     invoke-virtual {v0}, Landroid/os/RemoteException;->printStackTrace()V
 

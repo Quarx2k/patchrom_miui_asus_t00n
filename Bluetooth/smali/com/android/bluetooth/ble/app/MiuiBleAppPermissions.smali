@@ -15,7 +15,7 @@
     .end annotation
 .end field
 
-.field private static final WHITELIST_PACKAGE:[Ljava/lang/String;
+.field public static final WHITELIST_PACKAGE:[Ljava/lang/String;
 
 
 # direct methods
@@ -24,17 +24,11 @@
 
     .prologue
     .line 18
-    const/4 v0, 0x2
+    const/4 v0, 0x1
 
     new-array v0, v0, [Ljava/lang/String;
 
     const/4 v1, 0x0
-
-    const-string v2, "miui.bluetooth.ble.test"
-
-    aput-object v2, v0, v1
-
-    const/4 v1, 0x1
 
     const-string v2, "com.xiaomi.hm.health"
 
@@ -71,6 +65,13 @@
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
     .line 29
+    sget-object v0, Lcom/android/bluetooth/ble/app/MiuiBleAppPermissions;->SIGNATURE_WHITELIST:Ljava/util/List;
+
+    const-string v1, "d52e033c39b6f47a0248b2505a2d6a91"
+
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 30
     return-void
 .end method
 
@@ -89,7 +90,7 @@
     .param p0, "signature"    # Landroid/content/pm/Signature;
 
     .prologue
-    .line 33
+    .line 34
     :try_start_0
     invoke-virtual {p0}, Landroid/content/pm/Signature;->toByteArray()[B
 
@@ -103,7 +104,7 @@
 
     move-result-object v3
 
-    .line 34
+    .line 35
     .local v3, "sig":Ljava/lang/String;
     sget-object v4, Lcom/android/bluetooth/ble/app/MiuiBleAppPermissions;->SIGNATURE_WHITELIST:Ljava/util/List;
 
@@ -125,7 +126,7 @@
 
     check-cast v2, Ljava/lang/String;
 
-    .line 35
+    .line 36
     .local v2, "s":Ljava/lang/String;
     invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -133,14 +134,14 @@
 
     if-eqz v4, :cond_0
 
-    .line 44
+    .line 45
     .end local v1    # "i$":Ljava/util/Iterator;
     .end local v2    # "s":Ljava/lang/String;
     .end local v3    # "sig":Ljava/lang/String;
     :goto_0
     return-void
 
-    .line 39
+    .line 40
     .restart local v1    # "i$":Ljava/util/Iterator;
     .restart local v3    # "sig":Ljava/lang/String;
     :cond_1
@@ -152,13 +153,13 @@
 
     goto :goto_0
 
-    .line 41
+    .line 42
     .end local v1    # "i$":Ljava/util/Iterator;
     .end local v3    # "sig":Ljava/lang/String;
     :catch_0
     move-exception v0
 
-    .line 42
+    .line 43
     .local v0, "e":Ljava/security/NoSuchAlgorithmException;
     invoke-virtual {v0}, Ljava/security/NoSuchAlgorithmException;->printStackTrace()V
 
@@ -170,7 +171,7 @@
     .param p0, "pkgName"    # Ljava/lang/String;
 
     .prologue
-    .line 47
+    .line 48
     sget-object v0, Lcom/android/bluetooth/ble/app/MiuiBleAppPermissions;->WHITELIST_PACKAGE:[Ljava/lang/String;
 
     .local v0, "arr$":[Ljava/lang/String;
@@ -185,7 +186,7 @@
 
     aget-object v3, v0, v1
 
-    .line 48
+    .line 49
     .local v3, "pkg":Ljava/lang/String;
     invoke-virtual {v3, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -193,22 +194,22 @@
 
     if-eqz v4, :cond_0
 
-    .line 49
+    .line 50
     const/4 v4, 0x1
 
-    .line 52
+    .line 53
     .end local v3    # "pkg":Ljava/lang/String;
     :goto_1
     return v4
 
-    .line 47
+    .line 48
     .restart local v3    # "pkg":Ljava/lang/String;
     :cond_0
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 52
+    .line 53
     .end local v3    # "pkg":Ljava/lang/String;
     :cond_1
     const/4 v4, 0x0
@@ -221,10 +222,10 @@
     .param p0, "signatrue"    # Landroid/content/pm/Signature;
 
     .prologue
-    .line 56
+    .line 57
     const/4 v3, 0x0
 
-    .line 58
+    .line 59
     .local v3, "sig":Ljava/lang/String;
     :try_start_0
     invoke-virtual {p0}, Landroid/content/pm/Signature;->toByteArray()[B
@@ -241,11 +242,11 @@
 
     move-result-object v3
 
-    .line 62
+    .line 63
     :goto_0
     const/4 v4, 0x0
 
-    .line 63
+    .line 64
     .local v4, "trust":Z
     sget-object v5, Lcom/android/bluetooth/ble/app/MiuiBleAppPermissions;->SIGNATURE_WHITELIST:Ljava/util/List;
 
@@ -267,7 +268,7 @@
 
     check-cast v2, Ljava/lang/String;
 
-    .line 64
+    .line 65
     .local v2, "s":Ljava/lang/String;
     invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
 
@@ -275,21 +276,21 @@
 
     if-eqz v5, :cond_0
 
-    .line 65
+    .line 66
     const/4 v4, 0x1
 
-    .line 69
+    .line 70
     .end local v2    # "s":Ljava/lang/String;
     :cond_1
     return v4
 
-    .line 59
+    .line 60
     .end local v1    # "i$":Ljava/util/Iterator;
     .end local v4    # "trust":Z
     :catch_0
     move-exception v0
 
-    .line 60
+    .line 61
     .local v0, "e":Ljava/security/NoSuchAlgorithmException;
     invoke-virtual {v0}, Ljava/security/NoSuchAlgorithmException;->printStackTrace()V
 

@@ -54,7 +54,7 @@
     .locals 3
 
     .prologue
-    .line 317
+    .line 318
     const/16 v0, 0x9
 
     new-array v0, v0, [Ljava/lang/String;
@@ -125,23 +125,23 @@
     .param p3, "showAllIncoming"    # Z
 
     .prologue
-    .line 344
+    .line 345
     invoke-direct {p0, p1, p2}, Landroid/widget/CursorTreeAdapter;-><init>(Landroid/database/Cursor;Landroid/content/Context;)V
 
-    .line 346
+    .line 347
     iput-object p2, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nContext:Landroid/content/Context;
 
-    .line 347
+    .line 348
     iput-boolean p3, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nShowAllIncoming:Z
 
-    .line 348
+    .line 349
     new-instance v0, Landroid/util/SparseArray;
 
     invoke-direct {v0}, Landroid/util/SparseArray;-><init>()V
 
     iput-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nChildrenCursors:Landroid/util/SparseArray;
 
-    .line 349
+    .line 350
     iget-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nContext:Landroid/content/Context;
 
     invoke-static {v0}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
@@ -150,7 +150,7 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nInflater:Landroid/view/LayoutInflater;
 
-    .line 350
+    .line 351
     new-instance v0, Lcom/android/bluetooth/opp/BluetoothOppTransferAdapter;
 
     const v1, 0x7f030001
@@ -161,7 +161,7 @@
 
     iput-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nItemAdapter:Lcom/android/bluetooth/opp/BluetoothOppTransferAdapter;
 
-    .line 352
+    .line 353
     return-void
 .end method
 
@@ -173,7 +173,7 @@
     .prologue
     const/4 v4, 0x0
 
-    .line 325
+    .line 326
     const/4 v0, 0x1
 
     new-array v2, v0, [Ljava/lang/String;
@@ -184,15 +184,15 @@
 
     aput-object v1, v2, v0
 
-    .line 328
+    .line 329
     .local v2, "projections":[Ljava/lang/String;
     const-string v3, "status >= \'200\'"
 
-    .line 329
+    .line 330
     .local v3, "selection":Ljava/lang/String;
     if-nez p1, :cond_0
 
-    .line 330
+    .line 331
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -211,7 +211,7 @@
 
     move-result-object v3
 
-    .line 332
+    .line 333
     :cond_0
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -225,7 +225,7 @@
 
     move-result-object v6
 
-    .line 334
+    .line 335
     .local v6, "cursor":Landroid/database/Cursor;
     new-instance v0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;
 
@@ -244,12 +244,12 @@
     .param p4, "isLastChild"    # Z
 
     .prologue
-    .line 401
+    .line 402
     iget-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nItemAdapter:Lcom/android/bluetooth/opp/BluetoothOppTransferAdapter;
 
     invoke-virtual {v0, p1, p2, p3}, Lcom/android/bluetooth/opp/BluetoothOppTransferAdapter;->bindView(Landroid/view/View;Landroid/content/Context;Landroid/database/Cursor;)V
 
-    .line 402
+    .line 403
     return-void
 .end method
 
@@ -261,14 +261,14 @@
     .param p4, "isExpanded"    # Z
 
     .prologue
-    .line 384
+    .line 385
     invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
 
     move-result-object v1
 
     check-cast v1, Landroid/widget/TextView;
 
-    .line 385
+    .line 386
     .local v1, "titleView":Landroid/widget/TextView;
     const/4 v2, 0x0
 
@@ -276,20 +276,20 @@
 
     move-result v0
 
-    .line 386
+    .line 387
     .local v0, "dir":I
     if-nez v0, :cond_0
 
-    .line 387
+    .line 388
     const v2, 0x7f0400ad
 
     invoke-virtual {v1, v2}, Landroid/widget/TextView;->setText(I)V
 
-    .line 391
+    .line 392
     :goto_0
     return-void
 
-    .line 389
+    .line 390
     :cond_0
     const v2, 0x7f0400ac
 
@@ -303,31 +303,31 @@
     .param p1, "groupCursor"    # Landroid/database/Cursor;
 
     .prologue
-    .line 356
+    .line 357
     const-string v0, "BT"
 
     const-string v1, "getChildrenCursor"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 357
+    .line 358
     const/4 v0, 0x0
 
     invoke-interface {p1, v0}, Landroid/database/Cursor;->getInt(I)I
 
     move-result v7
 
-    .line 358
+    .line 359
     .local v7, "direction":I
     const-string v3, "status >= \'200\'"
 
-    .line 359
+    .line 360
     .local v3, "selection":Ljava/lang/String;
     const/4 v0, 0x1
 
     if-ne v7, v0, :cond_1
 
-    .line 360
+    .line 361
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -346,13 +346,13 @@
 
     move-result-object v3
 
-    .line 364
+    .line 365
     :goto_0
     iget-boolean v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nShowAllIncoming:Z
 
     if-nez v0, :cond_0
 
-    .line 365
+    .line 366
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -371,7 +371,7 @@
 
     move-result-object v3
 
-    .line 367
+    .line 368
     :cond_0
     iget-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nContext:Landroid/content/Context;
 
@@ -391,16 +391,16 @@
 
     move-result-object v6
 
-    .line 369
+    .line 370
     .local v6, "cursor":Landroid/database/Cursor;
     iget-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nChildrenCursors:Landroid/util/SparseArray;
 
     invoke-virtual {v0, v7, v6}, Landroid/util/SparseArray;->put(ILjava/lang/Object;)V
 
-    .line 370
+    .line 371
     return-object v6
 
-    .line 362
+    .line 363
     .end local v6    # "cursor":Landroid/database/Cursor;
     :cond_1
     new-instance v0, Ljava/lang/StringBuilder;
@@ -432,7 +432,7 @@
     .param p4, "parent"    # Landroid/view/ViewGroup;
 
     .prologue
-    .line 396
+    .line 397
     iget-object v0, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nItemAdapter:Lcom/android/bluetooth/opp/BluetoothOppTransferAdapter;
 
     invoke-virtual {v0, p1, p2, p4}, Lcom/android/bluetooth/opp/BluetoothOppTransferAdapter;->newView(Landroid/content/Context;Landroid/database/Cursor;Landroid/view/ViewGroup;)Landroid/view/View;
@@ -450,7 +450,7 @@
     .param p4, "parent"    # Landroid/view/ViewGroup;
 
     .prologue
-    .line 376
+    .line 377
     iget-object v2, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nInflater:Landroid/view/LayoutInflater;
 
     const v3, 0x7f03000b
@@ -461,7 +461,7 @@
 
     move-result-object v1
 
-    .line 377
+    .line 378
     .local v1, "view":Landroid/view/View;
     const v2, 0x7f070026
 
@@ -471,11 +471,11 @@
 
     check-cast v0, Landroid/widget/TextView;
 
-    .line 378
+    .line 379
     .local v0, "titleView":Landroid/widget/TextView;
     invoke-virtual {v1, v0}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
-    .line 379
+    .line 380
     return-object v1
 .end method
 
@@ -483,14 +483,14 @@
     .locals 5
 
     .prologue
-    .line 405
+    .line 406
     iget-object v4, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nChildrenCursors:Landroid/util/SparseArray;
 
     invoke-virtual {v4}, Landroid/util/SparseArray;->size()I
 
     move-result v3
 
-    .line 406
+    .line 407
     .local v3, "size":I
     const/4 v2, 0x0
 
@@ -498,7 +498,7 @@
     :goto_0
     if-ge v2, v3, :cond_1
 
-    .line 407
+    .line 408
     iget-object v4, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nChildrenCursors:Landroid/util/SparseArray;
 
     invoke-virtual {v4, v2}, Landroid/util/SparseArray;->valueAt(I)Ljava/lang/Object;
@@ -507,44 +507,44 @@
 
     check-cast v0, Landroid/database/Cursor;
 
-    .line 408
+    .line 409
     .local v0, "cursor":Landroid/database/Cursor;
     if-eqz v0, :cond_0
 
-    .line 409
+    .line 410
     invoke-interface {v0}, Landroid/database/Cursor;->close()V
 
-    .line 406
+    .line 407
     :cond_0
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 412
+    .line 413
     .end local v0    # "cursor":Landroid/database/Cursor;
     :cond_1
     iget-object v4, p0, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->nChildrenCursors:Landroid/util/SparseArray;
 
     invoke-virtual {v4}, Landroid/util/SparseArray;->clear()V
 
-    .line 414
+    .line 415
     invoke-virtual {p0}, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->getCursor()Landroid/database/Cursor;
 
     move-result-object v1
 
-    .line 415
+    .line 416
     .local v1, "groupCursor":Landroid/database/Cursor;
     if-eqz v1, :cond_2
 
-    .line 416
+    .line 417
     invoke-interface {v1}, Landroid/database/Cursor;->close()V
 
-    .line 417
+    .line 418
     const/4 v4, 0x0
 
     invoke-virtual {p0, v4}, Lcom/android/bluetooth/opp/MiuiBluetoothOppTransferHistory$TransferHistoryAdapter;->setGroupCursor(Landroid/database/Cursor;)V
 
-    .line 419
+    .line 420
     :cond_2
     return-void
 .end method
