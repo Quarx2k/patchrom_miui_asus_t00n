@@ -26,6 +26,7 @@ system/app/DownloadProviderUi.apk 0 0 644
 system/app/DSPManager.apk 0 0 644
 system/app/Email.apk 0 0 644
 system/app/Exchange2.apk 0 0 644
+system/app/FM2.apk 0 0 644
 system/app/Galaxy4.apk 0 0 644
 system/app/Gallery2.apk 0 0 644
 system/app/HoloSpiralWallpaper.apk 0 0 644
