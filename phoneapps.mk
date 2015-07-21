@@ -6,6 +6,7 @@ private-phone-apps := BasicDreams \
 		BluetoothExt \
 		CertInstaller \
 		DocumentsUI \
+		FM2 \
 		Galaxy4 \
 		HoloSpiralWallpaper \
 		HTMLViewer \
