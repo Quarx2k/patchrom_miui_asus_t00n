@@ -42,7 +42,7 @@
 
 .field private static final CONNECT_TIMEOUT:I = 0xc9
 
-.field private static final DBG:Z = true
+.field private static final DBG:Z = false
 
 .field static final DISCONNECT:I = 0x2
 
