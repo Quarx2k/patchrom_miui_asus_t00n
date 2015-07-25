@@ -1,6 +1,7 @@
 # Copyright (c) 2015, Quarx2k.
 
 import /init.qcom.usb.rc
+import /init.miui.rc
 
 on early-init
     write /sys/block/mmcblk0/queue/scheduler noop
