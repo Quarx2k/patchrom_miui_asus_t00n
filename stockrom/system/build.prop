@@ -163,7 +163,7 @@ telephony.lteOnCdmaDevice=0
 # System props for bluetooth
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
-
+ro.qualcomm.bt.hci_transport=smd
 
 #Simulate sdcard on /data/media
 #
