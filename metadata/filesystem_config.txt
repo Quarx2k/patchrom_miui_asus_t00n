@@ -156,6 +156,7 @@ system/bin/lsmod 0 2000 755
 system/bin/lsof 0 2000 755
 system/bin/make_ext4fs 0 2000 755
 system/bin/md5 0 2000 755
+system/bin/mcd 0 2000 755
 system/bin/mdnsd 0 2000 755
 system/bin/media 0 2000 755
 system/bin/mediaserver 0 2000 755
@@ -263,11 +264,13 @@ system/bin/toolbox 0 2000 755
 system/bin/top 0 2000 755
 system/bin/touch 0 2000 755
 system/bin/tune2fs 0 2000 755
+system/xbin/tunman 0 2000 755
 system/bin/uiautomator 0 2000 755
 system/bin/umount 0 2000 755
 system/bin/updater 0 2000 755
 system/bin/uptime 0 2000 755
 system/bin/vdc 0 2000 755
+system/bin/vim 0 2000 755
 system/bin/vmstat 0 2000 755
 system/bin/vold 0 2000 755
 system/bin/watchprops 0 2000 755
