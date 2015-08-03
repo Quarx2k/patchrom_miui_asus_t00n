@@ -12,7 +12,7 @@ local-out-zip-file := MIUI_t00n.zip
 local-previous-target-dir :=
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps := Bluetooth
+local-modified-apps :=
 
 local-modified-jars :=
 
