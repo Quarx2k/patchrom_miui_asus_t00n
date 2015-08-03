@@ -1575,7 +1575,7 @@
     goto :goto_0
 .end method
 
-.method public removeLocked(Landroid/app/PendingIntent;)V
+.method private removeWithReportLocked(Landroid/app/PendingIntent;)Z
     .locals 16
     .param p1, "operation"    # Landroid/app/PendingIntent;
 
@@ -1791,7 +1791,7 @@
 
     .line 906
     :cond_4
-    return-void
+    return v11
 .end method
 
 .method private rescheduleKernelAlarmsLocked()V
@@ -1964,6 +1964,12 @@
 
     .line 642
     .local v5, "a":Lcom/android/server/AlarmManagerService$Alarm;
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p12
+
+    invoke-direct {v0, v1}, Lcom/android/server/AlarmManagerService;->removeWithReportLocked(Landroid/app/PendingIntent;)Z
+    
     if-eqz p13, :cond_2
 
     const/16 v21, -0x1
@@ -4069,6 +4075,18 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw v0
+.end method
+
+.method public removeLocked(Landroid/app/PendingIntent;)V
+    .locals 0
+    .param p1, "operation"    # Landroid/app/PendingIntent;
+
+    .prologue
+    .line 871
+    invoke-direct {p0, p1}, Lcom/android/server/AlarmManagerService;->removeWithReportLocked(Landroid/app/PendingIntent;)Z
+
+    .line 872
+    return-void
 .end method
 
 .method public removeLocked(Ljava/lang/String;)V
