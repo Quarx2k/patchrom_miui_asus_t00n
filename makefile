@@ -48,6 +48,7 @@ local-pre-zip-misc:
 		cp other/boot.img $(ZIP_DIR)/boot.img
 		cp -a -rf other/system/* $(ZIP_DIR)/system/
 		cp -a -rf other/data/* $(ZIP_DIR)/data/
+		echo "ro.miui.has_real_blur=0" >> $(ZIP_DIR)/system/build.prop
 		#density
 		sed -i 's/ro.sf.lcd_density/persist.xsdensity/g' $(ZIP_DIR)/system/lib/libsurfaceflinger.so
 		echo "persist.xsdensity=480" >> $(ZIP_DIR)/system/build.prop
