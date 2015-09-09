@@ -1,0 +1,6 @@
+*.zip
+.delete-zip-file-when-clean
+/out*
+/ROM*
+releasetools.pyc
+other/tools/*.pyc

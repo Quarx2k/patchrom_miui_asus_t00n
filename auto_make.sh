@@ -1,10 +1,9 @@
 #!/bin/bash
 #
 #sh for miui patchrom
-if [ $# != 1 ];then
-    echo "Usage: ./auto_make.sh LAST_TARGET"
-    exit
-fi
+
+pwd=$PWD
+
 function BUILD_DATE() {
     date=`date +%y%m%d`
     year="${date:1:1}"
@@ -20,25 +19,80 @@ function BUILD_DATE() {
     fi
     BUILD_NUMBER=$year.$month.$days
 }
+
+function MakeFullota() {
+    echo -e "\e[1;32mEnvironment\e[0m"
+    cd ..
+    source build/envsetup.sh
+    cd -
+    echo -e "\e[1;32mDo you want to make fullota? （y/n）\e[0m"
+    read arg
+    case $arg in
+    	Y|y|YES|yes)
+    	    echo -e "\e[1;32mClean\e[0m"
+    	    make clean
+            echo -e "\e[1;32mFullota, Version is $BUILD_NUMBER\e[0m"
+            make fullota BUILD_NUMBER=$BUILD_NUMBER;;
+        N|n|NO|no)
+            echo -e "\e[1;31mWarning:Not Make Fullota!!!\e[0m";;
+    esac
+}
+
+function CopyFullota() {
+    if [ ! -d ROM ];then 
+        mkdir ROM
+    fi
+    if [ -f out/fullota.zip ]; then
+        echo -e "\e[1;32mCopy Fullota\e[0m"
+        mv out/fullota.zip ROM/$BUILD_NUMBER-fullota.zip
+    else
+        echo -e "\e[1;31mWarning:Not Found Fullota!!!\e[0m"
+    fi
+    if [ -f out/target_files.zip ]; then
+        echo -e "\e[1;32mCopy Target\e[0m"
+        mv out/target_files.zip ROM/$BUILD_NUMBER-target.zip
+    else
+        echo -e "\e[1;31mWarning:Not Found Target!!!\e[0m"
+    fi
+    if [ -f ROM/$BUILD_NUMBER-fullota.zip ]; then
+        echo -e "\e[1;32mCopy out\e[0m"
+        rm -rf out/*-tozip
+        rm -rf out/*.apk
+        rm -rf out/*.zip
+        rm -rf out/*.jar
+        rm -rf out/target_files
+        mv out ROM/$BUILD_NUMBER-out
+    else
+        echo -e "\e[1;31mWarning:Not Found out!!!\e[0m"
+    fi
+}
+
+function MakeOTA() {
+    echo -e "\e[1;32mDo you want to make ota package? (y/n)\e[0m"
+    read arg
+    case $arg in
+        Y|y|YES|yes)
+    	    echo -e "\e[1;32mFound some target zip($PWD/ROM/), please enter the last target version you want (Only Version, EX: 5.8.21)\e[0m"
+    	    ls -h -l ROM/*target*
+    	    read last_target_zip
+            echo -e "\e[1;32mOTA, Version is $last_target_zip-$BUILD_NUMBER\e[0m"
+    	    ../tools/releasetools/ota_from_target_files -k ../build/security/testkey -i ROM/$last_target_zip-target.zip ROM/$BUILD_NUMBER-target.zip ROM/OTA-$last_target_zip-$BUILD_NUMBER.zip;;
+        N|n|NO|no)
+            echo -e "\e[1;31mWarning:Not Make OTA!!!\e[0m";;
+    esac
+}
+
+function UseTime() {
+    let "OK_TIME=$END_TIME-$START_TIME"
+    let "OK_TIME_1=$OK_TIME/60"
+    let "OK_TIME_2=$OK_TIME%60"
+    echo -e "\e[1;32mAll done in $OK_TIME_1 minutes $OK_TIME_2 seconds\e[0m"
+}
+
+START_TIME=`date +%s`
 BUILD_DATE
-LAST_TARGET_ZIP=$1
-clear
-echo "Will make fullota , if you want to make ota package, please input ./auto_make.sh LAST_TARGET_ZIP(to make ota package) "
-sleep 5s
-cd ..
-. build/envsetup.sh
-cd -
-make clean
-make fullota BUILD_NUMBER=$BUILD_NUMBER
-cp out/fullota.zip $BUILD_NUMBER-fullota.zip
-../tools/releasetools/ota_from_target_files -k ../build/security/testkey -i $LAST_TARGET_ZIP out/target_files.zip OTA-$LAST_TARGET_ZIP-$BUILD_NUMBER.zip
-cp out/target_files.zip $BUILD_NUMBER-target.zip
-#clean something and save out sources
-rm -rf out/*-tozip
-rm -rf out/*.apk
-rm -rf out/*.zip
-rm -rf out/*.jar
-rm -rf out/target_files
-mv out out-$BUILD_NUMBER
-#clean stockrom.zip and something
-make clean
+MakeFullota
+CopyFullota
+MakeOTA
+END_TIME=`date +%s`
+UseTime
