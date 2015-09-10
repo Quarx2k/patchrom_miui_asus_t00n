@@ -8,4 +8,6 @@
     <bool name="support_internal_sdcard">true</bool>
     <!--the vendor feature, it's value may be qcom,mediatek,leadcore or nvidia-->
     <string name="vendor">qcom</string>
+    <!--whether the device is port by patchrom-->
+    <bool name="is_patchrom">true</bool>
 </features>
