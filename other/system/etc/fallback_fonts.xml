@@ -31,16 +31,6 @@
 <familyset>
     <family>
         <fileset>
-            <file>AndroidEmoji.ttf</file>
-        </fileset>
-    </family>
-    <family>
-        <fileset>
-            <file>NotoColorEmoji.ttf</file>
-        </fileset>
-    </family>
-    <family>
-        <fileset>
             <file variant="elegant">DroidNaskh-Regular.ttf</file>
         </fileset>
     </family>
@@ -84,12 +74,6 @@
     </family>
     <family>
         <fileset>
-            <file>LBhashitaComplexSans-Regular.ttf</file>
-            <file>LBhashitaComplexSans-Bold.ttf</file>
-        </fileset>
-    </family>
-    <family>
-        <fileset>
             <file variant="elegant">NotoSansDevanagari-Regular.ttf</file>
             <file variant="elegant">NotoSansDevanagari-Bold.ttf</file>
         </fileset>
@@ -98,6 +82,32 @@
         <fileset>
             <file variant="compact">NotoSansDevanagariUI-Regular.ttf</file>
             <file variant="compact">NotoSansDevanagariUI-Bold.ttf</file>
+        </fileset>
+    </family>
+    <!-- Gujarati should come after Devanagari -->
+    <family>
+        <fileset>
+            <file variant="elegant">NotoSansGujarati-Regular.ttf</file>
+            <file variant="elegant">NotoSansGujarati-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file variant="compact">NotoSansGujaratiUI-Regular.ttf</file>
+            <file variant="compact">NotoSansGujaratiUI-Bold.ttf</file>
+        </fileset>
+    </family>
+    <!-- Gurmukhi should come after Devanagari -->
+    <family>
+        <fileset>
+            <file variant="elegant">NotoSansGurmukhi-Regular.ttf</file>
+            <file variant="elegant">NotoSansGurmukhi-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file variant="compact">NotoSansGurmukhiUI-Regular.ttf</file>
+            <file variant="compact">NotoSansGurmukhiUI-Bold.ttf</file>
         </fileset>
     </family>
     <family>
@@ -186,6 +196,18 @@
     </family>
     <family>
         <fileset>
+            <file variant="elegant">NotoSansMyanmar-Regular.ttf</file>
+            <file variant="elegant">NotoSansMyanmar-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file variant="compact">NotoSansMyanmarUI-Regular.ttf</file>
+            <file variant="compact">NotoSansMyanmarUI-Bold.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
             <file>NanumGothic.ttf</file>
         </fileset>
     </family>
@@ -198,6 +220,16 @@
     <family>
         <fileset>
             <file>NotoSansSymbols-Regular.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>AndroidEmoji.ttf</file>
+        </fileset>
+    </family>
+    <family>
+        <fileset>
+            <file>NotoColorEmoji.ttf</file>
         </fileset>
     </family>
     <family>

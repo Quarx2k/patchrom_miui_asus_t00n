@@ -120,10 +120,20 @@
 
     <family>
         <nameset>
-            <name>TobysHand</name>
+            <name>miuiex</name>
         </nameset>
         <fileset>
-            <file>TobysHand.ttf</file>
+            <file>MiuiEx-Regular.ttf</file>
+            <file>MiuiEx-Bold.ttf</file>
+        </fileset>
+    </family>
+
+    <family>
+        <nameset>
+            <name>miuiex-light</name>
+        </nameset>
+        <fileset>
+            <file>MiuiEx-Light.ttf</file>
         </fileset>
     </family>
 
