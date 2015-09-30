@@ -22,6 +22,17 @@ function applyPatch () {
     done
 }
 
+function changeID () {
+    public_miui=$curdir/other/tools
+    for public in `find $public_miui -name *.xml`
+    do
+    	cd out
+    	python $public_miui/idtoname.py $public_miui/public_miui.xml $1/smali
+    	python $public_miui/nametoid.py $curdir/framework-res/res/values/public.xml $1/smali
+    	cd ..
+    done
+}
+
 if [ $1 = "miuisystem" ];then
 	applyPatch $1 $2
 	cp $1/ASUS_T00N.xml $2/assets/device_features/
@@ -45,11 +56,11 @@ fi
 if [ $1 = "MiuiSystemUI" ];then
 	applyPatch $1 $2
 	$XMLMERGYTOOL $1/res/values $2/res/values
+	changeID $1
 fi
 
 if [ $1 = "DeskClock" ];then
-    	python other/tools/idtoname.py other/tools/public_miui.xml $2/smali
-    	python other/tools/nametoid.py framework-res/res/values/public.xml $2/smali
+	changeID $1
 fi
 
 if [ $1 = "Music" ];then
@@ -61,6 +72,5 @@ if [ $1 = "Updater" ];then
 fi
 
 if [ $1 = "DownloadProvider" ];then
-    	python other/tools/idtoname.py other/tools/public_miui.xml $2/smali
-    	python other/tools/nametoid.py framework-res/res/values/public.xml $2/smali
+	changeID $1
 fi
