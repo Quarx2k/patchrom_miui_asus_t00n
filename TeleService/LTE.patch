@@ -1,27 +1,27 @@
-From 063f5258c2b6a207dd053d007b7908aa9a232f1c Mon Sep 17 00:00:00 2001
-From: hasz <bmax004@gmail.com>
-Date: Sun, 26 Apr 2015 16:14:24 +0800
-Subject: [PATCH] Open LTE Mi5
+From c84c72b50d45a9bab16d189336ca17e1a9b02678 Mon Sep 17 00:00:00 2001
+From: X-s <imxs1107@gmail.com>
+Date: Sat, 10 Oct 2015 20:44:12 +0800
+Subject: [PATCH] Open LTE
 
 ---
- .../smali/com/android/phone/PhoneGlobals.smali     |    2 +-
- .../PreferredNetworkTypeListPreference.smali       |   10 +++++-----
+ TeleService/smali/com/android/phone/PhoneGlobals.smali         |  2 +-
+ .../phone/settings/PreferredNetworkTypeListPreference.smali    | 10 +++++-----
  2 files changed, 6 insertions(+), 6 deletions(-)
 
 --- a/TeleService/smali/com/android/phone/PhoneGlobals.smali
 +++ b/TeleService/smali/com/android/phone/PhoneGlobals.smali
-@@ -2771,7 +2771,7 @@
-     :cond_a
+@@ -2789,7 +2789,7 @@
+     :cond_9
      sget-boolean v3, Lmiui/os/Build;->IS_MIFIVE:Z
  
--    if-eqz v3, :cond_d
-+    #if-eqz v3, :cond_d
+-    if-eqz v3, :cond_c
++    #if-eqz v3, :cond_c
  
      move v2, v0
  
 --- a/TeleService/smali/com/android/phone/settings/PreferredNetworkTypeListPreference.smali
 +++ b/TeleService/smali/com/android/phone/settings/PreferredNetworkTypeListPreference.smali
-@@ -751,15 +751,15 @@
+@@ -749,15 +749,15 @@
  
      sget-boolean v3, Lmiui/os/Build;->IS_MIFIVE:Z
  
@@ -43,5 +43,5 @@ Subject: [PATCH] Open LTE Mi5
      :cond_8
      const v3, 0x7f050026
 -- 
-1.7.9.5
+1.9.1
 
