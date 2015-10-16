@@ -58,7 +58,7 @@ Subject: [PATCH] add juelian changelog
 +
 +    invoke-direct {v6, v7, v14}, Lcom/android/updater/JuelianUtils;-><init>(Landroid/webkit/WebView;Ljava/lang/String;)V
 +    # end add by juelian
-+    
++
      # getter for: Lcom/android/updater/MainActivity;->TAG:Ljava/lang/String;
      invoke-static {}, Lcom/android/updater/MainActivity;->access$1000()Ljava/lang/String;
  
