@@ -13,7 +13,7 @@ Subject: [PATCH] fix MiuiVideo signapk
      move-object/from16 v0, p1
  
      iget-object v4, v0, Landroid/content/pm/PackageParser$Package;->mSignatures:[Landroid/content/pm/Signature;
-+    
++
 +    const-string v0, "com.miui.video"
 +
 +    invoke-virtual {v0, v12}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -28,7 +28,7 @@ Subject: [PATCH] fix MiuiVideo signapk
  
      .prologue
      const/4 v0, 0x0
-+    
++
 +    const-string v1, "com.miui.video"
 +
 +    iget-object v3, p2, Landroid/content/pm/PackageParser$Package;->packageName:Ljava/lang/String;
