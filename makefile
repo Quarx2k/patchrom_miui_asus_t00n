@@ -66,8 +66,6 @@ local-pre-zip-misc:
 		#DATA APPLIST
 		echo "ota-miui-XiaomiBaiduInput.apk" >> $(ZIP_DIR)/data/miui/cust/cn/customized_applist
 		echo "ota-miui-XiaomiBaiduInput.apk" >> $(ZIP_DIR)/data/miui/cust/cn/ota_customized_applist
-		#fix QuickSearchBox
-		mv $(ZIP_DIR)/system/app/QuickSearchBox.apk $(ZIP_DIR)/system/priv-app/QuickSearchBox.apk
 		#fix selinux
 		sed -i '4asetenforce 0' $(ZIP_DIR)/system/bin/sysinit
 		#bye bye miui bin , use stockrom
