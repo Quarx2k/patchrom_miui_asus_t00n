@@ -22,17 +22,14 @@ function applyPatch () {
 function changeID () {
     tools_dir=$curdir/other/tools
     if [ -f out/framework-res_miui/res/values/public.xml ]; then
-        cd out
-    	python $tools_dir/idtoname.py framework-res_miui/res/values/public.xml $1/smali
-    	python $tools_dir/nametoid.py $curdir/framework-res/res/values/public.xml $1/smali
-    	cd -
+        echo "exists!"
     else
         apktool d -f $PORT_ROOT/miui/XXHDPI/system/framework/framework-res.apk -o out/framework-res_miui
-        cd out
-    	python $tools_dir/idtoname.py framework-res_miui/res/values/public.xml $1/smali
-    	python $tools_dir/nametoid.py $curdir/framework-res/res/values/public.xml $1/smali
-    	cd -
     fi
+    cd out
+    python $tools_dir/idtoname.py framework-res_miui/res/values/public.xml $1/smali
+    python $tools_dir/nametoid.py $curdir/framework-res/res/values/public.xml $1/smali
+    cd -
 }
 
 if [ $1 = "miuisystem" ];then
