@@ -63,6 +63,9 @@ local-pre-zip-misc:
 		echo "persist.audio.fluence.speaker=false" >> $(ZIP_DIR)/system/build.prop
 		#use auto brightadj
 		echo "persist.power.useautobrightadj=true" >> $(ZIP_DIR)/system/build.prop
+		#security patch
+		echo "ro.build.version.security_patch=2015-11-01" >> $(ZIP_DIR)/system/build.prop
+		echo "ro.build.version.base_os=" >> $(ZIP_DIR)/system/build.prop
 		#DATA APPLIST
 		echo "ota-miui-XiaomiBaiduInput.apk" >> $(ZIP_DIR)/data/miui/cust/cn/customized_applist
 		echo "ota-miui-XiaomiBaiduInput.apk" >> $(ZIP_DIR)/data/miui/cust/cn/ota_customized_applist
