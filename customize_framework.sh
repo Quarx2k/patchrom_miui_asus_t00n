@@ -14,11 +14,11 @@ function applyPatch() {
 		cp $file out/
 		cd out
 		git.apply `basename $file`
-        for file2 in `find $2 -name *.rej`
-        do
-            echo "$file2 fail"
-            exit 1
-        done
+		for file2 in `find $2 -name *.rej`
+		do
+			echo "$file2 fail"
+			exit 1
+		done
 		cd ..
 	done
 }
@@ -26,7 +26,7 @@ function applyPatch() {
 
 if [ $2 = "$BUILD_OUT/framework" ]
 then
-    cp -rf ../android/Editor/* $BUILD_OUT/framework/smali/android/widget/
+	cp -rf ../android/Editor/* $BUILD_OUT/framework/smali/android/widget/
 fi
 
 #if [ $2 = "$BUILD_OUT/framework2" ]
@@ -40,10 +40,10 @@ fi
 
 if [ $2 = "$BUILD_OUT/services" ]
 then
-    applyPatch "overlay/services"
+	applyPatch "overlay/services"
 fi
 
 if [ $2 = "$BUILD_OUT/android.policy" ]
 then
-    applyPatch "overlay/android.policy"
+	applyPatch "overlay/android.policy"
 fi

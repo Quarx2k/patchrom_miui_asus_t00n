@@ -34,46 +34,46 @@ function changeID () {
 
 if [ $1 = "miuisystem" ];then
     sed -i '/  - 16/a\  - 17' $2/apktool.yml
-	applyPatch $1 $2
-	cp $1/ASUS_T00N.xml $2/assets/device_features/
+    applyPatch $1 $2
+    cp $1/A0001.xml $2/assets/device_features/
 fi
 
 if [ $1 = "TeleService" ];then
-	applyPatch $1 $2
-	$XMLMERGYTOOL $1/res/values $2/res/values
-	#fix read sim card contact preson
-	sed -i 's/MiuiIccProvider/IccProvider/g' $2/smali/com/android/phone/IccProvider.smali
+    applyPatch $1 $2
+    $XMLMERGYTOOL $1/res/values $2/res/values
+    #fix read sim card contact preson
+    sed -i 's/MiuiIccProvider/IccProvider/g' $2/smali/com/android/phone/IccProvider.smali
 fi
 
 if [ $1 = "Settings" ];then
     sed -i '/  - 17/a\  - 18' $2/apktool.yml
-	applyPatch $1 $2
-	$XMLMERGYTOOL $1/res/values $2/res/values
-	$XMLMERGYTOOL $1/res/values-zh-rCN $2/res/values-zh-rCN
+    applyPatch $1 $2
+    $XMLMERGYTOOL $1/res/values $2/res/values
+    $XMLMERGYTOOL $1/res/values-zh-rCN $2/res/values-zh-rCN
 fi
 
 if [ $1 = "SecurityCenter" ];then
-	applyPatch $1 $2
+    applyPatch $1 $2
 fi
 
 if [ $1 = "MiuiSystemUI" ];then
-	applyPatch $1 $2
-	$XMLMERGYTOOL $1/res/values $2/res/values
-	changeID $1
+    applyPatch $1 $2
+    $XMLMERGYTOOL $1/res/values $2/res/values
+    changeID $1
 fi
 
 if [ $1 = "DeskClock" ];then
-	changeID $1
+    changeID $1
 fi
 
 if [ $1 = "Updater" ];then
-	applyPatch $1 $2
+    applyPatch $1 $2
 fi
 
 if [ $1 = "DownloadProvider" ];then
-	changeID $1
+    changeID $1
 fi
 
 if [ $1 = "XiaomiServiceFramework" ];then
-	applyPatch $1 $2
+    applyPatch $1 $2
 fi
