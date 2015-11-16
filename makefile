@@ -20,7 +20,7 @@ local-modified-jars :=
 local-miui-removed-apps :=
 
 local-miui-modified-apps := miuisystem MiuiHome TeleService Settings SecurityCenter \
-			MiuiSystemUI DeskClock Music Updater DownloadProvider \
+			MiuiSystemUI DeskClock Updater DownloadProvider \
 			XiaomiServiceFramework
 
 local-phone-apps :=
