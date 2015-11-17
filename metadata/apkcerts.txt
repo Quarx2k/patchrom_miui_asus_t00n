@@ -5,6 +5,8 @@ name="MiuiCamera.apk" certificate="build/target/product/security/platform.x509.p
 name="StockSettings.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="Settings_ex.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="ota-miui-XiaomiBaiduInput.apk" certificate="PRESIGNED" private_key=""
+name="Whetstone.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
+name="PowerKeeper.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="AntHalService.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="Apollo.apk" certificate="PRESIGNED" private_key=""
 name="BackupRestoreConfirmation.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
