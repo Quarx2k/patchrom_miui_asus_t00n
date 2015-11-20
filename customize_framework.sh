@@ -27,6 +27,7 @@ function applyPatch() {
 if [ $2 = "$BUILD_OUT/framework" ]
 then
 	cp -rf ../android/Editor/* $BUILD_OUT/framework/smali/android/widget/
+	cp -rf overlay/framework/* $BUILD_OUT/framework
 fi
 
 #if [ $2 = "$BUILD_OUT/framework2" ]
