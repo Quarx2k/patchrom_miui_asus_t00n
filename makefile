@@ -63,9 +63,6 @@ local-pre-zip-misc:
 		echo "persist.audio.fluence.speaker=false" >> $(ZIP_DIR)/system/build.prop
 		#use auto brightadj
 		echo "persist.power.useautobrightadj=true" >> $(ZIP_DIR)/system/build.prop
-		#security patch
-		echo "ro.build.version.security_patch=2015-11-01" >> $(ZIP_DIR)/system/build.prop
-		echo "ro.build.version.base_os=" >> $(ZIP_DIR)/system/build.prop
 		#PowerKeeper and Whetstone
 		echo "persist.sys.mcd_config_file=/system/etc/mcd_default.conf" >> $(ZIP_DIR)/system/build.prop
 		echo "persist.sys.klo=on" >> $(ZIP_DIR)/system/build.prop
