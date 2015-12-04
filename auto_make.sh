@@ -90,7 +90,12 @@ function UseTime() {
 }
 
 START_TIME=`date +%s`
-BUILD_DATE
+if [ "$1" = '' ]
+then
+    BUILD_DATE
+else
+    BUILD_NUMBER=$1
+fi
 MakeFullota
 CopyFullota
 MakeOTA
