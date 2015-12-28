@@ -50,6 +50,8 @@ if [ $1 = "Settings" ];then
     applyPatch $1 $2
     $XMLMERGYTOOL $1/res/values $2/res/values
     $XMLMERGYTOOL $1/res/values-zh-rCN $2/res/values-zh-rCN
+    #fix button light timeout
+    sed -i 's/screen_buttons_timeout/button_backlight_timeout/g' $2/smali/com/android/settings/KeySettings.smali
 fi
 
 if [ $1 = "SecurityCenter" ];then
